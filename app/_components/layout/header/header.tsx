@@ -67,7 +67,7 @@ export default function Header() {
               <input
                 type="text"
                 placeholder="جستجوی گل در شکوفا"
-                className="outline-none"
+                className="outline-none w-full"
               />
             </Form>
           </div>
@@ -76,13 +76,13 @@ export default function Header() {
           <div className="lg:flex hidden items-center gap-x-2 justify-end">
             <button
               type="button"
-              className="border border-gray-200 p-4 rounded-full cursor-pointer"
+              className="border border-gray-200 p-4 rounded-full cursor-pointer hover:border-black transition-color duration-300"
             >
               <Heart />
             </button>
             <button
               type="button"
-              className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2"
+              className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
             >
               <div className="badge bg-rose-50 rounded-full text-rose-500 px-2">
                 2
@@ -91,7 +91,7 @@ export default function Header() {
             </button>
             <button
               type="button"
-              className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2"
+              className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
             >
               <UserRound />
               سروش
@@ -121,10 +121,10 @@ export default function Header() {
             <p>ارسال به :</p>
             <button
               type="button"
-              className="bg-gray-100 text-gray-600 p-1 rounded-full cursor-pointer flex items-center gap-x-2"
+              className="bg-gray-100 text-gray-600 p-1 rounded-full hover:border-black transition-color duration-300 flex items-center gap-x-2"
             >
               البرز٬ کرج
-              <ChevronDown size={16}/>
+              <ChevronDown size={16} />
             </button>
           </div>
         </div>
