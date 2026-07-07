@@ -46,7 +46,7 @@ export default function Header() {
     <header>
       <div className="container">
         {/* top header  */}
-        <div className="top-header py-8 grid grid-cols-2 items-center">
+        <div className="top-header py-5 grid grid-cols-2 items-center">
           {/* right  */}
           <div className="flex items-center gap-x-5">
             <Link href="/">
@@ -117,14 +117,14 @@ export default function Header() {
           </ul>
 
           {/* left  */}
-          <div className="flex items-center gap-x-2 justify-end">
+          <div className="flex items-center gap-x-2 justify-end text-sm">
             <p>ارسال به :</p>
             <button
               type="button"
-              className="bg-gray-100 text-gray-600 p-4 rounded-full cursor-pointer flex items-center gap-x-2"
+              className="bg-gray-100 text-gray-600 p-1 rounded-full cursor-pointer flex items-center gap-x-2"
             >
               البرز٬ کرج
-              <ChevronDown />
+              <ChevronDown size={16}/>
             </button>
           </div>
         </div>
