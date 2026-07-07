@@ -2,6 +2,7 @@
 import {
   ChevronDown,
   Heart,
+  Menu,
   Search,
   ShoppingCart,
   UserRound,
@@ -49,6 +50,9 @@ export default function Header() {
         <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">
           {/* right  */}
           <div className="flex items-center gap-x-5">
+            <button type="button" className="text-gray-800 cursor-pointer lg:hidden flex">
+              <Menu />
+            </button>
             <Link href="/">
               <Image
                 src="/images/BrandLogo.png"
