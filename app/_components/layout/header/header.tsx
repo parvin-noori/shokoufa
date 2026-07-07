@@ -65,7 +65,7 @@ export default function Header() {
               action=""
               className="searchbar flex items-center bg-gray-100 text-gray-400 rounded-full overflow-hidden text-sm flex-grow"
             >
-              <button type="submit" className="p-4 cursor-pointer">
+              <button type="submit" className="p-4  cursor-pointer">
                 <Search />
               </button>
               <input
