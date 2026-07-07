@@ -57,9 +57,9 @@ const categories: CategoryItem[] = [
 export default function Categories() {
   return (
     <div className="categories py-10">
-      <div className="container flex flex-col gap-y-10">
-        <span className="text-2xl mx-auto">دسته بندی ها</span>
-        <div className="grid grid-cols-5 gap-10">
+      <div className="flex flex-col gap-y-10">
+        <span className="text-2xl mx-auto font-bold">دسته بندی ها</span>
+        <div className="grid lg:grid-cols-5 grid-cols-4 gap-2">
           {categories.map((item, index) => (
             <Category key={index} category={item} />
           ))}

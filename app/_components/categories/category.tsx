@@ -8,18 +8,18 @@ type CategoryProps = {
 
 export default function Category({ category }: CategoryProps) {
   return (
-    <div className="flex flex-col gap-y-3 items-center">
+    <div className="flex flex-col gap-y-3 items-center text-center">
       <Link href={category.link}>
         <Image
           src={category.image}
           alt={category.title}
           width={550}
           height={550}
-          className="size-[150px] rounded-4xl"
+          className="md:size-[150px] size-[70px] md:rounded-4xl rounded-xl"
         />
       </Link>
       <Link href={category.link}>
-        <span>{category.title}</span>
+        <span className="font-semibold">{category.title}</span>
       </Link>
     </div>
   );

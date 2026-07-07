@@ -46,7 +46,7 @@ export default function Header() {
     <header>
       <div className="container">
         {/* top header  */}
-        <div className="top-header py-5 grid grid-cols-2 items-center">
+        <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">
           {/* right  */}
           <div className="flex items-center gap-x-5">
             <Link href="/">
@@ -73,7 +73,7 @@ export default function Header() {
           </div>
 
           {/* left  */}
-          <div className="flex items-center gap-x-2 justify-end">
+          <div className="lg:flex hidden items-center gap-x-2 justify-end">
             <button
               type="button"
               className="border border-gray-200 p-4 rounded-full cursor-pointer"
@@ -101,7 +101,7 @@ export default function Header() {
         </div>
 
         {/* bottom header  */}
-        <div className="bottom-header py-2 grid grid-cols-2 items-center">
+        <div className="bottom-header py-2 lg:grid hidden grid-cols-2 items-center">
           {/* right  */}
           <ul className="flex items-center justify-between">
             {mainMenu.map((item, index) => (

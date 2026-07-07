@@ -1,5 +1,6 @@
 import Categories from "./_components/categories/categories";
 import Header from "./_components/layout/header/header";
+import Services from "./_components/services/services";
 import Slider from "./_components/slider/Slider";
 import { SliderItems } from "./_components/slider/slider.types";
 
@@ -19,7 +20,10 @@ export default function Home() {
     <>
       <Header />
       <Slider slides={sliderContent} />
-      <Categories/>
+      <div className="container flex flex-col divide-y divide-gray-200">
+        <Categories />
+        <Services />
+      </div>
     </>
   );
 }
