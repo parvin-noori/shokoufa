@@ -22,7 +22,7 @@ export default function Slider({ slides }: SliderProps) {
       navigation={true}
     >
       {slides.map((slide, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide key={index} className="relative">
           <Image
             width={1440}
             height={400}
@@ -30,6 +30,11 @@ export default function Slider({ slides }: SliderProps) {
             alt={slide.text ?? "image slide"}
             className="size-full object-cover"
           />
+          <div className="absolute top-5 start-5 w-full">
+            <h1 className="bg-gradient-to-l from-[#331F0C] to-[#B18864] bg-clip-text text-transparent text-5xl font-bold w-2/5  leading-[1.5]">
+              {slide.text}
+            </h1>
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

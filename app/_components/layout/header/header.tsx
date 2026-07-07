@@ -121,7 +121,7 @@ export default function Header() {
             <p>ارسال به :</p>
             <button
               type="button"
-              className="bg-gray-100 text-gray-600 p-1 rounded-full hover:border-black transition-color duration-300 flex items-center gap-x-2"
+              className="bg-gray-100 text-gray-600 p-1 rounded-full border-transparent border hover:border-black transition-color duration-300 flex items-center gap-x-2"
             >
               البرز٬ کرج
               <ChevronDown size={16} />
