@@ -16,7 +16,7 @@ export default function Slider({ slides }: SliderProps) {
   return (
     <Swiper
       slidesPerView={1}
-      className="w-full"
+      className="w-full lg:!flex !hidden"
       modules={[Pagination, Navigation]}
       pagination={{ clickable: true }}
       navigation={true}

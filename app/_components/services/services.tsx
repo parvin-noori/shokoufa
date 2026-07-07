@@ -33,7 +33,7 @@ export default function Services() {
       <div className="categories py-10">
           <div className="flex flex-col gap-y-10">
             <span className="text-2xl mx-auto font-bold">چرا شکوفا؟</span>
-            <div className="grid lg:grid-cols-4 grid-cols-2 gap-10">
+            <div className="grid lg:grid-cols-4 grid-cols-2 gap-5">
               {services.map((item, index) => (
                 <Service key={index} service={item} />
               ))}
