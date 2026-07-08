@@ -2,17 +2,38 @@ import Image from "next/image";
 
 export default function Banner() {
   return (
-    <div className="container relative lg:hidden flex">
-      <Image
-        src="/images/heroSection.png"
-        alt="بنر"
-        width={328}
-        height={185}
-        className="rounded-2xl  w-full"
-      />
-      <h1 className="absolute top-0 bg-gradient-to-l from-[#331F0C] to-[#B18864] bg-clip-text text-transparent text-2xl font-bold w-1/2  leading-[1.5]">
-        <p>گاهی یک دسته گل همه چیز را میگوید</p>
-      </h1>
+    <div className="container lg:hidden flex">
+      <div className="relative w-full">
+        <Image
+          src="/images/heroSection.png"
+          alt="بنر"
+          width={328}
+          height={185}
+          className="rounded-2xl w-full"
+        />
+        <div className="absolute top-1/2 transform -translate-y-1/2 flex flex-col items-end end-10  w-1/2  leading-[1.5] gap-y-10">
+          <div className="bg-gradient-to-l from-[#331F0C] to-[#B18864] bg-clip-text text-transparent  font-bold">
+            <p className="text-[20px] md:text-4xl text-end font-black">
+              گاهی یک دسته گل همه چیز را میگوید
+            </p>
+          </div>
+          <div className="flex items-center gap-x-2 font-bold">
+            <div className="inline-block rounded-md overflow-hidden p-[2px] bg-gradient-to-l from-[#331F0C] to-[#B18864]">
+              <button type="button" className="bg-white rounded-md py-2 px-3">
+                <span className="bg-gradient-to-l from-[#331F0C] to-[#B18864] text-nowrap bg-clip-text text-transparent font-bold">
+                  دسته بندی ها
+                </span>
+              </button>
+            </div>
+            <button
+              type="button"
+              className="bg-gradient-to-l py-2 px-3 text-nowrap from-[#331F0C] to-[#B18864] text-white rounded-md"
+            >
+              مشاهده گل ها
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

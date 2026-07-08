@@ -56,7 +56,7 @@ export default function Slider({ slides }: SliderProps) {
                 className="py-2 ps-3 pe-2 ms-26 bg-white me-auto text-[#7E5D40] bg-white rounded-full font-bold flex items-center gap-x-3"
               >
                 دیدن محصولات
-                <span className="bg-gradient-to-l flex items-center justify-center from-[#331F0C] to-[#B18864] rounded-full size-[24px]">
+                <span className="flex items-center justify-center bg-gradient-to-l  from-[#331F0C] to-[#B18864] rounded-full size-[24px]">
                   <ChevronLeft color="white" size={18} />
                 </span>
               </Link>
