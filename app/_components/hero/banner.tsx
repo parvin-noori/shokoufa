@@ -11,7 +11,7 @@ export default function Banner() {
           height={185}
           className="rounded-2xl w-full"
         />
-        <div className="absolute top-1/2 transform -translate-y-1/2 flex flex-col items-end end-10  w-1/2  leading-[1.5] gap-y-10">
+        <div className="absolute top-1/2 transform -translate-y-1/2 flex flex-col items-end end-5  w-1/2  leading-[1.5] gap-y-10">
           <div className="bg-gradient-to-l from-[#331F0C] to-[#B18864] bg-clip-text text-transparent  font-bold">
             <p className="text-[20px] md:text-4xl text-end font-black">
               گاهی یک دسته گل همه چیز را میگوید
