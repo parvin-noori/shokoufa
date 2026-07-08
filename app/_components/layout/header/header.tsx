@@ -6,10 +6,12 @@ import {
   Search,
   ShoppingCart,
   UserRound,
+  X,
 } from "lucide-react";
 import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const mainMenu = [
   {
@@ -49,10 +51,8 @@ export default function Header() {
         {/* top header  */}
         <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">
           {/* right  */}
-          <div className="flex items-center gap-x-5">
-            <button type="button" className="text-gray-800 cursor-pointer lg:hidden flex">
-              <Menu />
-            </button>
+          <div className="flex items-center gap-x-3">
+            <HamburgerMenu />
             <Link href="/">
               <Image
                 src="/images/BrandLogo.png"
@@ -109,7 +109,8 @@ export default function Header() {
           {/* right  */}
           <ul className="flex items-center justify-between">
             {mainMenu.map((item, index) => (
-              <li key={index}>
+              <li key={index} className="flex items-center gap-x-2">
+                {index === 0 && <Menu />}
                 <Link
                   href={item.link}
                   className="hover:text-rose-500 transition-all duration-100"
@@ -134,5 +135,43 @@ export default function Header() {
         </div>
       </div>
     </header>
+  );
+}
+
+function HamburgerMenu() {
+  const [isOpened, setIsOpened] = useState(false);
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setIsOpened(true)}
+        className="text-gray-800 cursor-pointer lg:hidden flex group"
+      >
+        <Menu />
+      </button>
+      <div
+        className={`hamburgerMenu transition-transform duration-300 bg-white fixed inset-0  z-10 ${isOpened ? "" : "translate-x-full"}`}
+      >
+        <button
+          type="button"
+          className="absolute end-5 top-10 cursor-pointer"
+          onClick={() => setIsOpened(false)}
+        >
+          <X />
+        </button>
+        <ul className="flex flex-col divide-y divide-gray-100 text-start py-22 px-5">
+          {mainMenu.map((item) => (
+            <li>
+              <Link
+                href={item.link}
+                className="focused:text-rose-500 p-5 text-gray-800 block transition-all duration-100"
+              >
+                {item.text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
