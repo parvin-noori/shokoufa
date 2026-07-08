@@ -1,6 +1,7 @@
 import Categories from "./_components/categories/categories";
 import Hero from "./_components/hero/Hero";
 import Header from "./_components/layout/header/header";
+import NavigationBar from "./_components/navigationBar/NavigationBar";
 import Services from "./_components/services/services";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         <Categories />
         <Services />
       </div>
+      <NavigationBar />
     </>
   );
 }
