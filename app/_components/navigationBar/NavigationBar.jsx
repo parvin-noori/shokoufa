@@ -28,8 +28,8 @@ export default function NavigationBar() {
     <div className="fixed bottom-0 bg-white inset-x-0 py-4 inset-shadow-sm lg:hidden flex">
       <div className="container ">
         <ul className="flex items-center justify-between px-5">
-          {navigationMenus.map((item) => (
-            <li>
+          {navigationMenus.map((item,index) => (
+            <li key={index}>
               <Link
                 href={item.link}
                 className="flex flex-col gap-y-2 items-center text-gray-600"
