@@ -14,7 +14,7 @@ export default function Product({ product, isOffer = false }: ProductProps) {
   return (
     <Link
       href="/"
-      className={`bg-white border p-4 rounded-3xl flex flex-col divide-y divide-gray-200 ${isOffer ? " border-rose-200" : " border-gray-200"}`}
+      className={`bg-white h-full border p-4 rounded-3xl flex flex-col divide-y divide-gray-200 ${isOffer ? " border-rose-200" : " border-gray-200"}`}
     >
       <div className="flex flex-col gap-y-5 pb-4">
         <Image
@@ -24,7 +24,7 @@ export default function Product({ product, isOffer = false }: ProductProps) {
           height={284}
           className="rounded-2xl w-full"
         />
-        <span className="text-gray-800 font-bold">{product.title}</span>
+        <span className="text-gray-800 font-bold line-clamp-1">{product.title}</span>
         <div className="flex items-center justify-between">
           <button type="button" className="cursor-pointer">
             <Heart className="text-gray-400" />

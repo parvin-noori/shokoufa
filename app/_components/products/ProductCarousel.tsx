@@ -71,14 +71,14 @@ export default function ProductCarousel({
     <div
       className={`flex flex-col py-10 gap-y-10 rounded-4xl ${isOffer ? "bg-rose-50 p-8 border border-rose-300 overflow-hidden" : ""}`}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-x-5">
+      <div className="flex lg:items-center items-start justify-between">
+        <div className="flex lg:flex-row flex-col lg:items-center lg:gap-x-10 lg:gap-y-0 gap-y-5">
           <span
-            className={`${isOffer ? "text-rose-600 font-black text-4xl" : "font-bold text-2xl"}`}
+            className={`${isOffer ? "text-rose-600 font-black lg:text-4xl text-2xl" : "font-bold text-2xl"}`}
           >
             {title}
           </span>
-          {isOffer && <span>timer</span>}
+          {isOffer && <span className="text-rose-900 text-xl">تا پایان تخفیف :</span>}
         </div>
         <Link
           href="/"
