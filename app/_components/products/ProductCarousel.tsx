@@ -78,7 +78,9 @@ export default function ProductCarousel({
           >
             {title}
           </span>
-          {isOffer && <span className="text-rose-900 text-xl">تا پایان تخفیف :</span>}
+          {isOffer && (
+            <span className="text-rose-900 text-xl">تا پایان تخفیف :</span>
+          )}
         </div>
         <Link
           href="/"
@@ -105,7 +107,7 @@ export default function ProductCarousel({
         }}
         breakpoints={{
           320: {
-            slidesPerView: 2,
+            slidesPerView: isOffer ? 1.8 : 2,
             slidesPerGroup: 1,
           },
           640: {
