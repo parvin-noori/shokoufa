@@ -1,5 +1,6 @@
 import CustomBouquetBanners from "./_components/banners/Banners";
 import Categories from "./_components/categories/categories";
+import CustomBouquet from "./_components/customBouquet/customBouquet";
 import Hero from "./_components/hero/Hero";
 import Header from "./_components/layout/header/header";
 import NavigationBar from "./_components/navigationBar/NavigationBar";
@@ -21,6 +22,7 @@ export default function Home() {
             <CustomBouquetBanners/>
             <ProductCarousel title="روز دختر" />
           </div>
+          <CustomBouquet/>
         </div>
       </div>
       <NavigationBar />
