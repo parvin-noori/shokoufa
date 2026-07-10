@@ -1,6 +1,7 @@
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import { ProductType } from "./product.type";
+import Link from "next/link";
 
 type ProductProps = {
   product: ProductType;
@@ -10,23 +11,23 @@ export default function Product({ product }: ProductProps) {
   const originalPrice = product.price * (1 - product.discount / 100);
 
   return (
-    <div className="border border-gray-200 p-4 rounded-3xl flex flex-col divide-y divide-gray-200">
+    <Link href="/" className="border border-gray-200 p-4 rounded-3xl flex flex-col divide-y divide-gray-200">
       <div className="flex flex-col gap-y-5 pb-4">
         <Image
           src={product.image_url}
           alt="دسته گل افتابگردون"
           width={284}
           height={284}
-          className="rounded-2xl"
+          className="rounded-2xl w-full"
         />
         <span className="text-gray-800 font-bold">{product.title}</span>
         <div className="flex items-center justify-between">
           <button type="button" className="cursor-pointer">
             <Heart className="text-gray-400" />
           </button>
-          <span className="flex items-center gap-x-2 text-gray-600">
+          <span className="flex items-center gap-x-2 text-gray-600 font-semibold">
             {product.rate}
-            <Star />
+            <Star className="fill-rose-500" stroke="none"/>
           </span>
         </div>
       </div>
@@ -44,6 +45,6 @@ export default function Product({ product }: ProductProps) {
           <span className="line-through">{product.price.toLocaleString()}</span>
         </span>
       </div>
-    </div>
+    </Link>
   );
 }

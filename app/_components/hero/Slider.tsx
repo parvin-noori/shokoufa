@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Navigations from "../navigation/navigations";
 import { SliderItems } from "./slider.types";
 
 type SliderProps = {
@@ -19,7 +20,7 @@ export default function Slider({ slides }: SliderProps) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   return (
-    <div className="relative w-full lg:flex hidden">
+    <div className="w-full lg:flex hidden">
       <Swiper
         slidesPerView={1}
         className="w-full lg:!flex !hidden [&_.swiper-pagination]:bg-white/30 [&_.swiper-pagination]:!w-auto [&_.swiper-pagination]:!end-1/2 [&_.swiper-pagination]:rounded-full [&_.swiper-pagination-bullet]:!bg-white [&_.swiper-pagination]:px-1 [&_.swiper-pagination-bullet-active]:!bg-white"
@@ -65,18 +66,7 @@ export default function Slider({ slides }: SliderProps) {
         ))}
       </Swiper>
       <div className="absolute bottom-12 start-15 flex items-center gap-x-3 z-10">
-        <button
-          ref={prevRef}
-          className="p-2 bg-white/30 backdrop-blur-sm rounded-full drop-shadow-[0_0_15px_rgba(0,0,0,0.10)] disabled:opacity-40 disabled:cursor-not-allowed [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:pointer-events-none cursor-pointer"
-        >
-          <ChevronRight className="size-6 text-gray-800" />
-        </button>
-        <button
-          ref={nextRef}
-          className="p-2 bg-white/30 backdrop-blur-sm rounded-full drop-shadow-[0_0_15px_rgba(0,0,0,0.10)] [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:pointer-events-none cursor-pointer"
-        >
-          <ChevronLeft className="size-6 text-gray-800" />
-        </button>
+        <Navigations prevRef={prevRef} nextRef={nextRef} />
       </div>
     </div>
   );

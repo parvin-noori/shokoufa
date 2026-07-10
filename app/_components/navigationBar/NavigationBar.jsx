@@ -25,7 +25,7 @@ export default function NavigationBar() {
     },
   ];
   return (
-    <div className="fixed bottom-0 bg-white inset-x-0 py-4 inset-shadow-sm lg:hidden flex">
+    <div className="fixed bottom-0 bg-white inset-x-0 py-4 inset-shadow-sm lg:hidden flex z-100">
       <div className="container ">
         <ul className="flex items-center justify-between px-5">
           {navigationMenus.map((item,index) => (

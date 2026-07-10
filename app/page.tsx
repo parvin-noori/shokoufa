@@ -1,3 +1,4 @@
+import CustomBouquetBanners from "./_components/banners/Banners";
 import Categories from "./_components/categories/categories";
 import Hero from "./_components/hero/Hero";
 import Header from "./_components/layout/header/header";
@@ -10,10 +11,16 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-      <div className="container flex flex-col divide-y divide-gray-200">
-        <Categories />
-        <Services />
-        <ProductCarousel title="تخفیفات شگفت انگیز"/>
+      <div className="overflow-hidden">
+        <div className="container flex flex-col divide-y divide-gray-200 gap-y-10">
+          <Categories />
+          <Services />
+          <div className=" flex flex-col  gap-y-10">
+            <ProductCarousel title="پرفروش ترین ها" />
+            <CustomBouquetBanners/>
+            <ProductCarousel title="روز دختر" />
+          </div>
+        </div>
       </div>
       <NavigationBar />
     </>

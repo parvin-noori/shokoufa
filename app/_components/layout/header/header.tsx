@@ -160,8 +160,8 @@ function HamburgerMenu() {
           <X />
         </button>
         <ul className="flex flex-col divide-y divide-gray-100 text-start py-22 px-5">
-          {mainMenu.map((item) => (
-            <li>
+          {mainMenu.map((item,index) => (
+            <li key={index}>
               <Link
                 href={item.link}
                 className="focused:text-rose-500 p-5 text-gray-800 block transition-all duration-100"
