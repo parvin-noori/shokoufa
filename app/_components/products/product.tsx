@@ -1,17 +1,21 @@
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
-import { ProductType } from "./product.type";
 import Link from "next/link";
+import { ProductType } from "./product.type";
 
 type ProductProps = {
   product: ProductType;
+  isOffer: boolean;
 };
 
-export default function Product({ product }: ProductProps) {
+export default function Product({ product, isOffer = false }: ProductProps) {
   const originalPrice = product.price * (1 - product.discount / 100);
 
   return (
-    <Link href="/" className="border border-gray-200 p-4 rounded-3xl flex flex-col divide-y divide-gray-200">
+    <Link
+      href="/"
+      className={`bg-white border p-4 rounded-3xl flex flex-col divide-y divide-gray-200 ${isOffer ? " border-rose-200" : " border-gray-200"}`}
+    >
       <div className="flex flex-col gap-y-5 pb-4">
         <Image
           src={product.image_url}
@@ -27,7 +31,7 @@ export default function Product({ product }: ProductProps) {
           </button>
           <span className="flex items-center gap-x-2 text-gray-600 font-semibold">
             {product.rate}
-            <Star className="fill-rose-500" stroke="none"/>
+            <Star className="fill-rose-500" stroke="none" />
           </span>
         </div>
       </div>

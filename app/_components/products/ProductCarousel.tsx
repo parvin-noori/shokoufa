@@ -58,15 +58,28 @@ const products: ProductType[] = [
 
 type ProductCarouselProps = {
   title: string;
+  isOffer?: boolean;
 };
 
-export default function ProductCarousel({ title }: ProductCarouselProps) {
+export default function ProductCarousel({
+  title,
+  isOffer = false,
+}: ProductCarouselProps) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   return (
-    <div className="flex flex-col py-10 gap-y-10">
+    <div
+      className={`flex flex-col py-10 gap-y-10 rounded-4xl ${isOffer ? "bg-rose-50 p-8 border border-rose-300 overflow-hidden" : ""}`}
+    >
       <div className="flex items-center justify-between">
-        <span className="text-2xl font-bold">{title}</span>
+        <div className="flex items-center gap-x-5">
+          <span
+            className={`${isOffer ? "text-rose-600 font-black text-4xl" : "font-bold text-2xl"}`}
+          >
+            {title}
+          </span>
+          {isOffer && <span>timer</span>}
+        </div>
         <Link
           href="/"
           className="flex items-center gap-x-2 text-lg font-semibold"
@@ -75,7 +88,7 @@ export default function ProductCarousel({ title }: ProductCarouselProps) {
         </Link>
       </div>
       <Swiper
-        className="w-full !overflow-visible relative"
+        className="w-full relative  !overflow-visible"
         spaceBetween={20}
         // loop={true}
         modules={[Navigation]}
@@ -111,7 +124,7 @@ export default function ProductCarousel({ title }: ProductCarouselProps) {
       >
         {products.map((item, index) => (
           <SwiperSlide key={index} className="!h-auto">
-            <Product product={item} />
+            <Product product={item} isOffer={isOffer} />
           </SwiperSlide>
         ))}
         <div className="absolute top-1/2 transform -translate-y-1/2 flex items-center justify-between w-full z-10 [&_.swiper-button-disabled]:!opacity-0">

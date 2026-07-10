@@ -16,6 +16,7 @@ export default function Home() {
           <Categories />
           <Services />
           <div className=" flex flex-col  gap-y-10">
+            <ProductCarousel isOffer title="تخفیفات شگفت انگیز"/>
             <ProductCarousel title="پرفروش ترین ها" />
             <CustomBouquetBanners/>
             <ProductCarousel title="روز دختر" />
