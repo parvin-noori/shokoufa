@@ -41,8 +41,8 @@ export default function Slider({ slides }: SliderProps) {
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className="relative">
             <Image
-              width={1440}
-              height={400}
+              width={2440}
+              height={1400}
               src={slide.image_url}
               alt={slide.text ?? "image slide"}
               className="size-full object-cover"

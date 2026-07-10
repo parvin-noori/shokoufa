@@ -5,6 +5,7 @@ import Hero from "./_components/hero/Hero";
 import Header from "./_components/layout/header/header";
 import NavigationBar from "./_components/navigationBar/NavigationBar";
 import ProductCarousel from "./_components/products/ProductCarousel";
+import Reviews from "./_components/reviews/reviews";
 import Services from "./_components/services/services";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
             <ProductCarousel title="روز دختر" />
           </div>
           <CustomBouquet/>
+          <Reviews/>
         </div>
       </div>
       <NavigationBar />

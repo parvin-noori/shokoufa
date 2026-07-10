@@ -20,8 +20,8 @@ export default function Product({ product, isOffer = false }: ProductProps) {
         <Image
           src={product.image_url}
           alt="دسته گل افتابگردون"
-          width={284}
-          height={284}
+          width={500}
+          height={500}
           className="rounded-2xl w-full"
         />
         <span className="text-gray-800 font-bold line-clamp-1">{product.title}</span>
