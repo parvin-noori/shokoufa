@@ -46,7 +46,7 @@ const mainMenu = [
 
 export default function Header() {
   return (
-    <header>
+    <header className="shadow sticky top-0 bg-white z-10">
       <div className="container">
         {/* top header  */}
         <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">

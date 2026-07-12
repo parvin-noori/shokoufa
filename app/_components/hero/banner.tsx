@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Banner() {
   return (
-    <div className="container lg:hidden flex">
+    <div className="container lg:hidden flex mt-5">
       <div className="relative w-full">
         <Image
           src="/images/heroSection.png"
