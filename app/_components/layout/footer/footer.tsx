@@ -173,7 +173,7 @@ export default function Footer() {
           </div>
           <div className="grid grid-cols-3 py-6">
             <ul></ul>
-            <p className="text-center">تمامی حقوق متعلق به شکوفا میباشد</p>
+            <p className="text-center">تمامی حقوق متعلق به شکوفا میباشد.</p>
           </div>
         </div>
       </div>
