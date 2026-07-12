@@ -1,4 +1,5 @@
 import CustomBouquetBanners from "./_components/banners/Banners";
+import Posts from "./_components/blog/posts";
 import Categories from "./_components/categories/categories";
 import CustomBouquet from "./_components/customBouquet/customBouquet";
 import Hero from "./_components/hero/Hero";
@@ -25,6 +26,7 @@ export default function Home() {
           </div>
           <CustomBouquet/>
           <Reviews/>
+          <Posts/>
         </div>
       </div>
       <NavigationBar />
