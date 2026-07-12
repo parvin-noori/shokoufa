@@ -25,7 +25,7 @@ const reviews: ReviewType[] = [
     comment:
       "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،",
     product: {
-      image_url: "/images/pinkTulip.png",
+      image_url: "/images/sunflowers.png",
       title: "دسته گل تابستانی با دیزاین مینیمال",
       color: "زرد",
     },
@@ -47,7 +47,7 @@ export default function Reviews() {
   const nextRef = useRef<HTMLButtonElement>(null);
   return (
     <div className="flex flex-col py-10 gap-y-10">
-      <span className="font-bold text-2xl">رضایت مشتریان</span>
+      <span className="font-bold text-2xl text-center">رضایت مشتریان</span>
       <Swiper
         className="w-full relative  !overflow-visible"
         spaceBetween={20}
