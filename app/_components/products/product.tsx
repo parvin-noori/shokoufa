@@ -41,9 +41,9 @@ export default function Product({ product, isOffer = false }: ProductProps) {
         </span>
         <span className="flex flex-col text-gray-400">
           <span>
-            <span className="text-2xl text-gray-800 font-bold">
+            <span className="lg:text-2xl text-xl text-gray-800 font-bold">
               {originalPrice.toLocaleString()}
-            </span>
+            </span> 
             تومان
           </span>
           <span className="line-through">{product.price.toLocaleString()}</span>

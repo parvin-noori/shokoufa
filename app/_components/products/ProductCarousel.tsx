@@ -107,7 +107,7 @@ export default function ProductCarousel({
         }}
         breakpoints={{
           320: {
-            slidesPerView: isOffer ? 1.8 : 2,
+            slidesPerView: isOffer ? 1.3 : 1.6,
             slidesPerGroup: 1,
           },
           640: {

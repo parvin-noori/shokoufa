@@ -65,7 +65,7 @@ export default function Reviews() {
         }}
         breakpoints={{
           320: {
-            slidesPerView: 1.3,
+            slidesPerView: 1.1,
             slidesPerGroup: 1,
           },
           640: {

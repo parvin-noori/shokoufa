@@ -190,7 +190,7 @@ export default function Footer() {
             </Link>
             <button
               type="button"
-              className="text-rose-950 bg-white flex items-center gap-x-2 font-bold py-3 px-4 rounded-lg ms-auto cursor-pointer"
+              className="text-rose-950 bg-white flex items-center gap-x-2 font-bold py-3 px-4 rounded-lg ms-auto cursor-pointer text-nowrap"
             >
               رفتن به بالا <ChevronUp />
             </button>
@@ -202,9 +202,9 @@ export default function Footer() {
                   09121231212
                 </Link>
               </div>
-              <div className="flex items-center gap-x-1">
-                <span className="text-white/80">ساعت های پاسخگویی: </span>
-                <p className="font-semibold">شنبه تا چهارشنبه. ساعت ۸ تا ۱۲</p>
+              <div className="flex gap-x-1">
+                <span className="text-white/80 text-nowrap">ساعت های پاسخگویی: </span>
+                <span className="font-semibold">شنبه تا چهارشنبه. ساعت ۸ تا ۱۲</span>
               </div>
             </div>
             <div className="bottom flex flex-col gap-y-5 py-6">

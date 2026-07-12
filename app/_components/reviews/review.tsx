@@ -23,7 +23,7 @@ export default function Review({ review }: ReviewProps) {
             className="size-22 rounded-lg"
           />
           <div className="flex flex-col justify-between w-full">
-            <span className="font-semibold">{review.product.title}</span>
+            <span className="font-semibold line-clamp-2">{review.product.title}</span>
             <div className="flex items-center justify-between">
               <span className="p-1.5 border border-gray-200 bg-white rounded-full font-semibold text-gray-600 flex items-center gap-x-2">
                 {review.product.color}
@@ -33,7 +33,9 @@ export default function Review({ review }: ReviewProps) {
                 href="/"
                 className="flex items-center gap-x-1 text-gray-600 font-semibold"
               >
-                رفتن به محصول <ChevronLeft />
+                <span className="lg:block hidden">رفتن به محصول</span>
+
+                <ChevronLeft />
               </Link>
             </div>
           </div>
