@@ -8,12 +8,12 @@ export const Peyda = localFont({
       style: "normal",
     },
     {
-      path: "./fonts/PeydaWeb-extralight.woff",
+      path: "./fonts/peydaWeb-extralight.woff",
       weight: "200",
       style: "normal",
     },
     {
-      path: "./fonts/PeydaWeb-light.woff",
+      path: "./fonts/peydaWeb-light.woff",
       weight: "300",
       style: "normal",
     },
