@@ -8,7 +8,7 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   return (
-    <div className="flex flex-col h-full text-gray-800 gap-y-4 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 p-5 rounded-2xl">
+    <div className="flex flex-col h-full text-gray-800 gap-y-4 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 p-3 rounded-2xl">
       <Image
         src={post.image_url}
         alt={post.title}

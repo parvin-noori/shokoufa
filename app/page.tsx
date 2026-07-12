@@ -3,6 +3,7 @@ import Posts from "./_components/blog/posts";
 import Categories from "./_components/categories/categories";
 import CustomBouquet from "./_components/customBouquet/customBouquet";
 import Hero from "./_components/hero/Hero";
+import Footer from "./_components/layout/footer/footer";
 import Header from "./_components/layout/header/header";
 import NavigationBar from "./_components/navigationBar/NavigationBar";
 import ProductCarousel from "./_components/products/ProductCarousel";
@@ -29,6 +30,7 @@ export default function Home() {
           <Posts/>
         </div>
       </div>
+      <Footer/>
       <NavigationBar />
     </>
   );
