@@ -7,7 +7,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir="rtl" lang="en" className={`${Peyda.variable} ${Peyda.className}  h-full antialiased`}>
+    <html dir="rtl" lang="en" className={` ${Peyda.className}  h-full`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
