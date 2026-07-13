@@ -1,8 +1,9 @@
 "use client";
 
-import { ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const menus = [
   {
@@ -123,6 +124,11 @@ const socialMedia = [
 ];
 
 export default function Footer() {
+  const [openIndex, setOpenIndex] = useState<null | number>(null);
+
+  const toggleIndex = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   return (
     <>
       <div className="bg-rose-950 text-white py-2 lg:block hidden">
@@ -178,8 +184,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="container">
-        <div className="lg:hidden block bg-rose-950 text-white p-5 rounded-lg mb-24 divide-y divide-white/40 gap-y-10">
-          <div className="top flex items-center gap-x-22 py-6">
+        <div className="lg:hidden block bg-rose-950 text-white px-5 rounded-lg mb-24 divide-y divide-white/40 gap-y-10">
+          <div className="top flex items-center gap-x-22 py-8">
             <Link href="/">
               <Image
                 src="/images/BrandLogoDark.png"
@@ -190,36 +196,54 @@ export default function Footer() {
             </Link>
             <button
               type="button"
+              
               className="text-rose-950 bg-white flex items-center gap-x-2 font-bold py-3 px-4 rounded-lg ms-auto cursor-pointer text-nowrap"
             >
               رفتن به بالا <ChevronUp />
             </button>
           </div>
-           <div className="flex flex-col gap-y-1 py-6">
-              <div className="flex items-center gap-x-1">
-                <span className="text-white/80">شماره تماس:</span>
-                <Link href="tel:09121231212" className="font-semibold">
-                  09121231212
-                </Link>
-              </div>
-              <div className="flex gap-x-1">
-                <span className="text-white/80 text-nowrap">ساعت های پاسخگویی: </span>
-                <span className="font-semibold">شنبه تا چهارشنبه. ساعت ۸ تا ۱۲</span>
-              </div>
+          <div className="flex flex-col gap-y-1 py-6">
+            <div className="flex items-center gap-x-1">
+              <span className="text-white/80">شماره تماس:</span>
+              <Link href="tel:09121231212" className="font-semibold">
+                09121231212
+              </Link>
             </div>
-            <div className="bottom flex flex-col gap-y-5 py-6">
+            <div className="flex gap-x-1">
+              <span className="text-white/80 text-nowrap">
+                ساعت های پاسخگویی:{" "}
+              </span>
+              <span className="font-semibold">
+                شنبه تا چهارشنبه. ساعت ۸ تا ۱۲
+              </span>
+            </div>
+          </div>
+          <div className="bottom flex flex-col items-start gap-y-5 py-6">
             {menus.map((menu, index) => (
-              <div className="flex flex-col gap-y-3" key={index}>
-                <span className="font-bold">{menu.title}</span>
-                <ul className="text-white/80 gap-y-1 flex flex-col">
-                  {menu.menuItems.map((item, index) => (
-                    <li key={index}>
-                      <Link href={item.href} className="hover:text-white-100">
-                        {item.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex flex-col gap-y-3 w-full" key={index}>
+                <button
+                  type="button"
+                  onClick={() => toggleIndex(index)}
+                  className="font-bold flex items-center justify-between"
+                >
+                  {menu.title}
+                  {openIndex === index ? <ChevronUp /> : <ChevronDown />}
+                </button>
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    openIndex === index ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <ul className="text-white/80 gap-y-1 flex flex-col overflow-hidden">
+                    {menu.menuItems.map((item, index) => (
+                      <li key={index}>
+                        <Link href={item.href} className="hover:text-white-100">
+                          {item.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
