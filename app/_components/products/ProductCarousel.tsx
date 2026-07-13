@@ -56,7 +56,7 @@ const products: ProductType[] = [
   },
 ];
 
-type ProductCarouselProps = {
+interface ProductCarouselProps  {
   title: string;
   isOffer?: boolean;
 };

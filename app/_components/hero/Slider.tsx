@@ -12,7 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Navigations from "../navigation/navigations";
 import { SliderItems } from "./slider.types";
 
-type SliderProps = {
+interface SliderProps  {
   slides: SliderItems;
 };
 

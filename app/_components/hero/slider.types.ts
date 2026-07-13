@@ -1,4 +1,4 @@
-export type SliderItem = {
+export interface SliderItem  {
   text: string;
   image_url: string;
 };

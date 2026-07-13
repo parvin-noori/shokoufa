@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ServiceItem } from "./services.types";
 
-type ServiceProps = {
+interface ServiceProps  {
   service: ServiceItem;
 };
 export default function Service({ service }: ServiceProps) {

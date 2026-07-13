@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductType } from "./product.type";
 
-type ProductProps = {
+interface ProductProps  {
   product: ProductType;
   isOffer: boolean;
 };

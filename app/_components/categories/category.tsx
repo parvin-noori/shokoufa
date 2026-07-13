@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CategoryItem } from "./category.types";
 
-type CategoryProps = {
+interface CategoryProps  {
   category: CategoryItem;
 };
 
