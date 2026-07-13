@@ -20,7 +20,7 @@ export default function Slider({ slides }: SliderProps) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   return (
-    <div className="w-full lg:flex hidden">
+    <div className="w-full lg:flex hidden relative">
       <Swiper
         slidesPerView={1}
         className="w-full lg:!flex !hidden [&_.swiper-pagination]:bg-white/30 [&_.swiper-pagination]:!w-auto [&_.swiper-pagination]:!end-1/2 [&_.swiper-pagination]:rounded-full [&_.swiper-pagination-bullet]:!bg-white [&_.swiper-pagination]:px-1 [&_.swiper-pagination-bullet-active]:!bg-white"

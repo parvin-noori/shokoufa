@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRef } from "react";
 import "swiper/css";
@@ -65,18 +65,22 @@ export default function Reviews() {
         }}
         breakpoints={{
           320: {
+            spaceBetween: 10,
             slidesPerView: 1.1,
             slidesPerGroup: 1,
           },
           640: {
+            spaceBetween: 15,
             slidesPerView: 1.5,
             slidesPerGroup: 1.5,
           },
           1024: {
+            spaceBetween: 20,
             slidesPerView: 2,
             slidesPerGroup: 2,
           },
           1280: {
+            spaceBetween: 20,
             slidesPerView: 2.5,
             slidesPerGroup: 2.5,
           },
@@ -87,7 +91,7 @@ export default function Reviews() {
             <Review review={item} />
           </SwiperSlide>
         ))}
-        <div className="absolute top-1/2 transform -translate-y-1/2 flex items-center justify-between w-full z-10 [&_.swiper-button-disabled]:!opacity-0">
+        <div className="absolute top-1/2 transform -translate-y-1/2 lg:flex hidden items-center justify-between w-full z-10 [&_.swiper-button-disabled]:!opacity-0">
           <Navigations prevRef={prevRef} nextRef={nextRef} />
         </div>
       </Swiper>

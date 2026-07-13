@@ -1,6 +1,7 @@
 import { Clock, Heart } from "lucide-react";
 import Image from "next/image";
 import { PostType } from "./post.types";
+import Link from "next/link";
 
 interface PostProps {
   post: PostType;
@@ -8,7 +9,7 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   return (
-    <div className="flex flex-col h-full text-gray-800 gap-y-4 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 p-3 rounded-2xl">
+    <Link href="/" className="flex flex-col h-full text-gray-800 gap-y-4 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 p-3 rounded-2xl hover:shadow-[0_0_24px_rgba(0,0,0,0.18)] transition-all duration-200">
       <Image
         src={post.image_url}
         alt={post.title}
@@ -19,14 +20,14 @@ export default function Post({ post }: PostProps) {
       <span className="font-semibold text-lg text-gray-800 line-clamp-2">{post.title}</span>
       <div className="flex items-center gap-x-5 text-gray-400 text-sm mt-auto">
         <span className="flex items-center gap-x-1">
-          <Clock size={20}/>
+          <Clock size={16}/>
           {post.minRead}
         </span>
         <span className="flex items-center gap-x-1">
-          <Heart size={20}/>
+          <Heart size={16}/>
           {post.likesCount}
         </span>
       </div>
-    </div>
+    </Link>
   );
 }

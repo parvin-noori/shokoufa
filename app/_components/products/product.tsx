@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductType } from "./product.type";
 
-interface ProductProps  {
+interface ProductProps {
   product: ProductType;
   isOffer: boolean;
-};
+}
 
 export default function Product({ product, isOffer = false }: ProductProps) {
   const originalPrice = product.price * (1 - product.discount / 100);
@@ -24,7 +24,9 @@ export default function Product({ product, isOffer = false }: ProductProps) {
           height={500}
           className="rounded-2xl w-full"
         />
-        <span className="text-gray-800 font-bold line-clamp-1">{product.title}</span>
+        <span className="text-gray-800 font-bold line-clamp-1">
+          {product.title}
+        </span>
         <div className="flex items-center justify-between">
           <button type="button" className="cursor-pointer">
             <Heart className="text-gray-400" />
@@ -42,8 +44,8 @@ export default function Product({ product, isOffer = false }: ProductProps) {
         <span className="flex flex-col text-gray-400">
           <span>
             <span className="lg:text-2xl text-xl text-gray-800 font-bold">
-              {originalPrice.toLocaleString()}
-            </span> 
+              {originalPrice.toLocaleString()}{" "}
+            </span>
             تومان
           </span>
           <span className="line-through">{product.price.toLocaleString()}</span>

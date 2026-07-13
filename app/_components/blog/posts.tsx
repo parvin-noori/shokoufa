@@ -69,19 +69,23 @@ export default function Posts() {
         }}
         breakpoints={{
           320: {
+            spaceBetween: 10,
             slidesPerView: 1.3,
             slidesPerGroup: 1,
           },
           640: {
+            spaceBetween: 15,
             slidesPerView: 2,
             slidesPerGroup: 1.5,
           },
           1024: {
+            spaceBetween: 20,
             slidesPerView: 2.5,
             slidesPerGroup: 2,
           },
           1280: {
             slidesPerView: 3,
+            spaceBetween: 20,
             slidesPerGroup: 2.5,
           },
         }}
@@ -91,7 +95,7 @@ export default function Posts() {
             <Post post={post} />
           </SwiperSlide>
         ))}
-        <div className="absolute top-1/2 transform -translate-y-1/2 flex items-center justify-between w-full z-10 [&_.swiper-button-disabled]:!opacity-0">
+        <div className="lg:flex hidden absolute top-1/2 transform -translate-y-1/2 items-center justify-between w-full z-10 [&_.swiper-button-disabled]:!opacity-0">
           <Navigations prevRef={prevRef} nextRef={nextRef} />
         </div>
       </Swiper>

@@ -22,7 +22,7 @@ export default function Review({ review }: ReviewProps) {
             height={84}
             className="size-22 rounded-lg"
           />
-          <div className="flex flex-col justify-between w-full">
+          <div className="flex flex-col justify-between w-full group">
             <span className="font-semibold line-clamp-2">{review.product.title}</span>
             <div className="flex items-center justify-between">
               <span className="p-1.5 border border-gray-200 bg-white rounded-full font-semibold text-gray-600 flex items-center gap-x-2">
@@ -35,7 +35,7 @@ export default function Review({ review }: ReviewProps) {
               >
                 <span className="lg:block hidden">رفتن به محصول</span>
 
-                <ChevronLeft />
+                <ChevronLeft className="group-hover:translate group-hover:-translate-x-1 transition duration-300"/>
               </Link>
             </div>
           </div>
