@@ -129,6 +129,10 @@ export default function Footer() {
   const toggleIndex = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <>
       <div className="bg-rose-950 text-white py-2 lg:block hidden">
@@ -156,6 +160,7 @@ export default function Footer() {
             </div>
             <button
               type="button"
+              onClick={scrollToTop}
               className="text-rose-950 bg-white flex items-center gap-x-2 font-bold py-3 px-4 rounded-lg ms-auto cursor-pointer"
             >
               رفتن به بالا <ChevronUp />
@@ -196,7 +201,7 @@ export default function Footer() {
             </Link>
             <button
               type="button"
-              
+              onClick={scrollToTop}
               className="text-rose-950 bg-white flex items-center gap-x-2 font-bold py-3 px-4 rounded-lg ms-auto cursor-pointer text-nowrap"
             >
               رفتن به بالا <ChevronUp />
