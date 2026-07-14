@@ -17,7 +17,7 @@ import { useState } from "react";
 const mainMenu = [
   {
     text: "دسته بندی ها",
-    href: "/categories",
+    href: "/category",
   },
   {
     text: "دسته گل",
@@ -48,7 +48,7 @@ const mainMenu = [
 export default function Header() {
   const pathName = usePathname();
   return (
-    <header className="shadow sticky top-0 bg-white z-10">
+    <header className="shadow sticky top-0 bg-white z-20">
       <div className="container">
         {/* top header  */}
         <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">
