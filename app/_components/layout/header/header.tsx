@@ -159,7 +159,7 @@ function HamburgerMenu() {
         >
           <X />
         </button>
-        <ul className="flex flex-col divide-y divide-gray-100 text-start py-22 px-5">
+        <ul className="flex flex-col divide-y divide-gray-200 text-start py-22 px-5">
           {mainMenu.map((item,index) => (
             <li key={index}>
               <Link
