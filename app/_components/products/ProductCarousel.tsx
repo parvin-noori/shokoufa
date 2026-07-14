@@ -8,62 +8,64 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Navigations from "../navigation/navigations";
+import Timer from "../timer/timer";
 import Product from "./product";
 import { ProductType } from "./product.type";
-import Timer from "../timer/timer";
 
-const products: ProductType[] = [
-  {
-    image_url: "/images/Peony.png",
-    title: "دسته گل پپیونی صورتی لوکس",
-    rate: 4.5,
-    price: 5000000,
-    discount: 55,
-  },
-  {
-    image_url: "/images/SympathyFlowers.png",
-    title: "دسته گل رز سفید کلاسیک  ",
-    rate: 4.5,
-    price: 3499000,
-    discount: 55,
-  },
-  {
-    image_url: "/images/sunflowers.png",
-    title: "دسته گل آفتابگردان تابستانی  ",
-    rate: 4.5,
-    price: 2999000,
-    discount: 55,
-  },
-  {
-    image_url: "/images/MixedBouque.png",
-    title: "دسته گل ترکیبی رز صورتی و لیلیوم  ",
-    rate: 4.5,
-    price: 4900000,
-    discount: 55,
-  },
-  {
-    image_url: "/images/sunflowers.png",
-    title: "دسته گل آفتابگردان تابستانی  ",
-    rate: 4.5,
-    price: 2999000,
-    discount: 55,
-  },
-  {
-    image_url: "/images/MixedBouque.png",
-    title: "دسته گل ترکیبی رز صورتی و لیلیوم  ",
-    rate: 4.5,
-    price: 4900000,
-    discount: 55,
-  },
-];
+// const products: ProductType[] = [
+//   {
+//     image_url: "/images/Peony.png",
+//     title: "دسته گل پپیونی صورتی لوکس",
+//     rate: 4.5,
+//     price: 5000000,
+//     discount: 55,
+//   },
+//   {
+//     image_url: "/images/SympathyFlowers.png",
+//     title: "دسته گل رز سفید کلاسیک  ",
+//     rate: 4.5,
+//     price: 3499000,
+//     discount: 55,
+//   },
+//   {
+//     image_url: "/images/sunflowers.png",
+//     title: "دسته گل آفتابگردان تابستانی  ",
+//     rate: 4.5,
+//     price: 2999000,
+//     discount: 55,
+//   },
+//   {
+//     image_url: "/images/MixedBouque.png",
+//     title: "دسته گل ترکیبی رز صورتی و لیلیوم  ",
+//     rate: 4.5,
+//     price: 4900000,
+//     discount: 55,
+//   },
+//   {
+//     image_url: "/images/sunflowers.png",
+//     title: "دسته گل آفتابگردان تابستانی  ",
+//     rate: 4.5,
+//     price: 2999000,
+//     discount: 55,
+//   },
+//   {
+//     image_url: "/images/MixedBouque.png",
+//     title: "دسته گل ترکیبی رز صورتی و لیلیوم  ",
+//     rate: 4.5,
+//     price: 4900000,
+//     discount: 55,
+//   },
+// ];
 
 interface ProductCarouselProps {
   title: string;
+  products: ProductType[];
   isOffer?: boolean;
 }
 
 export default function ProductCarousel({
   title,
+  products,
   isOffer = false,
 }: ProductCarouselProps) {
   const prevRef = useRef<HTMLButtonElement>(null);

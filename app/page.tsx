@@ -6,8 +6,18 @@ import Hero from "./_components/hero/Hero";
 import ProductCarousel from "./_components/products/ProductCarousel";
 import Reviews from "./_components/reviews/reviews";
 import Services from "./_components/services/services";
+import { getProducts } from "./lib/api/getProducts";
 
 export default function Home() {
+  const products = getProducts();
+  const discountedProducts = products.filter(
+    (product) => product.discount > 50,
+  );
+  const isBestSeller = products.filter((product) => product.isBestSeller);
+
+  const girlsDayProducts = products.filter((product) =>
+    product.occasion.includes("girls-day"),
+  );
   return (
     <>
       <Hero />
@@ -16,10 +26,14 @@ export default function Home() {
           <Categories />
           <Services />
           <div className=" flex flex-col  gap-y-10">
-            <ProductCarousel isOffer title="تخفیفات شگفت انگیز" />
-            <ProductCarousel title="پرفروش ترین ها" />
+            <ProductCarousel
+              isOffer
+              title="تخفیفات شگفت انگیز"
+              products={discountedProducts}
+            />
+            <ProductCarousel title="پرفروش ترین ها" products={isBestSeller} />
             <CustomBouquetBanners />
-            <ProductCarousel title="روز دختر" />
+            <ProductCarousel title="روز دختر" products={girlsDayProducts} />
           </div>
           <CustomBouquet />
           <Reviews />

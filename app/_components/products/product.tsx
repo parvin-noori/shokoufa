@@ -18,8 +18,8 @@ export default function Product({ product, isOffer = false }: ProductProps) {
     >
       <div className="flex flex-col gap-y-5 pb-4">
         <Image
-          src={product.image_url}
-          alt="دسته گل افتابگردون"
+          src={product.images[0].url}
+          alt={product.images[0].alt}
           width={500}
           height={500}
           className="rounded-2xl w-full"

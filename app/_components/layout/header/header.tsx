@@ -11,40 +11,42 @@ import {
 import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const mainMenu = [
   {
     text: "دسته بندی ها",
-    link: "/",
+    href: "/categories",
   },
   {
     text: "دسته گل",
-    link: "/",
+    href: "",
   },
   {
     text: "باکس گل",
-    link: "/",
+    href: "",
   },
   {
     text: "تبریک",
-    link: "/",
+    href: "",
   },
   {
     text: "تسلیت",
-    link: "/",
+    href: "",
   },
   {
     text: "روز دختر",
-    link: "/",
+    href: "",
   },
   {
     text: "ارسال امروز",
-    link: "/",
+    href: "",
   },
 ];
 
 export default function Header() {
+  const pathName = usePathname();
   return (
     <header className="shadow sticky top-0 bg-white z-10">
       <div className="container">
@@ -108,17 +110,20 @@ export default function Header() {
         <div className="bottom-header py-2 lg:grid hidden grid-cols-2 items-center">
           {/* right  */}
           <ul className="flex items-center justify-between">
-            {mainMenu.map((item, index) => (
-              <li key={index} className="flex items-center gap-x-2">
-                {index === 0 && <Menu />}
-                <Link
-                  href={item.link}
-                  className="hover:text-rose-500 transition-all duration-100"
-                >
-                  {item.text}
-                </Link>
-              </li>
-            ))}
+            {mainMenu.map((item, index) => {
+              const isActive = item.href === pathName;
+              return (
+                <li key={index} className="flex items-center gap-x-2">
+                  {index === 0 && <Menu />}
+                  <Link
+                    href={item.href}
+                    className={`hover:text-rose-500 transition-all duration-100 ${isActive ? "text-rose-500" : "text-gray-800"}`}
+                  >
+                    {item.text}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* left  */}
@@ -140,6 +145,8 @@ export default function Header() {
 
 function HamburgerMenu() {
   const [isOpened, setIsOpened] = useState(false);
+  const pathName = usePathname();
+
   return (
     <div className="relative">
       <button
@@ -160,16 +167,19 @@ function HamburgerMenu() {
           <X />
         </button>
         <ul className="flex flex-col divide-y divide-gray-200 text-start py-22 px-5">
-          {mainMenu.map((item,index) => (
-            <li key={index}>
-              <Link
-                href={item.link}
-                className="focused:text-rose-500 p-5 text-gray-800 block transition-all duration-100"
-              >
-                {item.text}
-              </Link>
-            </li>
-          ))}
+          {mainMenu.map((item, index) => {
+            const isActive = item.href === pathName;
+            return (
+              <li key={index}>
+                <Link
+                  href={item.href}
+                  className={`p-5 block transition-all duration-100 ${isActive ? "text-rose-500" : "text-gray-800 "}`}
+                >
+                  {item.text}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
