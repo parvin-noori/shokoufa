@@ -1,4 +1,4 @@
-const filterType = {
+export const FilterType = {
   flowerType: [
     { value: "tulip", label: "لاله", count: 18 },
     { value: "rose", label: "رز", count: 42 },

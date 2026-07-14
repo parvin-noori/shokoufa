@@ -1,6 +1,7 @@
 // import { ProductsData } from "@/app/mocks/products";
 
 import { ProductsData } from "@/app/mocks/products";
+import { FilterType } from "@/app/mocks/filters";
 
 // export type Product = (typeof ProductsData)[number];
 
@@ -20,6 +21,9 @@ import { ProductsData } from "@/app/mocks/products";
 
 export function getProducts() {
   return ProductsData;
+}
+export function getFilters() {
+  return FilterType;
 }
 
 
