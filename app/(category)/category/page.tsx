@@ -43,7 +43,7 @@ export default function Category() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const filtersTitle = {
+  const filtersTitle: Record<string, string> = {
     flowerType: "نوع گل",
     occasion: "مناسبت",
     style: "استایل",
@@ -52,7 +52,6 @@ export default function Category() {
     colors: "رنگ ها",
   };
 
-  
   return (
     <div className="py-5">
       <div className="container">
@@ -89,7 +88,10 @@ export default function Category() {
                       <ul className="overflow-hidden">
                         {filters[key].map((opt) => (
                           <li key={opt.value} className="py-2">
-                            <label key={opt.value} className="text-gray-600 flex items-center justify-between">
+                            <label
+                              key={opt.value}
+                              className="text-gray-600 flex items-center justify-between"
+                            >
                               {opt.label}
                               <input type="checkbox" value={opt.value} />
                             </label>
