@@ -8,30 +8,12 @@ import { useState } from "react";
 
 export default function Category() {
   const filterList = [
-    {
-      value: "",
-      label: "کمترین قیمت",
-    },
-    {
-      value: "",
-      label: "بیشترین قیمت",
-    },
-    {
-      value: "",
-      label: "پرفروش ترین",
-    },
-    {
-      value: "",
-      label: "جدیدترین",
-    },
-    {
-      value: "",
-      label: "بیشترین تخفیف",
-    },
-    {
-      value: "",
-      label: "ارسال امروز",
-    },
+    { value: "", label: "کمترین قیمت" },
+    { value: "", label: "بیشترین قیمت" },
+    { value: "", label: "پرفروش ترین" },
+    { value: "", label: "جدیدترین" },
+    { value: "", label: "بیشترین تخفیف" },
+    { value: "", label: "ارسال امروز" },
   ];
 
   const products = getProducts();
@@ -52,6 +34,10 @@ export default function Category() {
     colors: "رنگ ها",
   };
 
+  const filterKeys = Object.keys(filters).filter(
+    (key) => key !== "priceRange" && key !== "sortOptions",
+  ) as Exclude<keyof typeof filters, "priceRange" | "sortOptions">[];
+
   return (
     <div className="py-5">
       <div className="container">
@@ -65,11 +51,11 @@ export default function Category() {
         <div className="grid lg:grid-cols-4 gap-x-5">
           <div className="lg:col-span-1 lg:block hidden">
             <div className="px-5 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 rounded-xl divide-y divide-gray-100">
-              {Object.keys(filters).map((key, index) => {
-                if (key === "priceRange") return null;
+              {filterKeys.map((key, index) => {
+                const options = filters[key];
 
                 return (
-                  <div className="flex flex-col">
+                  <div className="flex flex-col" key={key}>
                     <button
                       type="button"
                       onClick={() => toggleIndex(index)}
@@ -86,12 +72,9 @@ export default function Category() {
                       }`}
                     >
                       <ul className="overflow-hidden">
-                        {filters[key].map((opt) => (
+                        {options.map((opt) => (
                           <li key={opt.value} className="py-2">
-                            <label
-                              key={opt.value}
-                              className="text-gray-600 flex items-center justify-between"
-                            >
+                            <label className="text-gray-600 flex items-center justify-between cursor-pointer">
                               {opt.label}
                               <input type="checkbox" value={opt.value} />
                             </label>
