@@ -2,18 +2,9 @@ export const ProductsData = [
   {
     slug: "luxury-pink-peony-bouquet",
     images: [
-      {
-        url: "/images/Peony.png",
-        alt: "دسته گل پپیونی صورتی لوکس",
-      },
-      {
-        url: "/images/Peony.png",
-        alt: "دسته گل پپیونی صورتی لوکس",
-      },
-      {
-        url: "/images/Peony.png",
-        alt: "دسته گل پپیونی صورتی لوکس",
-      },
+      { url: "/images/Peony.png", alt: "دسته گل پپیونی صورتی لوکس" },
+      { url: "/images/Peony.png", alt: "دسته گل پپیونی صورتی لوکس" },
+      { url: "/images/Peony.png", alt: "دسته گل پپیونی صورتی لوکس" },
     ],
     title: "دسته گل پپیونی صورتی لوکس",
     rate: 4.5,
@@ -31,20 +22,11 @@ export const ProductsData = [
   {
     slug: "classic-white-rose-bouquet",
     images: [
-      {
-        url: "/images/SympathyFlowers.png",
-        alt: "دسته گل رز سفید کلاسیک  ",
-      },
-      {
-        url: "/images/SympathyFlowers.png",
-        alt: "دسته گل رز سفید کلاسیک  ",
-      },
-      {
-        url: "/images/SympathyFlowers.png",
-        alt: "دسته گل رز سفید کلاسیک  ",
-      },
+      { url: "/images/SympathyFlowers.png", alt: "دسته گل رز سفید کلاسیک" },
+      { url: "/images/SympathyFlowers.png", alt: "دسته گل رز سفید کلاسیک" },
+      { url: "/images/SympathyFlowers.png", alt: "دسته گل رز سفید کلاسیک" },
     ],
-    title: "دسته گل رز سفید کلاسیک  ",
+    title: "دسته گل رز سفید کلاسیک",
     rate: 4.5,
     price: 3499000,
     discount: 55,
@@ -60,14 +42,8 @@ export const ProductsData = [
   {
     slug: "summer-sunflower-bouquet",
     images: [
-      {
-        url: "/images/sunflowers.png",
-        alt: "دسته گل آفتابگردان تابستانی",
-      },
-      {
-        url: "/images/sunflowers.png",
-        alt: "دسته گل آفتابگردان تابستانی",
-      },
+      { url: "/images/sunflowers.png", alt: "دسته گل آفتابگردان تابستانی" },
+      { url: "/images/sunflowers.png", alt: "دسته گل آفتابگردان تابستانی" },
     ],
     title: "دسته گل آفتابگردان تابستانی",
     rate: 4.5,
@@ -85,16 +61,10 @@ export const ProductsData = [
   {
     slug: "mixed-pink-rose-lily-bouquet",
     images: [
-      {
-        url: "/images/MixedBouque.png",
-        alt: "دسته گل ترکیبی رز صورتی و لیلیوم - نمای کامل",
-      },
-      {
-        url: "/images/MixedBouque.png",
-        alt: "دسته گل ترکیبی رز صورتی و لیلیوم - نمای کامل",
-      },
+      { url: "/images/MixedBouque.png", alt: "دسته گل ترکیبی رز صورتی و لیلیوم - نمای کامل" },
+      { url: "/images/MixedBouque.png", alt: "دسته گل ترکیبی رز صورتی و لیلیوم - نمای کامل" },
     ],
-    title: "دسته گل ترکیبی رز صورتی و لیلیوم  ",
+    title: "دسته گل ترکیبی رز صورتی و لیلیوم",
     rate: 4.5,
     price: 4900000,
     discount: 55,
@@ -108,45 +78,10 @@ export const ProductsData = [
     colors: ["pink", "white"],
   },
   {
-    slug: "classic-white-rose-bouquet",
+    slug: "summer-sunflower-bouquet-2",
     images: [
-      {
-        url: "/images/SympathyFlowers.png",
-        alt: "دسته گل رز سفید کلاسیک  ",
-      },
-      {
-        url: "/images/SympathyFlowers.png",
-        alt: "دسته گل رز سفید کلاسیک  ",
-      },
-      {
-        url: "/images/SympathyFlowers.png",
-        alt: "دسته گل رز سفید کلاسیک  ",
-      },
-    ],
-    title: "دسته گل رز سفید کلاسیک  ",
-    rate: 4.5,
-    price: 3499000,
-    discount: 55,
-    isLikedByUser: false,
-    isBestSeller: false,
-    stock: 10,
-    flowerType: "rose",
-    occasion: ["condolence"],
-    style: "classic",
-    size: "medium",
-    colors: ["white"],
-  },
-  {
-    slug: "summer-sunflower-bouquet",
-    images: [
-      {
-        url: "/images/sunflowers.png",
-        alt: "دسته گل آفتابگردان تابستانی",
-      },
-      {
-        url: "/images/sunflowers.png",
-        alt: "دسته گل آفتابگردان تابستانی",
-      },
+      { url: "/images/sunflowers.png", alt: "دسته گل آفتابگردان تابستانی" },
+      { url: "/images/sunflowers.png", alt: "دسته گل آفتابگردان تابستانی" },
     ],
     title: "دسته گل آفتابگردان تابستانی",
     rate: 4.5,
@@ -156,7 +91,7 @@ export const ProductsData = [
     isBestSeller: true,
     stock: 15,
     flowerType: "sunflower",
-    occasion: ["birthday", "girls-day"],
+    occasion: ["birthday", "girlsDay"],
     style: "modern",
     size: "medium",
     colors: ["yellow"],

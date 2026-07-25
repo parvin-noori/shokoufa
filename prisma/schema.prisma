@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum FlowerType {
+  tulip
+  rose
+  lily
+  orchid
+  sunflower
+  hundredToman
+  mixed
+  peony
+}
+
+enum Occasion {
+  birthday
+  condolence
+  anniversary
+  wedding
+  graduation
+  mothersDay
+  girlsDay
+  fathersDay
+  boysDay
+}
+
+enum Style {
+  modern
+  classic
+  simple
+  minimal
+  luxury
+}
+
+enum Size {
+  small
+  medium
+  large
+}
+
+enum Color {
+  pink
+  white
+  purple
+  blue
+  yellow
+  turquoise
+  red
+  orange
+  cream
+}
+
+model Product {
+  id           Int            @id @default(autoincrement())
+  slug         String         @unique
+  title        String
+  rate         Float
+  price        Int
+  discount     Int            @default(0)
+  isBestSeller Boolean        @default(false)
+  stock        Int            @default(0)
+  flowerType   FlowerType
+  occasion     Occasion[]
+  style        Style
+  size         Size
+  colors       Color[]
+  images       ProductImage[]
+  createdAt    DateTime       @default(now())
+}
+
+model ProductImage {
+  id        Int     @id @default(autoincrement())
+  url       String
+  alt       String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+}

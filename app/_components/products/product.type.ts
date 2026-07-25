@@ -1,19 +1,6 @@
-export interface ProductType {
-  slug: string;
-  images: {
-    url: string;
-    alt: string;
-  }[];
-  title: string;
-  rate: number;
-  price: number;
-  discount: number;
+import { Product, ProductImage } from "@/app/generated/prisma/client";
+
+export type ProductType = Product & {
+  images: ProductImage[];
   isLikedByUser: boolean;
-  isBestSeller: boolean;
-  stock: number;
-  flowerType: string;
-  occasion: string[];
-  style: string;
-  size: string;
-  colors: string[];
-}
+};
