@@ -34,6 +34,5 @@ export async function getGirlsDayProducts(): Promise<ProductType[]> {
     where: { occasion: { has: "girlsDay" } },
     include: { images: true },
   });
-  console.log(products)
   return attachExtras(products);
 }

@@ -25,17 +25,23 @@ export default async function Home() {
           <Categories />
           <Services />
           <div className=" flex flex-col  gap-y-10">
+            {!!discountedProducts.length && (
             <ProductCarousel
               isOffer
               title="تخفیفات شگفت انگیز"
               products={discountedProducts}
-            />
-            <ProductCarousel
-              title="پرفروش ترین ها"
-              products={bestSellerProducts}
-            />
+              />
+            )}
+            {!!bestSellerProducts.length && (
+              <ProductCarousel
+                title="پرفروش ترین ها"
+                products={bestSellerProducts}
+              />
+            )}
             <CustomBouquetBanners />
-            <ProductCarousel title="روز دختر" products={girlsDayProducts} />
+            {!!girlsDayProducts.length && (
+              <ProductCarousel title="روز دختر" products={girlsDayProducts} />
+            )}
           </div>
           <CustomBouquet />
           <Reviews />
