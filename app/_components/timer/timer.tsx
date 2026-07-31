@@ -35,7 +35,6 @@ export default function Timer({ targetDate }: TimerProps) {
     setMounted(true);
   }, []);
 
-  // تا وقتی سمت کلاینت mount نشده، چیزی رندر نکن (یا یه اسکلت/لودینگ نشون بده)
   if (!mounted) {
     return null;
   }

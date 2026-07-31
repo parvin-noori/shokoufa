@@ -27,7 +27,7 @@ export const FilterType = {
     { value: "luxury", label: "لاکچری", count: 15 },
   ],
 
-  priceRange: { min: 90000, max: 5000000 },
+  // priceRange: { min: 90000, max: 5000000 },
   colors: [
     { value: "pink", label: "صورتی" },
     { value: "white", label: "سفید" },
@@ -44,12 +44,12 @@ export const FilterType = {
     { value: "medium", label: "متوسط", count: 55 },
     { value: "large", label: "بزرگ", count: 15 },
   ],
-  sortOptions: [
-    { value: "best-seller", label: "پرفروش‌ترین‌ها" },
-    { value: "newest", label: "جدیدترین‌ها" },
-    { value: "price-asc", label: "ارزان‌ترین" },
-    { value: "price-desc", label: "گران‌ترین" },
-    { value: "most-liked", label: "محبوب‌ترین‌ها" },
-    { value: "top-rated", label: "بالاترین امتیاز" },
-  ],
+  // sortOptions: [
+  //   { value: "best-seller", label: "پرفروش‌ترین‌ها" },
+  //   { value: "newest", label: "جدیدترین‌ها" },
+  //   { value: "price-asc", label: "ارزان‌ترین" },
+  //   { value: "price-desc", label: "گران‌ترین" },
+  //   { value: "most-liked", label: "محبوب‌ترین‌ها" },
+  //   { value: "top-rated", label: "بالاترین امتیاز" },
+  // ],
 };

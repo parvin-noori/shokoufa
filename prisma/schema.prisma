@@ -62,7 +62,7 @@ enum Color {
 }
 
 model Product {
-  id           Int            @id @default(autoincrement())
+  id           String         @id @default(cuid())
   slug         String         @unique
   title        String
   rate         Float
@@ -77,12 +77,24 @@ model Product {
   colors       Color[]
   images       ProductImage[]
   createdAt    DateTime       @default(now())
+  category     Category[]
 }
 
 model ProductImage {
-  id        Int     @id @default(autoincrement())
+  id        String  @id @default(cuid())
   url       String
   alt       String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId Int
+  productId String
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }

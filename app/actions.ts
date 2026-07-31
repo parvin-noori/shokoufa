@@ -1,7 +1,7 @@
 "use server";
 
 import { ProductType } from "./_components/products/product.type";
-import { prisma } from "./lib/prisma";
+import prisma from "./lib/prisma";
 
 function attachExtras(products: any[]): ProductType[] {
   return products.map((p) => ({ ...p, isLikedByUser: false }));
@@ -34,5 +34,6 @@ export async function getGirlsDayProducts(): Promise<ProductType[]> {
     where: { occasion: { has: "girlsDay" } },
     include: { images: true },
   });
+  console.log(products)
   return attachExtras(products);
 }

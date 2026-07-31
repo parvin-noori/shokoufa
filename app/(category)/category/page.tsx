@@ -222,9 +222,9 @@ export default function Category() {
               <span className="text-gray-600">64 کالا</span>
             </div>
             <div className="grid md:grid-cols-3 grid-cols-2 gap-5">
-              {products.map((product, index) => (
+              {/* {products.map((product, index) => (
                 <Product key={index} product={product} isOffer={false} />
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
