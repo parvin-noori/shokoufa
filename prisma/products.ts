@@ -1,10 +1,4 @@
-import {
-  Color,
-  FlowerType,
-  Occasion,
-  Size,
-  Style,
-} from "../generated/prisma/enums";
+import { Color, FlowerType, Occasion, Size, Style } from "@/app/generated/prisma/enums";
 
 export const ProductsData = [
   {
