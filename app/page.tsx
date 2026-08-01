@@ -13,10 +13,38 @@ import {
 } from "./actions";
 
 export default async function Home() {
-  const discountedProducts = await getDiscountedProducts();
-  const bestSellerProducts = await getBestSellerProducts();
-  const girlsDayProducts = await getGirlsDayProducts();
+  const [discountedProducts, bestSellerProducts, girlsDayProducts] =
+    await Promise.all([
+      getDiscountedProducts(),
+      getBestSellerProducts(),
+      getGirlsDayProducts(),
+    ]);
 
+  const carouselSections = [
+    {
+      type: "carousel",
+      key: "discounted",
+      title: "تخفیفات شگفت انگیز",
+      products: discountedProducts,
+      isOffer: true,
+    },
+    {
+      type: "carousel",
+      key: "bestSeller",
+      title: "پرفروش ترین ها",
+      products: bestSellerProducts,
+    },
+    {
+      type: "banner",
+      key: "custom-botique-banner",
+    },
+    {
+      type: "carousel",
+      key: "girlsDay",
+      title: "روز دختر",
+      products: girlsDayProducts,
+    },
+  ];
   return (
     <>
       <Hero />
@@ -25,23 +53,22 @@ export default async function Home() {
           <Categories />
           <Services />
           <div className=" flex flex-col  gap-y-10">
-            {!!discountedProducts.length && (
-            <ProductCarousel
-              isOffer
-              title="تخفیفات شگفت انگیز"
-              products={discountedProducts}
-              />
-            )}
-            {!!bestSellerProducts.length && (
-              <ProductCarousel
-                title="پرفروش ترین ها"
-                products={bestSellerProducts}
-              />
-            )}
-            <CustomBouquetBanners />
-            {!!girlsDayProducts.length && (
-              <ProductCarousel title="روز دختر" products={girlsDayProducts} />
-            )}
+            {carouselSections.map((section) => {
+              if (section.type === "banner") {
+                return <CustomBouquetBanners key={section.key} />;
+              } else {
+                if (!section.products?.length) return null;
+
+                return (
+                  <ProductCarousel
+                    key={section.key}
+                    title={section.title}
+                    products={section.products}
+                    isOffer={section.isOffer}
+                  />
+                );
+              }
+            })}
           </div>
           <CustomBouquet />
           <Reviews />

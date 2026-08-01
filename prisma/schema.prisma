@@ -77,7 +77,7 @@ model Product {
   colors       Color[]
   images       ProductImage[]
   createdAt    DateTime       @default(now())
-  category     Category[]
+  categories     Category[]
 }
 
 model ProductImage {

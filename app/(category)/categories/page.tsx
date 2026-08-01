@@ -6,7 +6,7 @@ import { Check, ChevronDown, ChevronLeft, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Category() {
+export default function Categories() {
   const filterList = [
     { value: "", label: "کمترین قیمت" },
     { value: "", label: "بیشترین قیمت" },
@@ -16,7 +16,7 @@ export default function Category() {
     { value: "", label: "ارسال امروز" },
   ];
 
-  const products = getProducts();
+  // const products = getProducts();
   const filters = getFilters();
 
   type SelectedFilters = Record<string, string[]>;
@@ -208,7 +208,7 @@ export default function Category() {
           <div className="lg:col-span-3 flex flex-col gap-y-3 gap-y-5">
             <div className="lg:flex hidden bg-gray-100 items-center justify-between px-5 rounded-full justify-between">
               <ul className="flex items-center gap-x-2">
-                {filters.sortOptions.map((item, index) => (
+                {/* {filters.sortOptions.map((item, index) => (
                   <li className="py-2" key={index}>
                     <button
                       type="button"
@@ -217,7 +217,7 @@ export default function Category() {
                       {item.label}
                     </button>
                   </li>
-                ))}
+                ))} */}
               </ul>
               <span className="text-gray-600">64 کالا</span>
             </div>

@@ -26,6 +26,7 @@ export const ProductsData = [
     style: Style.modern,
     size: Size.large,
     colors: [Color.pink],
+    categories: ["congratulations-flowers"],
   },
   {
     slug: "classic-white-rose-bouquet",
@@ -45,6 +46,7 @@ export const ProductsData = [
     style: Style.classic,
     size: Size.medium,
     colors: [Color.white],
+    categories: ["rose-bouquet", "congratulations-flowers"],
   },
   {
     slug: "summer-sunflower-bouquet",
@@ -64,6 +66,11 @@ export const ProductsData = [
     style: Style.modern,
     size: Size.small,
     colors: [Color.yellow],
+    categories: [
+      "birthday-flowers",
+      "seasonal-flowers",
+      "custom-bouquetBuilder",
+    ],
   },
   {
     slug: "mixed-pink-rose-lily-bouquet",
@@ -89,6 +96,11 @@ export const ProductsData = [
     style: Style.classic,
     size: Size.large,
     colors: [Color.pink, Color.white],
+    categories: [
+      "romantic-bouquet",
+      "minimal-bouquets",
+      "custom-bouquetBuilder",
+    ],
   },
   {
     slug: "summer-sunflower-bouquet-2",
@@ -113,5 +125,10 @@ export const ProductsData = [
     style: Style.luxury,
     size: Size.large,
     colors: [Color.yellow],
+    categories: [
+      "romantic-bouquet",
+      "minimal-bouquets",
+      "custom-bouquetBuilder",
+    ],
   },
 ];

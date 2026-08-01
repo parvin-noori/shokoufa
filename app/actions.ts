@@ -36,3 +36,7 @@ export async function getGirlsDayProducts(): Promise<ProductType[]> {
   });
   return attachExtras(products);
 }
+
+export async function getCategories() {
+  return await prisma.category.findMany();
+}
