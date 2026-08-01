@@ -8,35 +8,60 @@ function attachExtras(products: any[]): ProductType[] {
 }
 
 export async function getProducts(): Promise<ProductType[]> {
-  const products = await prisma.product.findMany({
-    include: { images: true },
-  });
-  return attachExtras(products);
+  try {
+    const products = await prisma.product.findMany({
+      include: { images: true },
+    });
+    return attachExtras(products);
+  } catch (error) {
+    console.error("Database connection error:", error);
+    return [];
+  }
 }
 
 export async function getDiscountedProducts(): Promise<ProductType[]> {
-  const products = await prisma.product.findMany({
-    where: { discount: { gt: 50 } },
-    include: { images: true },
-  });
-  return attachExtras(products);
+  try {
+    const products = await prisma.product.findMany({
+      where: { discount: { gt: 50 } },
+      include: { images: true },
+    });
+    return attachExtras(products);
+  } catch (error) {
+    console.error("Database connection error:", error);
+    return [];
+  }
 }
 
 export async function getBestSellerProducts(): Promise<ProductType[]> {
-  const products = await prisma.product.findMany({
-    where: { isBestSeller: true },
-    include: { images: true },
-  });
-  return attachExtras(products);
+  try {
+    const products = await prisma.product.findMany({
+      where: { isBestSeller: true },
+      include: { images: true },
+    });
+    return attachExtras(products);
+  } catch (error) {
+    console.error("Database connection error:", error);
+    return [];
+  }
 }
 export async function getGirlsDayProducts(): Promise<ProductType[]> {
-  const products = await prisma.product.findMany({
-    where: { occasion: { has: "girlsDay" } },
-    include: { images: true },
-  });
-  return attachExtras(products);
+  try {
+    const products = await prisma.product.findMany({
+      where: { occasion: { has: "girlsDay" } },
+      include: { images: true },
+    });
+    return attachExtras(products);
+  } catch (error) {
+    console.error("Database connection error:", error);
+    return [];
+  }
 }
 
 export async function getCategories() {
-  return await prisma.category.findMany();
+  try {
+    return await prisma.category.findMany();
+  } catch (error) {
+    console.error("Database connection error:", error);
+    return [];
+  }
 }
