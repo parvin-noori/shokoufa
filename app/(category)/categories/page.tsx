@@ -1,7 +1,6 @@
 "use client";
 
 import Product from "@/app/_components/products/product";
-import { getFilters, getProducts } from "@/app/lib/api/getProducts";
 import { Check, ChevronDown, ChevronLeft, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -17,23 +16,23 @@ export default function Categories() {
   ];
 
   // const products = getProducts();
-  const filters = getFilters();
+  // const filters = getFilters();
 
-  type SelectedFilters = Record<string, string[]>;
+  // type SelectedFilters = Record<string, string[]>;
 
-  const filterKeys = Object.keys(filters).filter(
-    (key) => key !== "priceRange" && key !== "sortOptions",
-  ) as Exclude<keyof typeof filters, "priceRange" | "sortOptions">[];
+  // const filterKeys = Object.keys(filters).filter(
+  //   (key) => key !== "priceRange" && key !== "sortOptions",
+  // ) as Exclude<keyof typeof filters, "priceRange" | "sortOptions">[];
 
-  const [openIndexes, setOpenIndexes] = useState<number[]>(
-    filterKeys.map((_, index) => index),
-  );
+  // const [openIndexes, setOpenIndexes] = useState<number[]>(
+  //   filterKeys.map((_, index) => index),
+  // );
 
-  const toggleIndex = (index: number) => {
-    setOpenIndexes((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
-    );
-  };
+  // const toggleIndex = (index: number) => {
+  //   setOpenIndexes((prev) =>
+  //     prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+  //   );
+  // };
 
   const filtersTitle: Record<string, string> = {
     flowerType: "نوع گل",
@@ -68,35 +67,35 @@ export default function Categories() {
     cream: { dot: "bg-orange-100", selectedBg: "has-[:checked]:bg-orange-50" },
   };
 
-  const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>({});
+  // const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>({});
 
-  const handleCheckboxChange = (
-    key: string,
-    value: string,
-    checked: boolean,
-  ) => {
-    setSelectedFilters((prev) => {
-      const currentValues = prev[key] ?? [];
-      const newValues = checked
-        ? [...currentValues, value]
-        : currentValues.filter((v) => v !== value);
+  // const handleCheckboxChange = (
+  //   key: string,
+  //   value: string,
+  //   checked: boolean,
+  // ) => {
+  //   setSelectedFilters((prev) => {
+  //     const currentValues = prev[key] ?? [];
+  //     const newValues = checked
+  //       ? [...currentValues, value]
+  //       : currentValues.filter((v) => v !== value);
 
-      return {
-        ...prev,
-        [key]: newValues,
-      };
-    });
-  };
+  //     return {
+  //       ...prev,
+  //       [key]: newValues,
+  //     };
+  //   });
+  // };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("فیلترهای انتخاب‌شده:", selectedFilters);
-    try {
-      localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
-    } catch (error) {
-      console.error("خطا در ذخیره‌سازی localStorage:", error);
-    }
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log("فیلترهای انتخاب‌شده:", selectedFilters);
+  //   try {
+  //     localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
+  //   } catch (error) {
+  //     console.error("خطا در ذخیره‌سازی localStorage:", error);
+  //   }
+  // };
 
   return (
     <div className="py-5">
@@ -110,7 +109,7 @@ export default function Categories() {
         </div>
         <div className="grid lg:grid-cols-4 gap-x-5">
           <div className="lg:col-span-1 lg:block hidden">
-            <form
+            {/* <form
               onSubmit={handleSubmit}
               className="p-2 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 rounded-2xl divide-y divide-gray-100"
             >
@@ -203,7 +202,7 @@ export default function Categories() {
               >
                 فیلتر
               </button>
-            </form>
+            </form> */}
           </div>
           <div className="lg:col-span-3 flex flex-col gap-y-3 gap-y-5">
             <div className="lg:flex hidden bg-gray-100 items-center justify-between px-5 rounded-full justify-between">

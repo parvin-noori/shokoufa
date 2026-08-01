@@ -1,7 +1,7 @@
-import { Productcategories } from "@/app/mocks/categories";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../app/generated/prisma/client";
-import { ProductsData } from "../app/mocks/products";
+import { ProductsData } from "./products";
+import { Productcategories } from "./categories";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
