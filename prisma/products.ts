@@ -1,4 +1,10 @@
-import { Color, FlowerType, Occasion, Size, Style } from "@/app/generated/prisma/enums";
+import {
+  Color,
+  FlowerType,
+  Occasion,
+  Size,
+  Style,
+} from "@/app/generated/prisma/enums";
 
 export const ProductsData = [
   {
@@ -60,11 +66,7 @@ export const ProductsData = [
     style: Style.modern,
     size: Size.small,
     colors: [Color.yellow],
-    categories: [
-      "birthday-flowers",
-      "seasonal-flowers",
-      "custom-bouquetBuilder",
-    ],
+    categories: ["birthday-flowers", "seasonal-flowers"],
   },
   {
     slug: "mixed-pink-rose-lily-bouquet",
@@ -90,11 +92,7 @@ export const ProductsData = [
     style: Style.classic,
     size: Size.large,
     colors: [Color.pink, Color.white],
-    categories: [
-      "romantic-bouquet",
-      "minimal-bouquets",
-      "custom-bouquetBuilder",
-    ],
+    categories: ["romantic-bouquet", "minimal-bouquets"],
   },
   {
     slug: "summer-sunflower-bouquet-2",
@@ -119,10 +117,6 @@ export const ProductsData = [
     style: Style.luxury,
     size: Size.large,
     colors: [Color.yellow],
-    categories: [
-      "romantic-bouquet",
-      "minimal-bouquets",
-      "custom-bouquetBuilder",
-    ],
+    categories: ["romantic-bouquet", "minimal-bouquets"],
   },
 ];
