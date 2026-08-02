@@ -1,7 +1,7 @@
 "use server";
 
-import { ProductType } from "./_components/products/product.type";
-import prisma from "./lib/prisma";
+import { ProductType } from "../_components/products/product.type";
+import prisma from "./prisma";
 
 function attachExtras(products: any[]): ProductType[] {
   return products.map((p) => ({ ...p, isLikedByUser: false }));

@@ -1,4 +1,4 @@
-import { getCategories } from "@/app/actions";
+import { getCategories } from "@/app/lib/actions";
 import Category from "./category";
 
 export default async function Categories() {

@@ -10,7 +10,7 @@ import {
   getBestSellerProducts,
   getDiscountedProducts,
   getGirlsDayProducts,
-} from "./actions";
+} from "./lib/actions";
 
 export default async function Home() {
   const [discountedProducts, bestSellerProducts, girlsDayProducts] =

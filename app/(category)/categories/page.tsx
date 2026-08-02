@@ -1,4 +1,4 @@
-import { getProducts } from "@/app/actions";
+import { getProducts } from "@/app/lib/actions";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -26,7 +26,9 @@ export default async function Categories() {
           </Suspense>
           {/* content  */}
           <div className="lg:col-span-3 flex flex-col gap-y-3 gap-y-5">
-            <Content products={products} />
+            {/* <Suspense fallback={null}> */}
+              <Content products={products} />
+            {/* </Suspense> */}
           </div>
         </div>
       </div>

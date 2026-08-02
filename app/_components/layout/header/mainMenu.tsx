@@ -1,5 +1,5 @@
 
-import { getCategories } from "@/app/actions";
+import { getCategories } from "@/app/lib/actions";
 import Menu from "./menu";
 
 export default async function MainMenu() {
