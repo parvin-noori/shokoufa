@@ -13,7 +13,7 @@ export default function Product({ product, isOffer = false }: ProductProps) {
 
   return (
     <Link
-      href="/"
+      href={product.slug}
       className={`bg-white h-full border p-4 rounded-3xl flex flex-col divide-y divide-gray-200 ${isOffer ? " border-rose-200" : " border-gray-200"}`}
     >
       <div className="flex flex-col gap-y-5 pb-4">
