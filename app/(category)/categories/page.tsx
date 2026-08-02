@@ -26,9 +26,9 @@ export default async function Categories() {
           </Suspense>
           {/* content  */}
           <div className="lg:col-span-3 flex flex-col gap-y-3 gap-y-5">
-            {/* <Suspense fallback={null}> */}
+            <Suspense fallback={null}>
               <Content products={products} />
-            {/* </Suspense> */}
+            </Suspense>
           </div>
         </div>
       </div>
