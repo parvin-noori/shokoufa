@@ -9,25 +9,21 @@ const filterList = [
   //   { value: "same_day", label: "ارسال امروز" },
 ];
 
-
-
 export default function Content({ products }) {
-
-    
   return (
     <>
       <div className="lg:flex hidden bg-gray-100 items-center justify-between px-5 rounded-full justify-between">
         <ul className="flex items-center gap-x-2">
-          {/* {filters.sortOptions.map((item, index) => (
-                  <li className="py-2" key={index}>
-                    <button
-                      type="button"
-                      className="cursor-pointer bg-transparent hover:bg-rose-500 hover:text-white px-5 py-3 rounded-full transition duration-300"
-                    >
-                      {item.label}
-                    </button>
-                  </li>
-                ))} */}
+          {filterList.map((item) => (
+            <li className="py-2" key={item.value}>
+              <button
+                type="button"
+                className="cursor-pointer bg-transparent hover:bg-rose-500 hover:text-white px-5 py-3 rounded-full transition duration-300"
+              >
+                {item.label}
+              </button>
+            </li>
+          ))}
         </ul>
         <span className="text-gray-600">{products.length} کالا</span>
       </div>
