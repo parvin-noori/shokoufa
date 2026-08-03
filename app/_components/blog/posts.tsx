@@ -9,34 +9,7 @@ import Navigations from "../navigation/navigations";
 import Post from "./Post";
 import { PostType } from "./post.types";
 
-const posts: PostType[] = [
-  {
-    image_url: "/images/post1.png",
-    title: "رازهای افزایش عمر گل های شاخه بریده در خانه",
-    minRead: 12,
-    likesCount: 999,
-  },
-  {
-    image_url: "/images/post2.png",
-    title: "چگونه گیاهان آپارتمانی را در فصل تابستان  سالم نگه داریم؟",
-    minRead: 12,
-    likesCount: 999,
-  },
-  {
-    image_url: "/images/blogpost3.png",
-    title: "اشتباهات رایج در نگهداری گل ها که باعث پژمرده شدن ان ها می شود",
-    minRead: 12,
-    likesCount: 999,
-  },
-  {
-    image_url: "/images/post1.png",
-    title: "رازهای افزایش عمر گل های شاخه بریده در خانه",
-    minRead: 12,
-    likesCount: 999,
-  },
-];
-
-export default function Posts() {
+export default function Posts({ posts }: { posts: PostType[] }) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   return (

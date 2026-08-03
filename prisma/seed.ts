@@ -1,6 +1,7 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../app/generated/prisma/client";
 import { Productcategories } from "./categories";
+import { posts } from "./posts";
 import { ProductsData } from "./products";
 import { reviews } from "./reviews";
 
@@ -38,11 +39,34 @@ async function seed() {
 
     if (!product) continue;
 
-    await prisma.review.create({
-      data: {
+    await prisma.review.upsert({
+      where: {
+        username_productId: {
+          username: review.username,
+          productId: product.id,
+        },
+      },
+      update: {
+        comment: review.comment,
+      },
+      create: {
         username: review.username,
         comment: review.comment,
         productId: product.id,
+      },
+    });
+  }
+
+  for (const post of posts) {
+    await prisma.post.upsert({
+      where: {
+        slug: post.slug,
+      },
+      update: {
+        title: post.title,
+      },
+      create: {
+        ...post,
       },
     });
   }

@@ -1,6 +1,10 @@
 export interface PostType {
+  id?: string;
   image_url: string;
+  slug:string;
   title: string;
-  minRead: 12;
-  likesCount: 999;
+  // minRead: number;
+  // likesCount: number;
+  // createdAt?: Date;
+  // updatedAt?: Date;
 }

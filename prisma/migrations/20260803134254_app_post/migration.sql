@@ -1,0 +1,15 @@
+/*
+  Warnings:
+
+  - A unique constraint covering the columns `[slug]` on the table `Post` will be added. If there are existing duplicate values, this will fail.
+  - A unique constraint covering the columns `[username,productId]` on the table `Review` will be added. If there are existing duplicate values, this will fail.
+
+*/
+-- AlterTable
+ALTER TABLE "Post" ADD COLUMN     "slug" TEXT;
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Post_slug_key" ON "Post"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Review_username_productId_key" ON "Review"("username", "productId");
