@@ -202,7 +202,7 @@ export default function Sidebar() {
         </button>
       </div>
       <div
-        className={`lg:col-span-1 lg:relative fixed inset-0 bg-white z-100 transform transition duration-200 ${showDrawer ? "translate-x-0" : "translate-x-full"}`}
+        className={`lg:col-span-1 lg:relative fixed inset-0 bg-white lg:z-10 z-100 transform transition duration-200 ${showDrawer ? "lg:translate-x-0" : "translate-x-full lg:translate-x-0"}`}
       >
         <header className="lg:hidden flex items-center justify-between p-2 shadow-sm">
           <span className="font-semibold">فیلترها</span>
@@ -216,7 +216,7 @@ export default function Sidebar() {
         </header>
         <form
           onSubmit={handleSubmit}
-          className="p-2 lg:shadow-[0_0_24px_rgba(0,0,0,0.05)] lg:border border-gray-200 lg:rounded-2xl divide-y divide-gray-100  overflow-auto h-[90%]"
+          className="p-2 lg:shadow-[0_0_24px_rgba(0,0,0,0.05)] lg:border border-gray-200 lg:rounded-2xl divide-y divide-gray-100  overflow-auto h-[90%] lg:h-auto lg:overflow-none"
         >
           {filterKeys.map((key, index) => {
             const options = filters[key];
