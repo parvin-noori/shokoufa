@@ -53,11 +53,17 @@ export default function Content({ products }: { products: ProductType[] }) {
         </ul>
         <span className="text-gray-600">{products.length} کالا</span>
       </div>
-      <div className="grid md:grid-cols-3 grid-cols-2 gap-5">
-        {products.map((product, index) => (
-          <Product key={index} product={product} isOffer={false} />
-        ))}
-      </div>
+      {products.length ? (
+        <div className="grid md:grid-cols-3 grid-cols-2 gap-5">
+          {products.map((product, index) => (
+            <Product key={index} product={product} isOffer={false} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center h-lg">
+          <span className="text-lg ">محصولی یافت نشد</span>
+        </div>
+      )}
     </>
   );
 }

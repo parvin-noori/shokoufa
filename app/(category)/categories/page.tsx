@@ -5,8 +5,22 @@ import { Suspense } from "react";
 import Content from "../_components/content";
 import Sidebar from "../_components/sidebar";
 
-export default async function Categories() {
-  const products = await getProducts();
+type SearchParams = {
+  flowerType?: string;
+  occasion?: string;
+  style?: string;
+  size?: string;
+  colors?: string;
+  sort?: string;
+};
+
+export default async function Categories({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const params = await searchParams;
+  const products = await getProducts(params);
 
   return (
     <div className="py-5">

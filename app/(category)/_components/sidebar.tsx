@@ -7,8 +7,7 @@ import {
   Style,
 } from "@/app/generated/prisma/enums";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const flowerTypeLabels: Record<FlowerType, string> = {
@@ -96,11 +95,6 @@ const filters = getFilters();
 
 const filterKeys = Object.keys(filters) as (keyof typeof filters)[];
 
-// // type SelectedFilters = Record<string, string[]>;
-
-// // const filterKeys = Object.keys(filters).filter(
-// //   (key) => key !== "priceRange" && key !== "sortOptions",
-// // ) as Exclude<keyof typeof filters, "priceRange" | "sortOptions">[];
 
 const colorStyleMap: Record<string, { dot: string; selectedBg: string }> = {
   pink: { dot: "bg-pink-500", selectedBg: "has-[:checked]:bg-pink-100" },
@@ -125,6 +119,7 @@ const colorStyleMap: Record<string, { dot: string; selectedBg: string }> = {
   },
   cream: { dot: "bg-orange-100", selectedBg: "has-[:checked]:bg-orange-50" },
 };
+
 export default function Sidebar() {
   const [openIndexes, setOpenIndexes] = useState<number[]>(
     filterKeys.map((_, index) => index),
@@ -135,10 +130,6 @@ export default function Sidebar() {
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
     );
   };
-
-  type SelectedFilters = Record<string, string[]>;
-  const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>({});
-
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -152,6 +143,10 @@ export default function Sidebar() {
     });
     return initial;
   };
+
+  type SelectedFilters = Record<string, string[]>;
+  const [selectedFilters, setSelectedFilters] =
+    useState<SelectedFilters>(getInitialFilters());
 
   const handleCheckboxChange = (
     key: string,
@@ -170,7 +165,7 @@ export default function Sidebar() {
       };
     });
   };
-
+  const pathname = usePathname();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const params = new URLSearchParams();
@@ -182,7 +177,7 @@ export default function Sidebar() {
         }
       });
 
-      router.push(`/products?${params.toString()}`);
+      router.push(`${pathname}?${params.toString()}`);
     } catch (error) {
       console.error("خطا در ذخیره‌سازی localStorage:", error);
     }
