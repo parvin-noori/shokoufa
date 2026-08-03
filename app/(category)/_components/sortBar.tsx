@@ -1,4 +1,6 @@
+import { ListSortDescending } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const sortList = [
   { value: "price_asc", label: "کمترین قیمت" },
@@ -13,6 +15,7 @@ export default function SortBar() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [showDropDown, setShowDropDown] = useState(false);
 
   const activeSort = searchParams.get("sort");
 
@@ -26,23 +29,38 @@ export default function SortBar() {
     }
 
     router.push(`${pathname}?${params.toString()}`);
+    setShowDropDown(false)
+  };
+
+  const handleDropDown = () => {
+    setShowDropDown(!showDropDown);
   };
   return (
-    <ul className="flex items-center gap-x-2">
-      {sortList.map((item) => {
-        const isActive = activeSort === item.value;
-        return (
-          <li className="py-2" key={item.value}>
-            <button
-              onClick={() => handleSortClick(item.value)}
-              type="button"
-              className={`cursor-pointer  px-5 py-3 rounded-full transition duration-500 ${isActive ? "bg-rose-500 text-white" : "bg-transparent hover:bg-rose-500 hover:text-white"}`}
-            >
-              {item.label}
-            </button>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="relative">
+      <button
+        className="cursor-pointer lg:hidden flex"
+        onClick={handleDropDown}
+      >
+        <ListSortDescending size={20} />
+      </button>
+      <ul
+        className={`lg:flex items-center lg:flex-row flex-col lg:relative absolute gap-x-2 lg:bg-transparent bg-white lg:border-0 border border-gray-200 rounded-xl lg:rounded-0 end-0 min-w-55 p-0 overflow-hidden ${showDropDown ? "flex" : "hidden"}`}
+      >
+        {sortList.map((item) => {
+          const isActive = activeSort === item.value;
+          return (
+            <li className="lg:py-2 w-full" key={item.value}>
+              <button
+                onClick={() => handleSortClick(item.value)}
+                type="button"
+                className={`cursor-pointer lg:w-auto text-nowrap w-full px-5 py-3 lg:rounded-full transition duration-500 ${isActive ? "bg-rose-500 text-white" : "bg-transparent hover:bg-rose-500 hover:text-white"}`}
+              >
+                {item.label}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }

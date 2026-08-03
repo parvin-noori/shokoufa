@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import SortBar from "./sortBar";
 
 const flowerTypeLabels: Record<FlowerType, string> = {
   tulip: "لاله",
@@ -197,9 +198,7 @@ export default function Sidebar() {
         <button className="cursor-pointer">
           <FunnelPlus size={20} onClick={() => setShowDrawer(true)} />
         </button>
-        <button className="cursor-pointer">
-          <ListSortDescending size={20} />
-        </button>
+       <SortBar/>
       </div>
       <div
         className={`lg:col-span-1 lg:relative fixed inset-0 bg-white lg:z-10 z-100 transform transition duration-200 ${showDrawer ? "lg:translate-x-0" : "translate-x-full lg:translate-x-0"}`}
