@@ -2,8 +2,11 @@ export interface ReviewType {
   username: string;
   comment: string;
   product: {
-    image_url: string;
+    slug: string;
     title: string;
-    color: string;
+    colors: string[];
+    images: {
+      url: string;
+    }[];
   };
 }
