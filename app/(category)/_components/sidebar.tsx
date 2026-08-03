@@ -183,7 +183,7 @@ export default function Sidebar() {
       });
 
       router.push(`${pathname}?${params.toString()}`);
-      setShowDrawer(false)
+      setShowDrawer(false);
     } catch (error) {
       console.error("خطا در ذخیره‌سازی localStorage:", error);
     }
@@ -204,20 +204,20 @@ export default function Sidebar() {
       <div
         className={`lg:col-span-1 lg:relative fixed inset-0 bg-white z-100 transform transition duration-200 ${showDrawer ? "translate-x-0" : "translate-x-full"}`}
       >
+        <header className="lg:hidden flex items-center justify-between p-2 shadow-sm">
+          <span className="font-semibold">فیلترها</span>
+          <button
+            className="cursor-pointer p-3"
+            type="button"
+            onClick={() => setShowDrawer(false)}
+          >
+            <X />
+          </button>
+        </header>
         <form
           onSubmit={handleSubmit}
-          className="p-2 lg:shadow-[0_0_24px_rgba(0,0,0,0.05)] lg:border border-gray-200 lg:rounded-2xl divide-y divide-gray-100  overflow-auto h-full"
+          className="p-2 lg:shadow-[0_0_24px_rgba(0,0,0,0.05)] lg:border border-gray-200 lg:rounded-2xl divide-y divide-gray-100  overflow-auto h-[90%]"
         >
-          <header className="lg:hidden flex items-center justify-between p-2">
-            <span className="font-semibold">فیلترها</span>
-            <button
-              className="cursor-pointer p-3"
-              type="button"
-              onClick={() => setShowDrawer(false)}
-            >
-              <X />
-            </button>
-          </header>
           {filterKeys.map((key, index) => {
             const options = filters[key];
             const isOpen = openIndexes.includes(index);
