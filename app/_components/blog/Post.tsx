@@ -21,11 +21,11 @@ export default function Post({ post }: PostProps) {
       <div className="flex items-center gap-x-5 text-gray-400 text-sm mt-auto">
         <span className="flex items-center gap-x-1">
           <Clock size={16}/>
-          {post.minRead}
+          16
         </span>
         <span className="flex items-center gap-x-1">
           <Heart size={16}/>
-          {post.likesCount}
+          999
         </span>
       </div>
     </Link>
