@@ -1,7 +1,7 @@
 export interface PostType {
   id?: string;
-  image_url: string|null;
-  slug:string|null;
+  image_url: string;
+  slug: string;
   title: string;
   // minRead: number;
   // likesCount: number;
