@@ -31,7 +31,7 @@ export default function NavigationBar() {
 
   const pathName = usePathname();
   return (
-    <div className="fixed bottom-0 bg-white inset-x-0 py-4 inset-shadow-sm lg:hidden flex z-100">
+    <div className="fixed bottom-0 bg-white inset-x-0 py-4 inset-shadow-sm lg:hidden flex z-90">
       <div className="container ">
         <ul className="flex items-center justify-between px-5 text-sm">
           {navigationMenus.map((item, index) => {

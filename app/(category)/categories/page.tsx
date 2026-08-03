@@ -1,5 +1,5 @@
 import { getProducts } from "@/app/lib/actions";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, FunnelPlus, ListSortDescending } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import Content from "../_components/content";
@@ -31,6 +31,7 @@ export default async function Categories({
           <Link href="/category" className="text-rose-500">
             دسته بندی
           </Link>
+         
         </div>
 
         <div className="grid lg:grid-cols-4 gap-x-5">

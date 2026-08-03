@@ -30,6 +30,7 @@ export default function Content({ products }: { products: ProductType[] }) {
     }
 
     router.push(`${pathname}?${params.toString()}`);
+    
   };
 
   return (
@@ -43,7 +44,7 @@ export default function Content({ products }: { products: ProductType[] }) {
                 <button
                   onClick={() => handleSortClick(item.value)}
                   type="button"
-                  className={`cursor-pointer  px-5 py-3 rounded-full transition duration-300 ${isActive ? "bg-rose-500 text-white" : "bg-transparent hover:bg-rose-500 hover:text-white"}`}
+                  className={`cursor-pointer  px-5 py-3 rounded-full transition duration-500 ${isActive ? "bg-rose-500 text-white" : "bg-transparent hover:bg-rose-500 hover:text-white"}`}
                 >
                   {item.label}
                 </button>
