@@ -11,5 +11,9 @@ export default async function Review() {
       },
     },
   });
-  return <ReviewSlider reviews={reviews} />;
+  return (
+    <>
+      <ReviewSlider reviews={reviews} />
+    </>
+  );
 }

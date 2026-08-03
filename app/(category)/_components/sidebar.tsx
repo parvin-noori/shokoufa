@@ -54,7 +54,7 @@ const styleLabels: Record<Style, string> = {
   luxury: "لاکچری",
 };
 
-const colorLabels: Record<Color, string> = {
+export const colorLabels: Record<Color, string> = {
   pink: "صورتی",
   white: "سفید",
   purple: "بنفش",
@@ -103,7 +103,7 @@ const filters = getFilters();
 
 const filterKeys = Object.keys(filters) as (keyof typeof filters)[];
 
-const colorStyleMap: Record<string, { dot: string; selectedBg: string }> = {
+export const colorStyleMap: Record<string, { dot: string; selectedBg: string }> = {
   pink: { dot: "bg-pink-500", selectedBg: "has-[:checked]:bg-pink-100" },
   white: {
     dot: "bg-white border border-gray-300",

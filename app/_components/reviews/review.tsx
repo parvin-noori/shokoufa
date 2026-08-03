@@ -1,3 +1,8 @@
+import {
+  colorLabels,
+  colorStyleMap,
+} from "@/app/(category)/_components/sidebar";
+import { Color } from "@/app/generated/prisma/enums";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +13,8 @@ interface ReviewProps {
 }
 
 export default function Review({ review }: ReviewProps) {
+  const color = review.product.colors[0] as Color;
+  const colorStyle = colorStyleMap[color];
   return (
     <div className="flex flex-col text-gray-800 gap-y-4 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 p-5 rounded-2xl">
       <span className="font-bold">{review.username}</span>
@@ -16,18 +23,23 @@ export default function Review({ review }: ReviewProps) {
         <span className="font-bold">محصول خریداری شده:</span>
         <div className="border border-gray-200 bg-gray-50 rounded-lg p-2 flex items-stretch gap-x-2 text-sm">
           <Image
-            src={review.product.image_url}
+            src={review.product.images[0].url}
             alt={review.product.title}
             width={84}
             height={84}
             className="size-22 rounded-lg"
           />
           <div className="flex flex-col justify-between w-full group">
-            <span className="font-semibold line-clamp-2">{review.product.title}</span>
+            <span className="font-semibold line-clamp-2">
+              {review.product.title}
+            </span>
             <div className="flex items-center justify-between">
               <span className="p-1.5 border border-gray-200 bg-white rounded-full font-semibold text-gray-600 flex items-center gap-x-2">
-                {review.product.color}
-                <div className="size-4.5 rounded-full bg-yellow-400"></div>
+                {colorLabels[color]}
+
+                <div
+                  className={`size-4.5 rounded-full ${colorStyle?.dot}`}
+                ></div>
               </span>
               <Link
                 href="/"
@@ -35,7 +47,7 @@ export default function Review({ review }: ReviewProps) {
               >
                 <span className="lg:block hidden">رفتن به محصول</span>
 
-                <ChevronLeft className="group-hover:translate group-hover:-translate-x-1 transition duration-300"/>
+                <ChevronLeft className="group-hover:translate group-hover:-translate-x-1 transition duration-300" />
               </Link>
             </div>
           </div>
