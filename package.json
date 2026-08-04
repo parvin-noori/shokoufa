@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
+ "build": "node -e \"console.log('DATABASE_URL is', process.env.DATABASE_URL ? 'SET' : 'MISSING')\" && prisma generate && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate"
