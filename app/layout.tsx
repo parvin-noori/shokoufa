@@ -11,9 +11,9 @@ export default function RootLayout({
 }>) {
   return (
     <html dir="rtl" lang="fa" className={` ${Peyda.className}  h-full`}>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <Header />
-        {children}
+        <div className="grow">{children}</div>
         <Footer />
         <NavigationBar />
       </body>
