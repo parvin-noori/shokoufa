@@ -1,10 +1,4 @@
-import {
-  Color,
-  FlowerType,
-  Occasion,
-  Size,
-  Style,
-} from "@/app/generated/prisma/enums";
+import { Color, FlowerType, Size, Style } from "@/app/generated/prisma/enums";
 
 export const ProductsData = [
   {
@@ -22,7 +16,6 @@ export const ProductsData = [
     isBestSeller: true,
     stock: 6,
     flowerType: FlowerType.peony,
-    occasion: [Occasion.anniversary, Occasion.birthday],
     style: Style.modern,
     size: Size.large,
     colors: [Color.pink],
@@ -42,7 +35,6 @@ export const ProductsData = [
     isBestSeller: false,
     stock: 10,
     flowerType: FlowerType.rose,
-    occasion: [Occasion.condolence],
     style: Style.classic,
     size: Size.medium,
     colors: [Color.white],
@@ -62,7 +54,6 @@ export const ProductsData = [
     isBestSeller: true,
     stock: 15,
     flowerType: FlowerType.sunflower,
-    occasion: [Occasion.birthday],
     style: Style.modern,
     size: Size.small,
     colors: [Color.yellow],
@@ -88,7 +79,6 @@ export const ProductsData = [
     isBestSeller: false,
     stock: 4,
     flowerType: FlowerType.mixed,
-    occasion: [Occasion.graduation],
     style: Style.classic,
     size: Size.large,
     colors: [Color.pink, Color.white],
@@ -108,12 +98,6 @@ export const ProductsData = [
     isBestSeller: true,
     stock: 15,
     flowerType: FlowerType.sunflower,
-    occasion: [
-      Occasion.boysDay,
-      Occasion.mothersDay,
-      Occasion.birthday,
-      Occasion.girlsDay,
-    ],
     style: Style.luxury,
     size: Size.large,
     colors: [Color.yellow],

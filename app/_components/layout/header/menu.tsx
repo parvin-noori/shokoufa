@@ -18,21 +18,21 @@ export default function Menu({ items }: MenuProps) {
     },
     ...items.map((item) => ({
       title: item.title,
-      slug: `/categories?occasion=${item.slug}`,
+      slug: `/categories?category=${item.slug}`,
     })),
   ];
   const pathName = usePathname();
   const searchParams = useSearchParams();
-  const occasion = searchParams.get("occasion");
+  const category = searchParams.get("category");
 
-  const currentFullPath = occasion
-    ? `${pathName}?occasion=${occasion}`
+  const currentFullPath = category
+    ? `${pathName}?category=${category}`
     : pathName;
   return (
     <ul className="flex items-center justify-between">
       {mainMenu.map((item, index) => {
         const isActive = item.static
-          ? pathName === item.slug && !occasion
+          ? pathName === item.slug && !category
           : item.slug === currentFullPath;
         return (
           <li key={index} className="flex items-center gap-x-2">

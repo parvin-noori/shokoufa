@@ -1,21 +1,9 @@
 "use client";
-import {
-  Color,
-  FlowerType,
-  Occasion,
-  Size,
-  Style,
-} from "@/app/generated/prisma/enums";
-import {
-  Check,
-  ChevronDown,
-  ChevronUp,
-  FunnelPlus,
-  ListSortDescending,
-  X,
-} from "lucide-react";
+import { CategoryItem } from "@/app/_components/categories/category.types";
+import { Color, FlowerType, Size, Style } from "@/app/generated/prisma/enums";
+import { Check, ChevronDown, ChevronUp, FunnelPlus, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SortBar from "./sortBar";
 
 const flowerTypeLabels: Record<FlowerType, string> = {
@@ -29,17 +17,17 @@ const flowerTypeLabels: Record<FlowerType, string> = {
   peony: "پیونی",
 };
 
-const occasionLabels: Record<Occasion, string> = {
-  birthday: "تولد",
-  condolence: "تسلیت",
-  anniversary: "سالگرد",
-  wedding: "عروسی",
-  graduation: "فارغ‌التحصیلی",
-  mothersDay: "روز مادر",
-  girlsDay: "روز دختر",
-  fathersDay: "روز پدر",
-  boysDay: "روز پسر",
-};
+// const occasionLabels: Record<Occasion, string> = {
+//   birthday: "تولد",
+//   condolence: "تسلیت",
+//   anniversary: "سالگرد",
+//   wedding: "عروسی",
+//   graduation: "فارغ‌التحصیلی",
+//   mothersDay: "روز مادر",
+//   girlsDay: "روز دختر",
+//   fathersDay: "روز پدر",
+//   boysDay: "روز پسر",
+// };
 const sizeLabels: Record<Size, string> = {
   small: "کوچک",
   medium: "متوسط",
@@ -66,15 +54,19 @@ export const colorLabels: Record<Color, string> = {
   cream: "کرم",
 };
 
-export function getFilters() {
+export function getFilters(categories: CategoryItem[]) {
   return {
     flowerType: Object.values(FlowerType).map((v) => ({
       value: v,
       label: flowerTypeLabels[v],
     })),
-    occasion: Object.values(Occasion).map((v) => ({
-      value: v,
-      label: occasionLabels[v],
+    // occasion: Object.values(Occasion).map((v) => ({
+    //   value: v,
+    //   label: occasionLabels[v],
+    // })),
+    category: categories.map((c) => ({
+      value: c.slug,
+      label: c.title,
     })),
     size: Object.values(Size).map((v) => ({
       value: v,
@@ -99,11 +91,11 @@ const filtersTitle: Record<string, string> = {
   priceRange: "قیمت",
   colors: "رنگ ها",
 };
-const filters = getFilters();
 
-const filterKeys = Object.keys(filters) as (keyof typeof filters)[];
-
-export const colorStyleMap: Record<string, { dot: string; selectedBg: string }> = {
+export const colorStyleMap: Record<
+  string,
+  { dot: string; selectedBg: string }
+> = {
   pink: { dot: "bg-pink-500", selectedBg: "has-[:checked]:bg-pink-100" },
   white: {
     dot: "bg-white border border-gray-300",
@@ -127,7 +119,14 @@ export const colorStyleMap: Record<string, { dot: string; selectedBg: string }> 
   cream: { dot: "bg-orange-100", selectedBg: "has-[:checked]:bg-orange-50" },
 };
 
-export default function Sidebar() {
+export default function Sidebar({
+  categories,
+}: {
+  categories: CategoryItem[];
+}) {
+  const filters = getFilters(categories);
+
+  const filterKeys = Object.keys(filters) as (keyof typeof filters)[];
   const [openIndexes, setOpenIndexes] = useState<number[]>(
     filterKeys.map((_, index) => index),
   );
@@ -154,6 +153,10 @@ export default function Sidebar() {
   type SelectedFilters = Record<string, string[]>;
   const [selectedFilters, setSelectedFilters] =
     useState<SelectedFilters>(getInitialFilters());
+
+  useEffect(() => {
+    setSelectedFilters(getInitialFilters());
+  }, [searchParams]);
 
   const handleCheckboxChange = (
     key: string,
@@ -198,7 +201,7 @@ export default function Sidebar() {
         <button className="cursor-pointer">
           <FunnelPlus size={20} onClick={() => setShowDrawer(true)} />
         </button>
-       <SortBar/>
+        <SortBar />
       </div>
       <div
         className={`lg:col-span-1 lg:relative fixed inset-0 bg-white lg:z-10 z-100 transform transition duration-200 ${showDrawer ? "lg:translate-x-0" : "translate-x-full lg:translate-x-0"}`}

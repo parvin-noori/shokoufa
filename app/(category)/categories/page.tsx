@@ -1,5 +1,5 @@
-import { getProducts } from "@/app/lib/actions";
-import { ChevronLeft, FunnelPlus, ListSortDescending } from "lucide-react";
+import { getCategories, getProducts } from "@/app/lib/actions";
+import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import Content from "../_components/content";
@@ -7,11 +7,11 @@ import Sidebar from "../_components/sidebar";
 
 type SearchParams = {
   flowerType?: string;
-  occasion?: string;
   style?: string;
   size?: string;
   colors?: string;
   sort?: string;
+  category?: string;
 };
 
 export default async function Categories({
@@ -20,7 +20,10 @@ export default async function Categories({
   searchParams: Promise<SearchParams>;
 }) {
   const params = await searchParams;
-  const products = await getProducts(params);
+  const [products, categories] = await Promise.all([
+    getProducts(params),
+    getCategories(),
+  ]);
 
   return (
     <div className="py-5">
@@ -31,13 +34,12 @@ export default async function Categories({
           <Link href="/category" className="text-rose-500">
             دسته بندی
           </Link>
-         
         </div>
 
         <div className="grid lg:grid-cols-4 gap-x-5">
           {/* sidebar  */}
           <Suspense fallback={null}>
-            <Sidebar />
+            <Sidebar categories={categories} />
           </Suspense>
           {/* content  */}
           <div className="lg:col-span-3 flex flex-col gap-y-3 gap-y-5">

@@ -23,17 +23,6 @@ enum FlowerType {
   peony
 }
 
-enum Occasion {
-  birthday
-  condolence
-  anniversary
-  wedding
-  graduation
-  mothersDay
-  girlsDay
-  fathersDay
-  boysDay
-}
 
 enum Style {
   modern
@@ -71,7 +60,6 @@ model Product {
   isBestSeller Boolean        @default(false)
   stock        Int            @default(0)
   flowerType   FlowerType
-  occasion     Occasion[]
   style        Style
   size         Size
   colors       Color[]

@@ -14,11 +14,11 @@ import { getSortQuery } from "./sort";
 
 type ProductFilters = {
   flowerType?: string;
-  occasion?: string;
   style?: string;
   size?: string;
   colors?: string;
   sort?: string;
+  category?: string;
 };
 
 function getValidValue<T extends string>(
@@ -37,17 +37,18 @@ function attachExtras(products: any[]): ProductType[] {
 
 export async function getProducts(filters: ProductFilters = {}) {
   const flowerTypes = getValidValue(filters.flowerType, FlowerType);
-  const occasions = getValidValue(filters.occasion, Occasion);
   const sizes = getValidValue(filters.size, Size);
   const styles = getValidValue(filters.style, Style);
   const colors = getValidValue(filters.colors, Color);
 
   const where: ProductWhereInput = {
     flowerType: flowerTypes.length ? { in: flowerTypes } : undefined,
-    occasion: occasions.length ? { hasSome: occasions } : undefined,
     size: sizes.length ? { in: sizes } : undefined,
     style: styles.length ? { in: styles } : undefined,
     colors: colors.length ? { hasSome: colors } : undefined,
+    categories: filters.category
+      ? { some: { slug: filters.category } }
+      : undefined,
   };
 
   const { orderBy, where: sortWhere } = getSortQuery(filters.sort);
