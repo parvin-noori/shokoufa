@@ -2,7 +2,7 @@
 
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { CategoryItem } from "../../categories/category.types";
 
 type MenuProps = {
@@ -10,7 +10,7 @@ type MenuProps = {
 };
 
 export default function Menu({ items }: MenuProps) {
-  const mainMenu = [
+  const mainMenu: CategoryItem[] = [
     {
       title: "دسته بندی ها",
       slug: "/categories",
@@ -18,14 +18,22 @@ export default function Menu({ items }: MenuProps) {
     },
     ...items.map((item) => ({
       title: item.title,
-      slug: `/categories/${item.slug}`,
+      slug: `/categories?occasion=${item.slug}`,
     })),
   ];
   const pathName = usePathname();
+  const searchParams = useSearchParams();
+  const occasion = searchParams.get("occasion");
+
+  const currentFullPath = occasion
+    ? `${pathName}?occasion=${occasion}`
+    : pathName;
   return (
     <ul className="flex items-center justify-between">
       {mainMenu.map((item, index) => {
-        const isActive = item.slug === pathName;
+        const isActive = item.static
+          ? pathName === item.slug && !occasion
+          : item.slug === currentFullPath;
         return (
           <li key={index} className="flex items-center gap-x-2">
             {index === 0 && <MenuIcon />}

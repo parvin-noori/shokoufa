@@ -9,7 +9,7 @@ interface CategoryProps {
 export default function Category({ category }: CategoryProps) {
   return (
     <div className="flex flex-col gap-y-3 items-center text-center">
-      <Link href={`/categories/${category.slug}`}>
+      <Link href={`/categories?occasion=${category.slug}`}>
         <Image
           src={category.imageUrl ?? "/images/placeholder.png"}
           alt={category.title}
