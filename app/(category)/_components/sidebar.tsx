@@ -1,7 +1,7 @@
 "use client";
 import { CategoryItem } from "@/app/_components/categories/category.types";
 import { Color, FlowerType, Size, Style } from "@/app/generated/prisma/enums";
-import { Check, ChevronDown, ChevronUp, FunnelPlus, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, FunnelPlus, SlidersHorizontal, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SortBar from "./sortBar";
@@ -90,7 +90,7 @@ const filtersTitle: Record<string, string> = {
   size: "اندازه",
   priceRange: "قیمت",
   colors: "رنگ ها",
-  category:"دسته بندی"
+  category: "دسته بندی",
 };
 
 export const colorStyleMap: Record<
@@ -198,9 +198,10 @@ export default function Sidebar({
 
   return (
     <>
-      <div className="flex items-center gap-x-5 ms-auto text-gray-500 lg:hidden my-5">
-        <button className="cursor-pointer">
-          <FunnelPlus size={20} onClick={() => setShowDrawer(true)} />
+      <div className="grid grid-cols-2 divide-x divide-gray-300 gap-x-5 p-2 lg:hidden my-5 bg-gray-100 rounded-full">
+        <button className="cursor-pointer flex items-center justify-center gap-x-2 p-1 w-full"  onClick={() => setShowDrawer(true)}>
+          <span>فیلتر</span>
+          <SlidersHorizontal size={20}/>
         </button>
         <SortBar />
       </div>

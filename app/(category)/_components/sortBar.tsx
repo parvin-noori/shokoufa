@@ -1,4 +1,4 @@
-import { ListSortDescending } from "lucide-react";
+import { ArrowDownWideNarrow } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -29,7 +29,7 @@ export default function SortBar() {
     }
 
     router.push(`${pathname}?${params.toString()}`);
-    setShowDropDown(false)
+    setShowDropDown(false);
   };
 
   const handleDropDown = () => {
@@ -38,10 +38,11 @@ export default function SortBar() {
   return (
     <div className="relative">
       <button
-        className="cursor-pointer lg:hidden flex"
+        className="cursor-pointer lg:hidden flex flex items-center gap-x-2 p-1 justify-center w-full"
         onClick={handleDropDown}
       >
-        <ListSortDescending size={20} />
+        <span>ترتیب</span>
+        <ArrowDownWideNarrow size={20} />
       </button>
       <ul
         className={`lg:flex items-center lg:flex-row flex-col lg:relative absolute gap-x-2 lg:bg-transparent bg-white lg:border-0 border border-gray-200 rounded-xl lg:rounded-0 end-0 min-w-55 p-0 overflow-hidden ${showDropDown ? "flex" : "hidden"}`}
