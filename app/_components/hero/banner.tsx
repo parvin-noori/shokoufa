@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Banner() {
   return (
@@ -19,18 +20,18 @@ export default function Banner() {
           </div>
           <div className="flex items-center gap-x-2 font-bold">
             <div className="inline-block rounded-md overflow-hidden p-[2px] bg-gradient-to-l from-[#331F0C] to-[#B18864]">
-              <button type="button" className="bg-white rounded-md py-2 px-3">
+              <Link href="/categories" className="bg-white rounded-md p-3 block">
                 <span className="bg-gradient-to-l from-[#331F0C] to-[#B18864] text-nowrap bg-clip-text text-transparent font-bold">
                   دسته بندی ها
                 </span>
-              </button>
+              </Link>
             </div>
-            <button
-              type="button"
-              className="bg-gradient-to-l py-2 px-3 text-nowrap from-[#331F0C] to-[#B18864] text-white rounded-md"
+            <Link
+              href="/categories"
+              className="bg-gradient-to-l p-3 text-nowrap from-[#331F0C] to-[#B18864] text-white rounded-md"
             >
               مشاهده گل ها
-            </button>
+            </Link>
           </div>
         </div>
       </div>
