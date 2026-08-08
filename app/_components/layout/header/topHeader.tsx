@@ -15,7 +15,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-export default function TopHeader() {
+type TopHeaderProps = {
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    password?: string | null;
+  };
+};
+
+export default function TopHeader({ user }: TopHeaderProps) {
   return (
     <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">
       {/* right  */}
@@ -66,7 +74,7 @@ export default function TopHeader() {
           className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
         >
           <UserRound />
-          سروش
+          {user?.name}
           <ChevronDown />
         </button>
       </div>

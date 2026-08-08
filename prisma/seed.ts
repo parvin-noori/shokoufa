@@ -17,6 +17,16 @@ async function seed() {
     });
   }
 
+  const seedUser = await prisma.user.upsert({
+    where: { email: "seed-reviewer@example.com" },
+    update: {},
+    create: {
+      name: "کاربر نمونه",
+      email: "seed-reviewer@example.com",
+      password: "seed-only-not-a-real-password",
+    },
+  });
+
   for (const product of ProductsData) {
     const { images, categories = [], ...rest } = product;
     await prisma.product.upsert({

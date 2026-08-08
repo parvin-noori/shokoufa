@@ -1,10 +1,10 @@
 "use server";
 
+import bcrypt from "bcryptjs";
 import { ProductType } from "../_components/products/product.type";
 import {
   Color,
   FlowerType,
-  Occasion,
   Size,
   Style,
 } from "../generated/prisma/enums";
@@ -88,7 +88,7 @@ export async function getBestSellerProducts(): Promise<ProductType[]> {
 export async function getGirlsDayProducts(): Promise<ProductType[]> {
   try {
     const products = await prisma.product.findMany({
-      where: { occasion: { has: "girlsDay" } },
+      where: {  },
       include: { images: true },
     });
     return attachExtras(products);
@@ -105,4 +105,31 @@ export async function getCategories() {
     console.error("Database connection error:", error);
     return [];
   }
+}
+
+
+type RegisterInput = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export async function registerUser({ name, email, password }: RegisterInput) {
+  const existingUser = await prisma.user.findUnique({ where: { email } });
+
+  if (existingUser) {
+    return { error: "این ایمیل قبلاً ثبت شده است." };
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword,
+    },
+  });
+
+  return { success: true };
 }
