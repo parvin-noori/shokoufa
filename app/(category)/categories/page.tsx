@@ -25,6 +25,8 @@ export default async function Categories({
     getCategories(),
   ]);
 
+  const activeCategory = categories.find((c) => c.slug === params.category);
+
   return (
     <div className="py-5">
       <div className="container">
@@ -34,6 +36,12 @@ export default async function Categories({
           <Link href="/category" className="text-rose-500">
             دسته بندی
           </Link>
+          {activeCategory && (
+            <>
+              <ChevronLeft size={20} />
+              <span className="text-rose-500">{activeCategory.title}</span>
+            </>
+          )}
         </div>
 
         <div className="grid lg:grid-cols-4 gap-x-5">
