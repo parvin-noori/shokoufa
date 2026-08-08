@@ -90,6 +90,7 @@ const filtersTitle: Record<string, string> = {
   size: "اندازه",
   priceRange: "قیمت",
   colors: "رنگ ها",
+  category:"دسته بندی"
 };
 
 export const colorStyleMap: Record<
