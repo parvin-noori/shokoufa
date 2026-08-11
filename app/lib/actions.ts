@@ -159,7 +159,7 @@ export async function signUp({ name, email, password }: RegisterInput) {
     await signIn("credentials", {
       email,
       password,
-      redirect:false
+      redirect: false,
     });
   } catch (err) {
     if (err instanceof AuthError) {
@@ -176,4 +176,25 @@ export async function signUp({ name, email, password }: RegisterInput) {
 
 export async function logOut() {
   await signOut({ redirectTo: "/" });
+}
+
+export async function getProductBySlug(slug: string) {
+  try {
+    return await prisma.product.findUnique({
+      where: { slug },
+      include: {
+        images: true,
+        categories: true,
+        reviews: {
+          include: {
+            user: { select: { name: true } },
+          },
+          orderBy: { createdAt: "desc" },
+        },
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }

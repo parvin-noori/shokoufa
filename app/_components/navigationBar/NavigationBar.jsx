@@ -1,11 +1,14 @@
 "use client";
 
 import { Heart, House, ShoppingCart, User } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cloneElement } from "react";
 
 export default function NavigationBar() {
+  const { data: session, status } = useSession();
+
   const navigationMenus = [
     {
       title: "خانه",
@@ -25,7 +28,7 @@ export default function NavigationBar() {
     {
       title: "پروفایل",
       icon: <User />,
-      href: "/user",
+      href: session ? "/user" : "/login",
     },
   ];
 

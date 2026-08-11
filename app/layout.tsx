@@ -6,6 +6,7 @@ import NavigationBar from "./_components/navigationBar/NavigationBar";
 import { Peyda } from "./fonts";
 
 import { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,11 +31,13 @@ export default function RootLayout({
   return (
     <html dir="rtl" lang="fa" className={` ${Peyda.className}  h-full`}>
       <body className="min-h-screen flex flex-col">
-        <ToastContainer position="top-right" rtl autoClose={3000} />
-        <Header />
-        <div className="grow">{children}</div>
-        <Footer />
-        <NavigationBar />
+        <SessionProvider>
+          <ToastContainer position="top-right" rtl autoClose={3000} />
+          <Header />
+          <div className="grow">{children}</div>
+          <Footer />
+          <NavigationBar />
+        </SessionProvider>
       </body>
     </html>
   );
