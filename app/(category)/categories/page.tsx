@@ -33,7 +33,7 @@ export default async function Categories({
         <div className="breadcrumb flex items-center gap-x-1 text-sm text-gray-500 py-4">
           <span>خانه</span>
           <ChevronLeft size={20} />
-          <Link href="/category" className="text-rose-500">
+          <Link href="/categories" className="text-rose-500">
             دسته بندی
           </Link>
           {activeCategory && (
