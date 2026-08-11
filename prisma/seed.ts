@@ -31,7 +31,12 @@ async function seed() {
     const { images, categories = [], ...rest } = product;
     await prisma.product.upsert({
       where: { slug: product.slug },
-      update: {},
+      update: {
+        ...rest,
+        categories: {
+          set: categories.map((slug) => ({ slug })),
+        },
+      },
       create: {
         ...rest,
         images: { create: product.images },
