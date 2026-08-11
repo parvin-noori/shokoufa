@@ -12,6 +12,7 @@ export default async function Review() {
       },
     },
   });
+  if (!reviews?.length) return null;
   return (
     <>
       <ReviewSlider reviews={reviews} />

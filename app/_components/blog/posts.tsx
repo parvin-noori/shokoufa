@@ -12,6 +12,8 @@ import { PostType } from "./post.types";
 export default function Posts({ posts }: { posts: PostType[] }) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+
+  if (!posts?.length) return null;
   return (
     <div className="flex flex-col py-10 gap-y-10">
       <div className="flex lg:items-center items-start justify-between">
