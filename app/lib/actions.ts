@@ -1,13 +1,10 @@
 "use server";
 
+import { signIn, signOut } from "@/auth";
 import bcrypt from "bcryptjs";
+import { AuthError } from "next-auth";
 import { ProductType } from "../_components/products/product.type";
-import {
-  Color,
-  FlowerType,
-  Size,
-  Style,
-} from "../generated/prisma/enums";
+import { Color, FlowerType, Size, Style } from "../generated/prisma/enums";
 import { ProductWhereInput } from "../generated/prisma/models";
 import prisma from "./prisma";
 import { getSortQuery } from "./sort";
@@ -88,7 +85,7 @@ export async function getBestSellerProducts(): Promise<ProductType[]> {
 export async function getGirlsDayProducts(): Promise<ProductType[]> {
   try {
     const products = await prisma.product.findMany({
-      where: {  },
+      where: {},
       include: { images: true },
     });
     return attachExtras(products);
@@ -107,20 +104,48 @@ export async function getCategories() {
   }
 }
 
-
 type RegisterInput = {
   name: string;
   email: string;
   password: string;
 };
 
-export async function registerUser({ name, email, password }: RegisterInput) {
+export async function login({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
+  const existingUser = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
+  if (!existingUser) {
+    return { error: "کاربری با این ایمیل موجود نمی باشد" };
+  }
+  try {
+    await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    });
+  } catch (err) {
+    if (err instanceof AuthError) {
+      return { error: "ایمیل یا رمز عبور اشتباه است." };
+    }
+    throw err;
+  }
+  return { success: "خوش آمدید!" };
+}
+
+export async function signUp({ name, email, password }: RegisterInput) {
   const existingUser = await prisma.user.findUnique({ where: { email } });
 
   if (existingUser) {
     return { error: "این ایمیل قبلاً ثبت شده است." };
   }
-
   const hashedPassword = await bcrypt.hash(password, 10);
 
   await prisma.user.create({
@@ -130,6 +155,25 @@ export async function registerUser({ name, email, password }: RegisterInput) {
       password: hashedPassword,
     },
   });
+  try {
+    await signIn("credentials", {
+      email,
+      password,
+      redirect:false
+    });
+  } catch (err) {
+    if (err instanceof AuthError) {
+      return {
+        error:
+          "ثبت‌نام با موفقیت انجام شد، ولی ورود خودکار ناموفق بود. لطفاً وارد شوید.",
+      };
+    }
+    throw err;
+  }
 
   return { success: true };
+}
+
+export async function logOut() {
+  await signOut({ redirectTo: "/" });
 }

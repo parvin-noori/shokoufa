@@ -1,8 +1,11 @@
 "use client";
 
+import { logOut } from "@/app/lib/actions";
 import {
   ChevronDown,
   Heart,
+  LogIn,
+  LogOut,
   Menu,
   Search,
   ShoppingCart,
@@ -24,6 +27,12 @@ type TopHeaderProps = {
 };
 
 export default function TopHeader({ user }: TopHeaderProps) {
+  const [showDropDown, setShowDropDown] = useState(false);
+
+  const handleDropDown = () => {
+    setShowDropDown(!showDropDown);
+  };
+
   return (
     <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">
       {/* right  */}
@@ -69,14 +78,37 @@ export default function TopHeader({ user }: TopHeaderProps) {
           </div>
           <ShoppingCart />
         </button>
-        <button
-          type="button"
-          className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
-        >
-          <UserRound />
-          {user?.name}
-          <ChevronDown />
-        </button>
+        {user ? (
+          <div className="relative">
+            <button
+              type="button"
+              className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
+              onClick={handleDropDown}
+            >
+              <UserRound />
+              {user?.name}
+              <ChevronDown />
+            </button>
+            <ul
+              className={`flex items-center flex-col  absolute gap-x-2  bg-white  border border-gray-200 rounded-xl inset-x-0 p-0 overflow-hidden ${showDropDown ? "flex" : "hidden"}`}
+            >
+              <li>
+                <button onClick={logOut} type="button" className="text-rose-500 flex items-center gap-x-2 cursor-pointer">
+                  <LogOut size={20}/>
+                  خروج
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <Link
+            href="/login"
+            className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
+          >
+            <LogIn />
+            ثبت نام | ورود
+          </Link>
+        )}
       </div>
     </div>
   );

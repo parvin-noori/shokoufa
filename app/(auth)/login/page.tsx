@@ -1,39 +1,46 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { login } from "@/app/lib/actions";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+
+type LoginFormValues = {
+  email: string;
+  password: string;
+};
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormValues>();
 
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
+  const onSubmit = async (data: LoginFormValues) => {
+    try {
+      const result = await login({
+        email: data.email,
+        password: data.password,
+      });
 
-    setLoading(false);
-
-    if (result?.error) {
-      setError("ایمیل یا رمز عبور اشتباه است.");
-      return;
+      if (result?.error) {
+        toast.error(result.error);
+        return;
+      }
+      toast.success("خوش برگشتی! 🌸");
+      router.push("/");
+      router.refresh();
+    } catch (err) {
+      console.error(err);
+      toast.error("خطایی رخ داد. لطفاً دوباره تلاش کنید.");
     }
-
-    router.push("/");
-    router.refresh();
   };
 
   return (
@@ -46,7 +53,10 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-y-4"
+        >
           <div className="flex flex-col gap-y-1.5">
             <label htmlFor="email" className="text-sm text-gray-700">
               ایمیل
@@ -59,14 +69,21 @@ export default function LoginPage() {
               <input
                 id="email"
                 type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email", {
+                  required: "ایمیل الزامی است.",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "فرمت ایمیل معتبر نیست.",
+                  },
+                })}
                 placeholder="example@email.com"
                 dir="ltr"
                 className="w-full border border-gray-300 rounded-xl py-3 pr-10 pl-4 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition"
               />
             </div>
+            {errors.email && (
+              <p className="text-rose-500 text-xs">{errors.email.message}</p>
+            )}
           </div>
 
           <div className="flex flex-col gap-y-1.5">
@@ -81,9 +98,9 @@ export default function LoginPage() {
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password", {
+                  required: "رمز عبور الزامی است.",
+                })}
                 placeholder="••••••••"
                 dir="ltr"
                 className="w-full border border-gray-300 rounded-xl py-3 pr-10 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition"
@@ -96,18 +113,17 @@ export default function LoginPage() {
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
+            {errors.password && (
+              <p className="text-rose-500 text-xs">{errors.password.message}</p>
+            )}
           </div>
-
-          {error && (
-            <p className="text-rose-500 text-sm text-center">{error}</p>
-          )}
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={isSubmitting}
             className="bg-rose-500 text-white rounded-full py-3 mt-2 cursor-pointer hover:bg-rose-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? "در حال ورود..." : "ورود"}
+            {isSubmitting ? "در حال ورود..." : "ورود"}
           </button>
         </form>
 
