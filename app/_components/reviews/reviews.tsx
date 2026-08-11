@@ -12,6 +12,7 @@ export default async function Review() {
       },
     },
   });
+  console.log(reviews);
   if (!reviews?.length) return null;
   return (
     <>
