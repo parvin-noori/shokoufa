@@ -51,8 +51,8 @@ async function seed() {
 
     await prisma.review.upsert({
       where: {
-        username_productId: {
-          username: review.username,
+        userId_productId: {
+          userId: seedUser.id,
           productId: product.id,
         },
       },
@@ -60,9 +60,9 @@ async function seed() {
         comment: review.comment,
       },
       create: {
-        username: review.username,
         comment: review.comment,
         productId: product.id,
+        userId: seedUser.id,
       },
     });
   }

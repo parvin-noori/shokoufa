@@ -89,7 +89,6 @@ model Category {
 
 model Review {
   id        String   @id @default(cuid())
-  username  String
   comment   String
   productId String
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -98,7 +97,7 @@ model Review {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([username, productId])
+  @@unique([userId, productId])
 }
 
 model Post {
@@ -114,7 +113,7 @@ model User {
   id        String   @id @default(cuid())
   name      String
   email     String   @unique
-  password  String // هش‌شده، نه متن ساده
+  password  String
   createdAt DateTime @default(now())
   reviews   Review[]
 }
