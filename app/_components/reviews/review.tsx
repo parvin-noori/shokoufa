@@ -17,7 +17,7 @@ export default function Review({ review }: ReviewProps) {
   const colorStyle = colorStyleMap[color];
   return (
     <div className="flex flex-col text-gray-800 gap-y-4 shadow-[0_0_24px_rgba(0,0,0,0.05)] border border-gray-200 p-5 rounded-2xl">
-      <span className="font-bold">{review.username}</span>
+      <span className="font-bold">{review.user.name}</span>
       <p className="text-gray-700">{review.comment}</p>
       <div className="flex flex-col gap-y-3 mt-5">
         <span className="font-bold">محصول خریداری شده:</span>

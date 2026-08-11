@@ -1,6 +1,8 @@
 export interface ReviewType {
-  username: string;
   comment: string;
+  user: {
+    name: string;
+  };
   product: {
     slug: string;
     title: string;
