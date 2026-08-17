@@ -50,11 +50,11 @@ export default async function ProductPage({ params }: Props) {
             <div className="col-span-8"></div>
             <div className="col-span-4"></div>
           </div>
-          <div className="grid grid-cols-3 px-22 py-10">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-5 lg:px-22 py-10">
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <div className="flex flex-col gap-y-3 items-center" key={index}>
+                <div className="flex text-center flex-col gap-y-3 items-center" key={index}>
                   <span className="size-16 rounded-full bg-emerald-50 flex items-center justify-center">
                     <Icon className="text-emerald-600" />
                   </span>
