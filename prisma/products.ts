@@ -20,6 +20,7 @@ export const ProductsData = [
     size: Size.large,
     colors: [Color.pink],
     categories: ["congratulations-flowers"],
+    accessories: ["luxury-wrapping-paper", "water-pouch", "personalized-card"],
   },
   {
     slug: "classic-white-rose-bouquet",
@@ -39,6 +40,12 @@ export const ProductsData = [
     size: Size.medium,
     colors: [Color.white],
     categories: ["rose-bouquet", "congratulations-flowers"],
+    accessories: [
+      "luxury-wrapping-paper",
+      "water-pouch",
+      "personalized-card",
+      "protective-shipping-box",
+    ],
   },
   {
     slug: "summer-sunflower-bouquet",
@@ -58,6 +65,12 @@ export const ProductsData = [
     size: Size.small,
     colors: [Color.yellow],
     categories: ["birthday-flowers", "seasonal-flowers"],
+    accessories: [
+      "luxury-wrapping-paper",
+      "water-pouch",
+      "personalized-card",
+      "protective-shipping-box",
+    ],
   },
   {
     slug: "mixed-pink-rose-lily-bouquet",
@@ -83,6 +96,12 @@ export const ProductsData = [
     size: Size.large,
     colors: [Color.pink, Color.white],
     categories: ["romantic-bouquet", "minimal-bouquets"],
+    accessories: [
+      "luxury-wrapping-paper",
+      "water-pouch",
+      "personalized-card",
+      "protective-shipping-box",
+    ],
   },
   {
     slug: "summer-sunflower-bouquet-2",
@@ -102,5 +121,10 @@ export const ProductsData = [
     size: Size.large,
     colors: [Color.yellow],
     categories: ["romantic-bouquet", "minimal-bouquets"],
+    accessories: [
+      "luxury-wrapping-paper",
+      "water-pouch",
+      "protective-shipping-box",
+    ],
   },
 ];

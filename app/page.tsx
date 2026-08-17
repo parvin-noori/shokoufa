@@ -14,7 +14,7 @@ import {
 import prisma from "./lib/prisma";
 
 export default async function Home() {
-  const posts=await prisma.post.findMany()
+  const posts = await prisma.post.findMany();
   const [discountedProducts, bestSellerProducts, girlsDayProducts] =
     await Promise.all([
       getDiscountedProducts(),
@@ -74,7 +74,7 @@ export default async function Home() {
           </div>
           <CustomBouquet />
           <Reviews />
-          <Posts posts={posts}/>
+          <Posts posts={posts} />
         </div>
       </div>
     </>

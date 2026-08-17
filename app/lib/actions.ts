@@ -184,6 +184,7 @@ export async function getProductBySlug(slug: string) {
       where: { slug },
       include: {
         images: true,
+        accessories: true,
         categories: true,
         reviews: {
           include: {

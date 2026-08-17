@@ -1,5 +1,6 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../app/generated/prisma/client";
+import { Accessories } from "./accessories";
 import { Productcategories } from "./categories";
 import { posts } from "./posts";
 import { ProductsData } from "./products";
@@ -17,6 +18,17 @@ async function seed() {
     });
   }
 
+  for (const accessory of Accessories) {
+    await prisma.accessory.upsert({
+      where: { slug: accessory.slug },
+      update: {
+        title: accessory.title,
+        image_url: accessory.image_url,
+      },
+      create: accessory,
+    });
+  }
+
   const seedUser = await prisma.user.upsert({
     where: { email: "seed-reviewer@example.com" },
     update: {},
@@ -28,7 +40,7 @@ async function seed() {
   });
 
   for (const product of ProductsData) {
-    const { images, categories = [], ...rest } = product;
+    const { images, categories = [], accessories = [], ...rest } = product;
     await prisma.product.upsert({
       where: { slug: product.slug },
       update: {
@@ -36,11 +48,15 @@ async function seed() {
         categories: {
           set: categories.map((slug) => ({ slug })),
         },
+        accessories: {
+          set: accessories.map((slug) => ({ slug })),
+        },
       },
       create: {
         ...rest,
         images: { create: product.images },
         categories: { connect: categories.map((slug) => ({ slug })) },
+        accessories: { connect: accessories.map((slug) => ({ slug })) },
       },
     });
   }
