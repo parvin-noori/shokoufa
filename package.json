@@ -14,7 +14,6 @@
     "@prisma/client": "^7.9.1",
     "@smastrom/react-rating": "^1.5.0",
     "dotenv": "^17.4.2",
-    "lightgallery": "^2.9.0",
     "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "next-auth": "^5.0.0-beta.32",
@@ -25,11 +24,10 @@
     "react-hook-form": "^7.85.0",
     "react-range": "^1.10.0",
     "react-range-slider-input": "^3.3.5",
-    "react-rating": "^2.0.5",
-    "react-rating-stars-component": "^2.2.0",
     "react-toastify": "^11.1.0",
     "swiper": "^14.0.1",
-    "yet-another-react-lightbox": "^3.32.2"
+    "yet-another-react-lightbox": "^3.32.2",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -1,15 +1,14 @@
+import AddToCartButton from "@/app/(cart)/_components/AddToCartButton";
 import Accordion from "@/app/_components/accordion/accordion";
 import ProductCarousel from "@/app/_components/products/ProductCarousel";
 import RateStar from "@/app/_components/rateStar/RateStar";
 import { getProductBySlug, getProducts } from "@/app/lib/actions";
 import { colorLabels, colorStyleMap, sizeLabels } from "@/app/lib/labels";
-import { Rating } from "@smastrom/react-rating";
 import {
   BadgeCheck,
   ChevronLeft,
   HandHeart,
   Leaf,
-  ShoppingCart,
   Star,
   Truck,
 } from "lucide-react";
@@ -206,13 +205,12 @@ export default async function ProductPage({ params }: Props) {
                       </span>
                     </span>
                   </div>
-                  <button
-                    type="button"
-                    className="bg-rose-500 justify-center text-white w-full p-3 rounded-xl cursor-pointer hover:contrast-90 flex items-center gap-x-3"
-                  >
-                    <ShoppingCart />
-                    افزودن به سبد خرید
-                  </button>
+                  {product && (
+                    <AddToCartButton
+                      productId={product?.id}
+                      stock={product?.stock}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -269,7 +267,7 @@ export default async function ProductPage({ params }: Props) {
               <div className="shadow border-2 border-gray-200 p-5 rounded-lg gap-y-3 flex flex-col">
                 <div className="flex items-center justify-between">
                   <span className="text-4xl font-bold">{product?.rate}</span>
-                  <RateStar value={4.5}/>
+                  <RateStar value={4.5} />
                 </div>
                 <p className="text-gray-700">
                   براساس {product?.reviews?.length} نظر کاربران
@@ -336,13 +334,9 @@ export default async function ProductPage({ params }: Props) {
                 تومان
               </span>
             </div>
-            <button
-              type="button"
-              className="bg-rose-500 justify-center text-white w-full p-3 rounded-xl cursor-pointer hover:contrast-90 flex items-center gap-x-3"
-            >
-              <ShoppingCart />
-              افزودن به سبد خرید
-            </button>
+            {product && (
+              <AddToCartButton productId={product?.id} stock={product?.stock} />
+            )}
           </div>
         </div>
       </div>

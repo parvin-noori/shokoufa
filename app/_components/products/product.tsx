@@ -10,6 +10,7 @@ interface ProductProps {
 
 export default function Product({ product, isOffer = false }: ProductProps) {
   const originalPrice = product.price * (1 - product.discount / 100);
+  
 
   return (
     <Link
