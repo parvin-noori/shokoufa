@@ -1,10 +1,12 @@
-import { getProductBySlug } from "@/app/lib/actions";
+import Accordion from "@/app/_components/accordion/accordion";
+import ProductCarousel from "@/app/_components/products/ProductCarousel";
+import { getProductBySlug, getProducts } from "@/app/lib/actions";
+import prisma from "@/app/lib/prisma";
 import { Rating } from "@smastrom/react-rating";
 import { ChevronLeft, HandHeart, Leaf, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ProductReviews, { ratingStyles } from "../../productReviews";
-import Accordion from "@/app/_components/accordion/accordion";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -62,6 +64,7 @@ const faq = [
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
+  const products = await getProducts();
 
   return (
     <div className="py-5">
@@ -178,6 +181,7 @@ export default async function ProductPage({ params }: Props) {
               </Accordion>
             ))}
           </div>
+          <ProductCarousel products={products} title="شاید بپسندید" />
         </div>
       </div>
     </div>
