@@ -22,7 +22,7 @@ export default function Product({ product, isOffer = false }: ProductProps) {
           alt={product.images[0].alt}
           width={500}
           height={500}
-          className="rounded-2xl w-full"
+          className="rounded-2xl w-full aspect-square object-cover"
         />
         <span className="text-gray-800 font-bold line-clamp-1">
           {product.title}
