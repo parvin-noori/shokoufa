@@ -40,7 +40,7 @@ export default function Review({ review }: ReviewProps) {
                 ></div>
               </span>
               <Link
-                href="/"
+                href={`/products/${review.product.slug}`}
                 className="flex items-center gap-x-1 text-gray-600 font-semibold"
               >
                 <span className="lg:block hidden">رفتن به محصول</span>
