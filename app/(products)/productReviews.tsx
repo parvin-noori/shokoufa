@@ -60,12 +60,12 @@ export default function ProductReviews({
           },
           640: {
             spaceBetween: 15,
-            slidesPerView: 1.5,
-            slidesPerGroup: 1,
+            slidesPerView: 2,
+            slidesPerGroup: 2,
           },
           1024: {
             spaceBetween: 20,
-            slidesPerView: 2.5,
+            slidesPerView: 2,
             slidesPerGroup: 2,
           },
           1280: {
@@ -83,7 +83,7 @@ export default function ProductReviews({
                 <span className="flex items-center gap-x-2">
                   {rate}
                   <StarRate className="lg:hidden flex fill-rose-500" strokeWidth={0} size={20}/>
-                  <div className="lg:inline-block hidden">
+                  <div className="lg:block hidden">
                     <Rating
                       style={{
                         maxWidth: 90,
