@@ -170,7 +170,7 @@ export default async function ProductPage({ params }: Props) {
               )}
             </div>
           </div>
-          <div className="flex flex-col py-10 gap-y-3">
+          <div className="flex flex-col py-10 gap-y-3 lg:px-22">
             <span className="font-bold text-2xl mx-auto">سوالات متداول</span>
             {faq.map((faq, index) => (
               <Accordion key={index} title={faq.question}>
