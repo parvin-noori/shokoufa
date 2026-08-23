@@ -1,9 +1,10 @@
 "use client";
 
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Accordion from "../../accordion/accordion";
 
 const menus = [
   {
@@ -223,33 +224,19 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          <div className="bottom flex flex-col items-start gap-y-5 py-6">
+          <div className="bottom flex flex-col items-start gap-y-2 py-6">
             {menus.map((menu, index) => (
-              <div className="flex flex-col gap-y-3 w-full" key={index}>
-                <button
-                  type="button"
-                  onClick={() => toggleIndex(index)}
-                  className="font-bold flex items-center justify-between"
-                >
-                  {menu.title}
-                  {openIndex === index ? <ChevronUp /> : <ChevronDown />}
-                </button>
-                <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    openIndex === index ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                  }`}
-                >
-                  <ul className="text-white/80 gap-y-1 flex flex-col overflow-hidden">
-                    {menu.menuItems.map((item, index) => (
-                      <li key={index}>
-                        <Link href={item.href} className="hover:text-white-100">
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <Accordion key={index} title={menu.title} variant="footer">
+                <ul className="flex flex-col gap-y-1 text-white/80">
+                  {menu.menuItems.map((item, index) => (
+                    <li key={index}>
+                      <Link href={item.href} className="hover:text-white">
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Accordion>
             ))}
           </div>
         </div>

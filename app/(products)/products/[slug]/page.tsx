@@ -4,6 +4,7 @@ import { ChevronLeft, HandHeart, Leaf, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ProductReviews, { ratingStyles } from "../../productReviews";
+import Accordion from "@/app/_components/accordion/accordion";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -33,6 +34,29 @@ const ratings = [
   { rate: 3, percent: 90 },
   { rate: 2, percent: 5 },
   { rate: 1, percent: 0 },
+];
+
+const faq = [
+  {
+    question: "گل ها تا چه مدت تازه می مانند؟",
+    ans: "لورم...",
+  },
+  {
+    question: "آیا میتوانم زمان تحویل سفارش را انتخاب کنم؟",
+    ans: "لورم...",
+  },
+  {
+    question: "آیا امکان شخصی سازی دسته گل وجود دارد؟",
+    ans: "لورم...",
+  },
+  {
+    question: "اگر گیرنده در زمان تحویل حضور نداشته باشد چه اتفاقی می افتد؟",
+    ans: "لورم...",
+  },
+  {
+    question: "چگونه از گل ها بعد از دریافت نگهداری کنم؟",
+    ans: "لورم...",
+  },
 ];
 
 export default async function ProductPage({ params }: Props) {
@@ -145,6 +169,14 @@ export default async function ProductPage({ params }: Props) {
                 </div>
               )}
             </div>
+          </div>
+          <div className="flex flex-col py-10 gap-y-3">
+            <span className="font-bold text-2xl mx-auto">سوالات متداول</span>
+            {faq.map((faq, index) => (
+              <Accordion key={index} title={faq.question}>
+                <p>{faq.ans}</p>
+              </Accordion>
+            ))}
           </div>
         </div>
       </div>
