@@ -106,10 +106,15 @@ export default async function ProductPage({ params }: Props) {
                       </span>
                     )}
                   </div>
-                  <span className="font-bold text-4xl col-span-2 lg:order-2 order-1">{product?.title}</span>
+                  <span className="font-bold text-4xl col-span-2 lg:order-2 order-1">
+                    {product?.title}
+                  </span>
                   <span className="flex items-center gap-x-2 mb-8 order-3 lg:justify-start justify-end">
                     {product?.rate}
-                    <Star className="fill-rose-500 lg:hidden flex" strokeWidth={0}/>
+                    <Star
+                      className="fill-rose-500 lg:hidden flex"
+                      strokeWidth={0}
+                    />
                     <div className="lg:inline-block hidden">
                       <Rating
                         style={{
@@ -124,57 +129,57 @@ export default async function ProductPage({ params }: Props) {
                   </span>
                 </div>
                 <div className="flex flex-col gap-6">
-                <div className="grid grid-cols-8 gap-x-4 items-center">
-                  <span className="text-lg col-span-1">اندازه</span>
-                  <div className="flex items-center gap-x-2 col-span-7">
-                    {product?.sizes.map((size) => (
-                      <label key={size} className="cursor-pointer">
-                        <input
-                          type="radio"
-                          name="size"
-                          value={size}
-                          className="peer sr-only"
-                        />
+                  <div className="grid grid-cols-8 gap-x-4 items-center">
+                    <span className="text-lg col-span-1">اندازه</span>
+                    <div className="flex items-center gap-x-2 col-span-7">
+                      {product?.sizes.map((size) => (
+                        <label key={size} className="cursor-pointer">
+                          <input
+                            type="radio"
+                            name="size"
+                            value={size}
+                            className="peer sr-only"
+                          />
 
-                        <span className="block text-gray-800 rounded-full bg-gray-200 px-8 py-3 transition peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:text-rose-500">
-                          {sizeLabels[size]}
-                        </span>
-                      </label>
-                    ))}
+                          <span className="block text-gray-800 rounded-full bg-gray-200 px-8 py-3 transition peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:text-rose-500">
+                            {sizeLabels[size]}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-8 items-center gap-x-4">
+                    <span className="text-lg">رنگ</span>
+                    <div className="flex items-center gap-x-2">
+                      {product?.colors.map((color) => (
+                        <label key={color} className="cursor-pointer">
+                          <input
+                            type="radio"
+                            name="color"
+                            value={color}
+                            className="peer sr-only"
+                          />
+                          <span className="block text-gray-800 rounded-full bg-gray-200 px-8 py-3 transition peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:text-rose-500 flex items-center gap-x-2">
+                            <span> {colorLabels[color]}</span>
+                            <div
+                              className={`size-4.5 rounded ${colorStyleMap[color]?.dot}`}
+                            ></div>
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-8">
+                    <div className="col-span-1"></div>
+                    <button
+                      type="button"
+                      className="rounded-full col-span-7 bg-gray-200 w-full p-5 flex items-center gap-x-3 text-gray-700 justify-center cursor-pointer group"
+                    >
+                      شخصی سازی بیشتر
+                      <ChevronLeft className="group-hover:transform group-hover:-translate-x-2 transition duration-300" />
+                    </button>
                   </div>
                 </div>
-                <div className="grid grid-cols-8 items-center gap-x-4">
-                  <span className="text-lg">رنگ</span>
-                  <div className="flex items-center gap-x-2">
-                    {product?.colors.map((color) => (
-                      <label key={color} className="cursor-pointer">
-                        <input
-                          type="radio"
-                          name="color"
-                          value={color}
-                          className="peer sr-only"
-                        />
-                        <span className="block text-gray-800 rounded-full bg-gray-200 px-8 py-3 transition peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:text-rose-500 flex items-center gap-x-2">
-                          <span> {colorLabels[color]}</span>
-                          <div
-                            className={`size-4.5 rounded ${colorStyleMap[color]?.dot}`}
-                          ></div>
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-                <div className="grid grid-cols-8">
-                  <div className="col-span-1"></div>
-                  <button
-                    type="button"
-                    className="rounded-full col-span-7 bg-gray-200 w-full p-5 flex items-center gap-x-3 text-gray-700 justify-center cursor-pointer group"
-                  >
-                    شخصی سازی بیشتر
-                    <ChevronLeft className="group-hover:transform group-hover:-translate-x-2 transition duration-300" />
-                  </button>
-                </div>
-              </div>
               </div>
             </div>
             <div className="lg:col-span-4 lg:block hidden">
@@ -325,6 +330,36 @@ export default async function ProductPage({ params }: Props) {
 
           {/* products */}
           <ProductCarousel products={products} title="شاید بپسندید" />
+        </div>
+      </div>
+      <div className="add-to-cart fixed bottom-22 py-5 bg-white shadow border-t border-gray-200 z-100 inset-x-0 lg:hidden block">
+        <div className="container">
+          <div className="flex flex-col gap-y-5">
+            <div className="flex gap-5 justify-end">
+               <div className="flex items-center gap-x-2">
+                <span className="bg-rose-50 text-rose-500 px-2 rounded-full">
+                  {product?.discount}%
+                </span>
+                <span className="line-through text-gray-400">
+                  {product?.price.toLocaleString()}
+                </span>
+              </div>
+              <span>
+                <span className="lg:text-2xl text-xl text-gray-800 font-bold">
+                  {originalPrice?.toLocaleString()}
+                </span>
+                تومان
+              </span>
+             
+            </div>
+            <button
+              type="button"
+              className="bg-rose-500 justify-center text-white w-full p-3 rounded-xl cursor-pointer hover:contrast-90 flex items-center gap-x-3"
+            >
+              <ShoppingCart />
+              افزودن به سبد خرید
+            </button>
+          </div>
         </div>
       </div>
     </div>
