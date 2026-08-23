@@ -40,7 +40,7 @@ export async function getProducts(filters: ProductFilters = {}) {
 
   const where: ProductWhereInput = {
     flowerType: flowerTypes.length ? { in: flowerTypes } : undefined,
-    size: sizes.length ? { in: sizes } : undefined,
+    sizes: sizes.length ? { hasSome: sizes } : undefined,
     style: styles.length ? { in: styles } : undefined,
     colors: colors.length ? { hasSome: colors } : undefined,
     categories: filters.category

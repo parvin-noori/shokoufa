@@ -29,7 +29,7 @@ export default function Accordion({
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`flex w-full cursor-pointer items-center justify-between px-5 py-5 font-bold ${variant==="footer"?"font-bold":"font-semibold"}`}
+        className={`flex w-full cursor-pointer items-center justify-between px-5 py-5 ${variant==="footer"?"font-bold":"font-semibold"}`}
         aria-expanded={isOpen}
       >
         <span>{title}</span>
