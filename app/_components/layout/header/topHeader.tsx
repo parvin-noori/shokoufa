@@ -1,6 +1,7 @@
 "use client";
 
 import { logOut } from "@/app/lib/actions";
+import { useCartStore } from "@/store/cartStore";
 import {
   ChevronDown,
   Heart,
@@ -28,6 +29,7 @@ type TopHeaderProps = {
 
 export default function TopHeader({ user }: TopHeaderProps) {
   const [showDropDown, setShowDropDown] = useState(false);
+  const cartQuantity = useCartStore((state) => state.totalQuantity());
 
   const handleDropDown = () => {
     setShowDropDown(!showDropDown);
@@ -74,7 +76,7 @@ export default function TopHeader({ user }: TopHeaderProps) {
           className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
         >
           <div className="badge bg-rose-50 rounded-full text-rose-500 px-2">
-            2
+            {cartQuantity}
           </div>
           <ShoppingCart />
         </button>
@@ -93,8 +95,12 @@ export default function TopHeader({ user }: TopHeaderProps) {
               className={`flex items-center flex-col  absolute gap-x-2  bg-white  border border-gray-200 rounded-xl inset-x-0 p-0 overflow-hidden ${showDropDown ? "flex" : "hidden"}`}
             >
               <li>
-                <button onClick={logOut} type="button" className="text-rose-500 flex items-center gap-x-2 cursor-pointer">
-                  <LogOut size={20}/>
+                <button
+                  onClick={logOut}
+                  type="button"
+                  className="text-rose-500 flex items-center gap-x-2 cursor-pointer"
+                >
+                  <LogOut size={20} />
                   خروج
                 </button>
               </li>
