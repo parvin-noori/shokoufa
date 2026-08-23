@@ -1,6 +1,6 @@
 "use client";
 
-import { Rating, Star } from "@smastrom/react-rating";
+
 import "@smastrom/react-rating/style.css";
 import { Star as StarRate } from "lucide-react";
 import { useRef } from "react";
@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Navigations from "../_components/navigation/navigations";
+import RateStar from "../_components/rateStar/RateStar";
 
 interface ProductCarouselProps {
   reviews: {
@@ -21,14 +22,7 @@ interface ProductCarouselProps {
   rate: number;
 }
 
-export const ratingStyles = {
-  itemShapes: Star,
-  itemStrokeWidth: 2,
-  activeFillColor: "var(--color-rose-500)",
-  activeStrokeColor: "var(--color-rose-500)",
-  inactiveStrokeColor: "var(--color-rose-500)",
-  inactiveFillColor: "#fff",
-};
+
 export default function ProductReviews({
   reviews,
   rate,
@@ -84,15 +78,7 @@ export default function ProductReviews({
                   {rate}
                   <StarRate className="lg:hidden flex fill-rose-500" strokeWidth={0} size={20}/>
                   <div className="lg:block hidden">
-                    <Rating
-                      style={{
-                        maxWidth: 90,
-                        direction: "ltr",
-                      }}
-                      value={4.5}
-                      readOnly
-                      itemStyles={ratingStyles}
-                    />
+                   <RateStar value={4.5}/>
                   </div>
                 </span>
               </div>

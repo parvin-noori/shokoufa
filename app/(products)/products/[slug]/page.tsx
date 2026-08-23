@@ -1,5 +1,6 @@
 import Accordion from "@/app/_components/accordion/accordion";
 import ProductCarousel from "@/app/_components/products/ProductCarousel";
+import RateStar from "@/app/_components/rateStar/RateStar";
 import { getProductBySlug, getProducts } from "@/app/lib/actions";
 import { colorLabels, colorStyleMap, sizeLabels } from "@/app/lib/labels";
 import { Rating } from "@smastrom/react-rating";
@@ -14,7 +15,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import ProductReviews, { ratingStyles } from "../../productReviews";
+import ProductReviews from "../../productReviews";
 import ProductGallery from "../productGallery";
 
 type Props = {
@@ -116,15 +117,7 @@ export default async function ProductPage({ params }: Props) {
                       strokeWidth={0}
                     />
                     <div className="lg:inline-block hidden">
-                      <Rating
-                        style={{
-                          maxWidth: 90,
-                          direction: "ltr",
-                        }}
-                        value={4.5}
-                        readOnly
-                        itemStyles={ratingStyles}
-                      />
+                      <RateStar value={4.5} />
                     </div>
                   </span>
                 </div>
@@ -276,15 +269,7 @@ export default async function ProductPage({ params }: Props) {
               <div className="shadow border-2 border-gray-200 p-5 rounded-lg gap-y-3 flex flex-col">
                 <div className="flex items-center justify-between">
                   <span className="text-4xl font-bold">{product?.rate}</span>
-                  <Rating
-                    style={{
-                      maxWidth: 120,
-                      direction: "ltr",
-                    }}
-                    value={4.5}
-                    readOnly
-                    itemStyles={ratingStyles}
-                  />
+                  <RateStar value={4.5}/>
                 </div>
                 <p className="text-gray-700">
                   براساس {product?.reviews?.length} نظر کاربران
@@ -336,7 +321,7 @@ export default async function ProductPage({ params }: Props) {
         <div className="container">
           <div className="flex flex-col gap-y-5">
             <div className="flex gap-5 justify-end">
-               <div className="flex items-center gap-x-2">
+              <div className="flex items-center gap-x-2">
                 <span className="bg-rose-50 text-rose-500 px-2 rounded-full">
                   {product?.discount}%
                 </span>
@@ -350,7 +335,6 @@ export default async function ProductPage({ params }: Props) {
                 </span>
                 تومان
               </span>
-             
             </div>
             <button
               type="button"
