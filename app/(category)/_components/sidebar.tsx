@@ -1,58 +1,23 @@
 "use client";
 import { CategoryItem } from "@/app/_components/categories/category.types";
 import { Color, FlowerType, Size, Style } from "@/app/generated/prisma/enums";
-import { Check, ChevronDown, ChevronUp, FunnelPlus, SlidersHorizontal, X } from "lucide-react";
+import {
+  colorLabels,
+  colorStyleMap,
+  flowerTypeLabels,
+  sizeLabels,
+  styleLabels,
+} from "@/app/lib/labels";
+import {
+  Check,
+  ChevronDown,
+  ChevronUp,
+  SlidersHorizontal,
+  X,
+} from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SortBar from "./sortBar";
-
-const flowerTypeLabels: Record<FlowerType, string> = {
-  tulip: "لاله",
-  rose: "رز",
-  lily: "لیلیوم",
-  orchid: "ارکیده",
-  sunflower: "آفتابگردان",
-  hundredToman: "صدتومنی",
-  mixed: "میکس",
-  peony: "پیونی",
-};
-
-// const occasionLabels: Record<Occasion, string> = {
-//   birthday: "تولد",
-//   condolence: "تسلیت",
-//   anniversary: "سالگرد",
-//   wedding: "عروسی",
-//   graduation: "فارغ‌التحصیلی",
-//   mothersDay: "روز مادر",
-//   girlsDay: "روز دختر",
-//   fathersDay: "روز پدر",
-//   boysDay: "روز پسر",
-// };
-const sizeLabels: Record<Size, string> = {
-  small: "کوچک",
-  medium: "متوسط",
-  large: "بزرگ",
-};
-
-const styleLabels: Record<Style, string> = {
-  modern: "مدرن",
-  classic: "کلاسیک",
-  simple: "ساده",
-  minimal: "مینیمال",
-  luxury: "لاکچری",
-};
-
-export const colorLabels: Record<Color, string> = {
-  pink: "صورتی",
-  white: "سفید",
-  purple: "بنفش",
-  blue: "آبی",
-  yellow: "زرد",
-  turquoise: "فیروزه‌ای",
-  red: "قرمز",
-  orange: "نارنجی",
-  cream: "کرم",
-};
 
 export function getFilters(categories: CategoryItem[]) {
   return {
@@ -93,32 +58,7 @@ const filtersTitle: Record<string, string> = {
   category: "دسته بندی",
 };
 
-export const colorStyleMap: Record<
-  string,
-  { dot: string; selectedBg: string }
-> = {
-  pink: { dot: "bg-pink-500", selectedBg: "has-[:checked]:bg-pink-100" },
-  white: {
-    dot: "bg-white border border-gray-300",
-    selectedBg: "has-[:checked]:bg-gray-100",
-  },
-  purple: {
-    dot: "bg-purple-800",
-    selectedBg: "has-[:checked]:bg-purple-100",
-  },
-  blue: { dot: "bg-blue-600", selectedBg: "has-[:checked]:bg-blue-100" },
-  yellow: {
-    dot: "bg-yellow-400",
-    selectedBg: "has-[:checked]:bg-yellow-100",
-  },
-  turquoise: { dot: "bg-teal-600", selectedBg: "has-[:checked]:bg-teal-100" },
-  red: { dot: "bg-red-500", selectedBg: "has-[:checked]:bg-red-100" },
-  orange: {
-    dot: "bg-orange-400",
-    selectedBg: "has-[:checked]:bg-orange-100",
-  },
-  cream: { dot: "bg-orange-100", selectedBg: "has-[:checked]:bg-orange-50" },
-};
+
 
 export default function Sidebar({
   categories,
@@ -199,9 +139,12 @@ export default function Sidebar({
   return (
     <>
       <div className="grid grid-cols-2 divide-x divide-gray-300 gap-x-5 p-2 lg:hidden my-5 bg-gray-100 rounded-full">
-        <button className="cursor-pointer flex items-center justify-center gap-x-2 p-1 w-full"  onClick={() => setShowDrawer(true)}>
+        <button
+          className="cursor-pointer flex items-center justify-center gap-x-2 p-1 w-full"
+          onClick={() => setShowDrawer(true)}
+        >
           <span>فیلتر</span>
-          <SlidersHorizontal size={20}/>
+          <SlidersHorizontal size={20} />
         </button>
         <SortBar />
       </div>

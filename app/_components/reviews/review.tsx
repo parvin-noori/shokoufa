@@ -1,7 +1,5 @@
-import {
-  colorLabels,
-  colorStyleMap,
-} from "@/app/(category)/_components/sidebar";
+import { colorLabels, colorStyleMap } from "@/app/lib/labels";
+
 import { Color } from "@/app/generated/prisma/enums";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";

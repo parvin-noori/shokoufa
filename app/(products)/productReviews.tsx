@@ -82,7 +82,7 @@ export default function ProductReviews({
                 <span className="font-bold text-xl">{review.user.name}</span>
                 <span className="flex items-center gap-x-2">
                   {rate}
-                  <StarRate className="lg:hidden flex text-rose-500" size={20}/>
+                  <StarRate className="lg:hidden flex fill-rose-500" strokeWidth={0} size={20}/>
                   <div className="lg:inline-block hidden">
                     <Rating
                       style={{

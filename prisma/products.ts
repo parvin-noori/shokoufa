@@ -17,7 +17,7 @@ export const ProductsData = [
     stock: 6,
     flowerType: FlowerType.peony,
     style: Style.modern,
-    size: Size.large,
+    sizes: [Size.large, Size.small, Size.medium],
     colors: [Color.pink],
     categories: ["congratulations-flowers"],
     accessories: ["luxury-wrapping-paper", "water-pouch", "personalized-card"],
@@ -37,7 +37,7 @@ export const ProductsData = [
     stock: 10,
     flowerType: FlowerType.rose,
     style: Style.classic,
-    size: Size.medium,
+    sizes: [Size.medium, Size.small],
     colors: [Color.white],
     categories: ["rose-bouquet", "congratulations-flowers"],
     accessories: [
@@ -62,7 +62,7 @@ export const ProductsData = [
     stock: 15,
     flowerType: FlowerType.sunflower,
     style: Style.modern,
-    size: Size.small,
+    sizes: [Size.small, Size.large, Size.medium],
     colors: [Color.yellow],
     categories: ["birthday-flowers", "seasonal-flowers"],
     accessories: [
@@ -93,7 +93,7 @@ export const ProductsData = [
     stock: 4,
     flowerType: FlowerType.mixed,
     style: Style.classic,
-    size: Size.large,
+    sizes: [Size.large, Size.small],
     colors: [Color.pink, Color.white],
     categories: ["romantic-bouquet", "minimal-bouquets"],
     accessories: [
@@ -118,7 +118,7 @@ export const ProductsData = [
     stock: 15,
     flowerType: FlowerType.sunflower,
     style: Style.luxury,
-    size: Size.large,
+    sizes: [Size.large,Size.medium],
     colors: [Color.yellow],
     categories: ["romantic-bouquet", "minimal-bouquets"],
     accessories: [

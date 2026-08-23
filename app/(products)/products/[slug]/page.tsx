@@ -1,12 +1,21 @@
 import Accordion from "@/app/_components/accordion/accordion";
 import ProductCarousel from "@/app/_components/products/ProductCarousel";
 import { getProductBySlug, getProducts } from "@/app/lib/actions";
-import prisma from "@/app/lib/prisma";
+import { colorLabels, colorStyleMap, sizeLabels } from "@/app/lib/labels";
 import { Rating } from "@smastrom/react-rating";
-import { ChevronLeft, HandHeart, Leaf, Truck } from "lucide-react";
+import {
+  BadgeCheck,
+  ChevronLeft,
+  HandHeart,
+  Leaf,
+  ShoppingCart,
+  Star,
+  Truck,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ProductReviews, { ratingStyles } from "../../productReviews";
+import ProductGallery from "../productGallery";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -65,9 +74,10 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   const products = await getProducts();
-
+  const originalPrice =
+    product && product?.price * (1 - product?.discount / 100);
   return (
-    <div className="py-5">
+    <div className="py-5 overflow-hidden">
       <div className="container">
         <div className="breadcrumb flex items-center gap-x-1 text-sm text-gray-500 py-4">
           <span>خانه</span>
@@ -82,10 +92,135 @@ export default async function ProductPage({ params }: Props) {
           <span className="text-rose-500">{product?.title}</span>
         </div>
         <div className="flex flex-col divide divide-y divide-gray-200">
-          <div className="grid grid-cols-12">
-            <div className="col-span-8"></div>
-            <div className="col-span-4"></div>
+          <div className="grid lg:grid-cols-12 py-10 gap-20">
+            <div className="lg:col-span-8 lg:grid lg:grid-cols-12 flex flex-col gap-5">
+              <div className="lg:col-span-5">
+                {product && <ProductGallery product={product} />}
+              </div>
+              <div className="lg:col-span-7 flex flex-col gap-y-6 divide-y lg:divide-transparent divide-gray-200">
+                <div className="grid lg:grid-cols-1 grid-cols-2 gap-6 items-center">
+                  <div className="flex items-center gap-x-2 text-gray-700 lg:order-1 order-2">
+                    {product?.isBestSeller && (
+                      <span className="bg-gray-200 px-5 py-2 rounded-full">
+                        پرفروش
+                      </span>
+                    )}
+                  </div>
+                  <span className="font-bold text-4xl col-span-2 lg:order-2 order-1">{product?.title}</span>
+                  <span className="flex items-center gap-x-2 mb-8 order-3 lg:justify-start justify-end">
+                    {product?.rate}
+                    <Star className="fill-rose-500 lg:hidden flex" strokeWidth={0}/>
+                    <div className="lg:inline-block hidden">
+                      <Rating
+                        style={{
+                          maxWidth: 90,
+                          direction: "ltr",
+                        }}
+                        value={4.5}
+                        readOnly
+                        itemStyles={ratingStyles}
+                      />
+                    </div>
+                  </span>
+                </div>
+                <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-8 gap-x-4 items-center">
+                  <span className="text-lg col-span-1">اندازه</span>
+                  <div className="flex items-center gap-x-2 col-span-7">
+                    {product?.sizes.map((size) => (
+                      <label key={size} className="cursor-pointer">
+                        <input
+                          type="radio"
+                          name="size"
+                          value={size}
+                          className="peer sr-only"
+                        />
+
+                        <span className="block text-gray-800 rounded-full bg-gray-200 px-8 py-3 transition peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:text-rose-500">
+                          {sizeLabels[size]}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="grid grid-cols-8 items-center gap-x-4">
+                  <span className="text-lg">رنگ</span>
+                  <div className="flex items-center gap-x-2">
+                    {product?.colors.map((color) => (
+                      <label key={color} className="cursor-pointer">
+                        <input
+                          type="radio"
+                          name="color"
+                          value={color}
+                          className="peer sr-only"
+                        />
+                        <span className="block text-gray-800 rounded-full bg-gray-200 px-8 py-3 transition peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:text-rose-500 flex items-center gap-x-2">
+                          <span> {colorLabels[color]}</span>
+                          <div
+                            className={`size-4.5 rounded ${colorStyleMap[color]?.dot}`}
+                          ></div>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="grid grid-cols-8">
+                  <div className="col-span-1"></div>
+                  <button
+                    type="button"
+                    className="rounded-full col-span-7 bg-gray-200 w-full p-5 flex items-center gap-x-3 text-gray-700 justify-center cursor-pointer group"
+                  >
+                    شخصی سازی بیشتر
+                    <ChevronLeft className="group-hover:transform group-hover:-translate-x-2 transition duration-300" />
+                  </button>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div className="lg:col-span-4 lg:block hidden">
+              <div className="bg-white shadow-lg p-3 rounded-xl border border-gray-200 divide-y divide-gray-200">
+                <div className="flex flex-col gap-y-3 pb-3">
+                  <span className="text-emerald-600 flex items-center gap-x-1">
+                    <BadgeCheck /> تضمین سلامت و تازگی گل ها
+                  </span>
+                  <span className="text-[#0084D1] flex items-center gap-x-1">
+                    <Truck />
+                    ارسال یک ساعته به شهر تهران
+                  </span>
+                </div>
+                <div className="flex flex-col gap-y-5 pt-5">
+                  <div className="flex flex-col items-end gap-y-5">
+                    <div className="flex items-center gap-x-2">
+                      <span className="bg-rose-50 text-rose-500 px-2 rounded-full">
+                        {product?.discount}%
+                      </span>
+                      <span className="line-through text-gray-400">
+                        {product?.price.toLocaleString()}
+                      </span>
+                    </div>
+
+                    <span className="flex flex-col text-gray-400 gap-x-2">
+                      <span>
+                        <span className="lg:text-2xl text-xl text-gray-800 font-bold">
+                          {originalPrice?.toLocaleString()}
+                        </span>
+                        تومان
+                      </span>
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    className="bg-rose-500 justify-center text-white w-full p-3 rounded-xl cursor-pointer hover:contrast-90 flex items-center gap-x-3"
+                  >
+                    <ShoppingCart />
+                    افزودن به سبد خرید
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
+
+          {/* services */}
           <div className="grid md:grid-cols-3 grid-cols-1 gap-5 lg:px-22 py-10">
             {services.map((service, index) => {
               const Icon = service.icon;
@@ -105,6 +240,8 @@ export default async function ProductPage({ params }: Props) {
               );
             })}
           </div>
+
+          {/* accessories */}
           <div className="flex flex-col py-10 gap-y-10">
             <span className="font-bold text-2xl mx-auto">اقلام همراه</span>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
@@ -124,6 +261,8 @@ export default async function ProductPage({ params }: Props) {
               ))}
             </div>
           </div>
+
+          {/* reviews */}
           <div className="grid lg:grid-cols-3 grid-cols-1 py-10 gap-x-5 gap-5">
             <div className="lg:col-span-3  mx-auto">
               <span className="font-bold text-2xl">نظر خریداران</span>
@@ -173,6 +312,8 @@ export default async function ProductPage({ params }: Props) {
               )}
             </div>
           </div>
+
+          {/* faq */}
           <div className="flex flex-col py-10 gap-y-3 lg:px-22">
             <span className="font-bold text-2xl mx-auto">سوالات متداول</span>
             {faq.map((faq, index) => (
@@ -181,6 +322,8 @@ export default async function ProductPage({ params }: Props) {
               </Accordion>
             ))}
           </div>
+
+          {/* products */}
           <ProductCarousel products={products} title="شاید بپسندید" />
         </div>
       </div>
