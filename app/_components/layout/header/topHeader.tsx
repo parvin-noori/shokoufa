@@ -3,6 +3,7 @@
 import { logOut } from "@/app/lib/actions";
 import {
   ChevronDown,
+  ChevronLeft,
   Heart,
   LogIn,
   LogOut,
@@ -16,7 +17,7 @@ import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TopHeaderProps = {
   user?: {
@@ -30,10 +31,29 @@ type TopHeaderProps = {
 export default function TopHeader({ user, cartQuantity }: TopHeaderProps) {
   const [showDropDown, setShowDropDown] = useState(false);
   const [quantity, setQuantity] = useState(cartQuantity);
+  const dropDownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setQuantity(cartQuantity);
   }, [cartQuantity]);
+
+
+  useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropDownRef.current &&
+      !dropDownRef.current.contains(event.target as Node)
+    ) {
+      setShowDropDown(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
   const handleDropDown = () => {
     setShowDropDown(!showDropDown);
@@ -92,7 +112,7 @@ export default function TopHeader({ user, cartQuantity }: TopHeaderProps) {
 
         {/* login  */}
         {user ? (
-          <div className="relative">
+          <div className="relative" >
             <button
               type="button"
               className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
@@ -103,13 +123,22 @@ export default function TopHeader({ user, cartQuantity }: TopHeaderProps) {
               <ChevronDown />
             </button>
             <ul
-              className={`flex items-center flex-col  absolute gap-x-2  bg-white  border border-gray-200 rounded-xl inset-x-0 p-0 overflow-hidden ${showDropDown ? "flex" : "hidden"}`}
+              className={`flex items-center flex-col  absolute gap-x-2  bg-white  border border-gray-200 rounded-xl end-0 w-64 divide-y mt-2 divide-gray-200 p-3 overflow-hidden ${showDropDown ? "flex" : "hidden"}`}
             >
+              <li>
+                <Link
+                  href="/"
+                  className="p-3 flex items-center justify-between gap-x-2 cursor-pointer group"
+                >
+                  {user.email}
+                  <ChevronLeft className="group-hover:-translate-x-2 transition duration-200"/>
+                </Link>
+              </li>
               <li>
                 <button
                   onClick={logOut}
                   type="button"
-                  className="text-rose-500 flex items-center gap-x-2 cursor-pointer"
+                  className="text-rose-500 p-3 flex items-center gap-x-2 cursor-pointer"
                 >
                   <LogOut size={20} />
                   خروج
@@ -140,7 +169,8 @@ function HamburgerMenu() {
       <button
         type="button"
         onClick={() => setIsOpened(true)}
-        className="text-gray-800 cursor-pointer lg:hidden flex group"
+        // className="text-gray-800 cursor-pointer lg:hidden flex group"
+        className="text-gray-800 cursor-pointer hidden group"
       >
         <Menu />
       </button>
