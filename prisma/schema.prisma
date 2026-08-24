@@ -147,8 +147,9 @@ model CartItem {
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   cartId    String
   cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  size      Size
+  colors    Color[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([cartId, productId])
 }

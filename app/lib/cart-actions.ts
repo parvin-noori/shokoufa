@@ -1,15 +1,33 @@
 "use server";
 
+import { Color, Size } from "@/app/generated/prisma/enums";
 import { auth } from "@/auth";
 import prisma from "./prisma";
 
-export async function AddToCart(productId: string, quantity: number = 1) {
+export async function AddToCart(
+  productId: string,
+  size: Size,
+  colors: Color[],
+  quantity: number = 1,
+) {
   try {
     const session = await auth();
 
     if (!session?.user?.id) {
       return {
         error: "ابتدا وارد حساب کاربری شوید",
+      };
+    }
+
+    if (!size) {
+      return {
+        error: "لطفاً سایز محصول را انتخاب کنید.",
+      };
+    }
+
+    if (colors.length === 0) {
+      return {
+        error: "لطفاً حداقل یک رنگ انتخاب کنید.",
       };
     }
 
@@ -20,7 +38,9 @@ export async function AddToCart(productId: string, quantity: number = 1) {
         userId,
       },
       update: {},
-      create: { userId },
+      create: {
+        userId,
+      },
     });
 
     const product = await prisma.product.findUnique({
@@ -35,11 +55,39 @@ export async function AddToCart(productId: string, quantity: number = 1) {
       };
     }
 
-    const existingItem = await prisma.cartItem.findUnique({
+    // size checking
+    if (!product.sizes.includes(size)) {
+      return {
+        error: "این سایز برای محصول موجود نیست.",
+      };
+    }
+
+    //  colors checking
+    const invalidColor = colors.some(
+      (color) => !product.colors.includes(color),
+    );
+
+    if (invalidColor) {
+      return {
+        error: "یکی از رنگ‌های انتخاب شده موجود نیست.",
+      };
+    }
+
+    if (quantity > product.stock) {
+      return {
+        error: "موجودی محصول کافی نیست.",
+      };
+    }
+
+    const normalizedColors = [...colors].sort();
+
+    const existingItem = await prisma.cartItem.findFirst({
       where: {
-        cartId_productId: {
-          cartId: cart.id,
-          productId,
+        cartId: cart.id,
+        productId,
+        size,
+        colors: {
+          equals: normalizedColors,
         },
       },
     });
@@ -67,19 +115,17 @@ export async function AddToCart(productId: string, quantity: number = 1) {
         quantity: newQuantity,
       };
     }
-    if (quantity > product.stock) {
-      return {
-        error: "موجودی محصول کافی نیست.",
-      };
-    }
 
     await prisma.cartItem.create({
       data: {
         cartId: cart.id,
         productId,
+        size,
+        colors: normalizedColors,
         quantity,
       },
     });
+
     return {
       success: "محصول با موفقیت به سبد خرید اضافه شد.",
       quantity,
@@ -140,24 +186,20 @@ export async function getCartItemQuantity(productId: string) {
     return 0;
   }
 
-  const item = await prisma.cartItem.findUnique({
+  const result = await prisma.cartItem.aggregate({
     where: {
-      cartId_productId: {
-        cartId: cart.id,
-        productId,
-      },
+      cartId: cart.id,
+      productId,
     },
-    select: {
+    _sum: {
       quantity: true,
     },
   });
 
-  return item?.quantity ?? 0;
+  return result._sum.quantity ?? 0;
 }
 
-
-
-export async function DecreaseFromCart(productId: string) {
+export async function DecreaseFromCart(cartItemId: string) {
   try {
     const session = await auth();
 
@@ -167,25 +209,11 @@ export async function DecreaseFromCart(productId: string) {
       };
     }
 
-    const userId = session.user.id;
-
-    const cart = await prisma.cart.findUnique({
+    const cartItem = await prisma.cartItem.findFirst({
       where: {
-        userId,
-      },
-    });
-
-    if (!cart) {
-      return {
-        error: "سبد خرید پیدا نشد.",
-      };
-    }
-
-    const cartItem = await prisma.cartItem.findUnique({
-      where: {
-        cartId_productId: {
-          cartId: cart.id,
-          productId,
+        id: cartItemId,
+        cart: {
+          userId: session.user.id,
         },
       },
     });
@@ -231,4 +259,31 @@ export async function DecreaseFromCart(productId: string) {
       error: "خطایی در کاهش تعداد محصول رخ داد.",
     };
   }
+}
+
+export async function getCartQuantity() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    return 0;
+  }
+
+  const cart = await prisma.cart.findUnique({
+    where: {
+      userId: session.user.id,
+    },
+    select: {
+      items: {
+        select: {
+          quantity: true,
+        },
+      },
+    },
+  });
+
+  if (!cart) {
+    return 0;
+  }
+
+  return cart.items.reduce((total, item) => total + item.quantity, 0);
 }

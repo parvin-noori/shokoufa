@@ -56,7 +56,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
         {/* =========================
             Thumbnails
         ========================== */}
-        <div className="flex items-center gap-3">
+        <div className="grid grid-cols-3 gap-3">
           {product.images.map((image, index) => (
             <button
               key={`${image.url}-${index}`}

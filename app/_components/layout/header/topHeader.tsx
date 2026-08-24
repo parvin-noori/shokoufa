@@ -1,7 +1,6 @@
 "use client";
 
 import { logOut } from "@/app/lib/actions";
-import { useCartStore } from "@/store/cartStore";
 import {
   ChevronDown,
   Heart,
@@ -25,11 +24,11 @@ type TopHeaderProps = {
     email?: string | null;
     password?: string | null;
   };
+  cartQuantity: number;
 };
 
-export default function TopHeader({ user }: TopHeaderProps) {
+export default function TopHeader({ user, cartQuantity }: TopHeaderProps) {
   const [showDropDown, setShowDropDown] = useState(false);
-  const cartQuantity = useCartStore((state) => state.totalQuantity());
 
   const handleDropDown = () => {
     setShowDropDown(!showDropDown);
