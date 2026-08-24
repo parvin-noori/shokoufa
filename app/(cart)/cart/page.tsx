@@ -9,6 +9,12 @@ export default async function Cart() {
   const cart = await getCart();
   const cartItems = cart?.items ?? [];
 
+  if (!cart) {
+    return null;
+  }
+
+  const { totalPrice, totalDiscount, finalPrice } = cart.summary;
+
   return (
     <div className="py-5">
       <div className="container">
@@ -48,21 +54,59 @@ export default async function Cart() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-12">
-            <div className="col-span-8 flex flex-col gap-5">
+          <div className="grid grid-cols-12 gap-5">
+            <div className="col-span-12 flex flex-col gap-5">
               <span className="text-2xl font-semibold text-gray-800">
                 سبد خرید
               </span>
               <p className="text-gray-600">
                 شما {cartQuantity} کالا در سبد خریدتان دارید
               </p>
-              <ul className="flex flex-col gap-2">
+            </div>
+            <div className="lg:col-span-8 col-span-12">
+              <ul className="flex flex-col gap-5">
                 {cartItems.map((item) => (
                   <CartItem cartItem={item} key={item.id} />
                 ))}
               </ul>
             </div>
-            <div className="col-span-4"></div>
+            <div className="lg:col-span-4 col-span-12">
+              <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-5 flex flex-col divide-y divide-gray-200 text-gray-800">
+                <div className="flex flex-col gap-5 pb-5">
+                  <span className="font-semibold text-lg"> صورتحساب</span>
+                  <div className="flex items-center gap-2">
+                    <span>جمع محصولات </span>
+                    <div className="border border-dashed grow border-gray-200"></div>
+                    <span className="flex gap-1 items-center">
+                      {totalPrice.toLocaleString()}
+                      <span className="text-sm text-gray-600">تومان</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>تخفیف </span>
+                    <div className="border border-dashed grow border-gray-200"></div>
+                    <span className="flex gap-1 items-center">
+                      {totalDiscount.toLocaleString()}
+                      -
+                      <span className="text-sm text-gray-600">تومان</span>
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-5 text-nowrap pt-5">
+                  <div className="flex items-center gap-2 ">
+                    <span>جمع کل </span>
+                    <div className="border border-dashed border-gray-200 grow"></div>
+                    <span className="flex gap-1 items-center">
+                      {finalPrice.toLocaleString()}
+                      <span className="text-sm text-gray-600">تومان</span>
+                    </span>
+                  </div>
+                  <button className="bg-rose-500 text-white w-full p-3 rounded-lg cursor-pointer">
+                    ادامه
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>

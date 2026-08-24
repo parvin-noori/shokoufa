@@ -34,10 +34,11 @@ export default function CartItem({ cartItem }: CartItemProps) {
       <div className="col-span-4 flex flex-col gap-5">
         <div className="flex">
           <span className="text-2xl font-semibold">
+            {cartItem.quantity}
             {cartItem.product.title}
           </span>
         </div>
-        <div className="grid grid-cols-3">
+        <div className="grid lg:grid-cols-3 grid-cols-2">
           <div className="flex flex-col gap-1">
             <span className="text-gray-400 text-sm">سایز</span>
             <span className="text-lg"> {sizeLabels[cartItem.size]}</span>
@@ -52,7 +53,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
           </div>
         </div>
         <div className="flex items-center  pt-5">
-          <div className="flex flex-col items-end gap-y-5">
+          <div className="flex flex-col items-end gap-y-5 ms-auto">
             <div className="flex items-center gap-x-2">
               <span className="bg-rose-50 text-rose-500 px-2 rounded-full">
                 {cartItem.product?.discount}%
@@ -71,10 +72,10 @@ export default function CartItem({ cartItem }: CartItemProps) {
               </span>
             </span>
           </div>
-          <AddToCartButton
+          {/* <AddToCartButton
             productId={cartItem.product?.id}
             quantity={cartItem.quantity}
-          />
+          /> */}
         </div>
       </div>
     </div>

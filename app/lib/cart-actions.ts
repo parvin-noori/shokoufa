@@ -163,7 +163,33 @@ export async function getCart() {
     },
   });
 
-  return cart;
+  if (!cart) {
+    return null;
+  }
+
+  const totalPrice = cart.items.reduce((total, item) => {
+    return total + item.product.price * item.quantity;
+  }, 0);
+
+  const totalDiscount = cart.items.reduce((total, item) => {
+    const itemTotal = item.product.price * item.quantity;
+
+    const discountAmount =
+      itemTotal * (item.product.discount / 100);
+
+    return total + discountAmount;
+  }, 0);
+
+  const finalPrice = totalPrice - totalDiscount;
+
+  return {
+    ...cart,
+    summary: {
+      totalPrice,
+      totalDiscount,
+      finalPrice,
+    },
+  };
 }
 
 export async function getCartItemQuantity(productId: string) {
