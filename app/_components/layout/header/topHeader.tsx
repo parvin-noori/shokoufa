@@ -16,7 +16,7 @@ import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type TopHeaderProps = {
   user?: {
@@ -29,6 +29,11 @@ type TopHeaderProps = {
 
 export default function TopHeader({ user, cartQuantity }: TopHeaderProps) {
   const [showDropDown, setShowDropDown] = useState(false);
+  const [quantity, setQuantity] = useState(cartQuantity);
+
+  useEffect(() => {
+    setQuantity(cartQuantity);
+  }, [cartQuantity]);
 
   const handleDropDown = () => {
     setShowDropDown(!showDropDown);
@@ -79,7 +84,7 @@ export default function TopHeader({ user, cartQuantity }: TopHeaderProps) {
         >
           {user && (
             <div className="badge bg-rose-50 rounded-full text-rose-500 px-2">
-              {cartQuantity}
+              {quantity}
             </div>
           )}
           <ShoppingCart />

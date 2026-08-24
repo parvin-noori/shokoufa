@@ -1,10 +1,18 @@
 import { getCart, getCartQuantity } from "@/app/lib/cart-actions";
+import { auth } from "@/auth";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import CartItem from "../_components/cartItem";
+import { redirect } from "next/navigation";
 
 export default async function Cart() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
   const cartQuantity = await getCartQuantity();
   const cart = await getCart();
   const cartItems = cart?.items ?? [];
@@ -86,8 +94,7 @@ export default async function Cart() {
                     <span>تخفیف </span>
                     <div className="border border-dashed grow border-gray-200"></div>
                     <span className="flex gap-1 items-center">
-                      {totalDiscount.toLocaleString()}
-                      -
+                      {totalDiscount.toLocaleString()}-
                       <span className="text-sm text-gray-600">تومان</span>
                     </span>
                   </div>
