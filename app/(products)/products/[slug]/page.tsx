@@ -3,6 +3,7 @@ import Accordion from "@/app/_components/accordion/accordion";
 import ProductCarousel from "@/app/_components/products/ProductCarousel";
 import RateStar from "@/app/_components/rateStar/RateStar";
 import { getProductBySlug, getProducts } from "@/app/lib/actions";
+import { getCartItemQuantity } from "@/app/lib/cart-actions";
 import { colorLabels, colorStyleMap, sizeLabels } from "@/app/lib/labels";
 import {
   BadgeCheck,
@@ -76,6 +77,9 @@ export default async function ProductPage({ params }: Props) {
   const products = await getProducts();
   const originalPrice =
     product && product?.price * (1 - product?.discount / 100);
+  const quantity = product ? await getCartItemQuantity(product?.id) : 0;
+
+  
   return (
     <div className="py-5 overflow-hidden">
       <div className="container">
@@ -208,7 +212,7 @@ export default async function ProductPage({ params }: Props) {
                   {product && (
                     <AddToCartButton
                       productId={product?.id}
-                      stock={product?.stock}
+                      quantity={quantity}
                     />
                   )}
                 </div>
@@ -335,7 +339,7 @@ export default async function ProductPage({ params }: Props) {
               </span>
             </div>
             {product && (
-              <AddToCartButton productId={product?.id} stock={product?.stock} />
+              <AddToCartButton productId={product?.id} quantity={quantity} />
             )}
           </div>
         </div>
