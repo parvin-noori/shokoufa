@@ -65,21 +65,28 @@ export default function TopHeader({ user }: TopHeaderProps) {
 
       {/* left  */}
       <div className="lg:flex hidden items-center gap-x-2 justify-end">
-        <button
-          type="button"
+        {/* wish list  */}
+        <Link
+          href={user ? "/whishlist" : "/login"}
           className="border border-gray-200 p-4 rounded-full cursor-pointer hover:border-black transition-color duration-300"
         >
           <Heart />
-        </button>
-        <button
-          type="button"
+        </Link>
+
+        {/* cart */}
+        <Link
+          href={user ? "/cart" : "/login"}
           className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
         >
-          <div className="badge bg-rose-50 rounded-full text-rose-500 px-2">
-            {cartQuantity}
-          </div>
+          {user && (
+            <div className="badge bg-rose-50 rounded-full text-rose-500 px-2">
+              {cartQuantity}
+            </div>
+          )}
           <ShoppingCart />
-        </button>
+        </Link>
+
+        {/* login  */}
         {user ? (
           <div className="relative">
             <button
