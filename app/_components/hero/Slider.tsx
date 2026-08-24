@@ -53,7 +53,7 @@ export default function Slider({ slides }: SliderProps) {
               </h1>
 
               <Link
-                href="/"
+                href="/categories"
                 className="py-2 ps-3 pe-2 ms-26 bg-white me-auto text-[#7E5D40] bg-white rounded-full font-bold flex items-center gap-x-3"
               >
                 دیدن محصولات
