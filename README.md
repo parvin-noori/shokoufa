@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌸 Shokoufa Flower Shop
 
-## Getting Started
+**Shokoufa** is a modern and responsive **online flower shop** built with Next.js, React, TypeScript, Prisma, and PostgreSQL.
 
-First, run the development server:
+The project is designed to provide a smooth and visually appealing shopping experience, with a focus on product discovery, filtering, product details, ratings, authentication, and a clean modern UI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔗 Live Demo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+👉 **Vercel Preview:**
+[demo](https://shokoufa.vercel.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🖼️ Home Page
 
-To learn more about Next.js, take a look at the following resources:
+The Shokoufa homepage is designed to give users a beautiful and simple introduction to the flower shop, while making it easy to discover featured products and navigate through different categories.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Shokoufa Home Page](https://github.com/parvin-noori/shokoufa/blob/main/public/images/homePage.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🖼️ Products
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Users can explore the available flowers and products through a responsive product listing interface.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Shokoufa Products](https://github.com/parvin-noori/shokoufa/blob/main/public/images/products.png)
+
+---
+
+## 🖼️ Product Details
+
+Each product has its own detailed page with product information, images, ratings, and interactive UI elements.
+
+![Shokoufa Product Details](https://github.com/parvin-noori/shokoufa/blob/main/public/images/singlePage.png)
+
+---
+
+
+## ✨ Features
+
+* 🌸 Modern online flower shop UI
+* ⚛️ Built with **Next.js & React**
+* 📱 Fully responsive design
+* 🛍️ Product listing and product details
+* 🔎 Product filtering and range sliders
+* ⭐ Product rating system
+* 🖼️ Product image gallery
+* 🔍 Image Lightbox
+* 🎠 Interactive sliders and carousels
+* 🔐 Authentication with **NextAuth**
+* 🗄️ PostgreSQL database
+* 🧬 Prisma ORM
+* 🧠 Zustand for client-side state management
+* 📝 Form management with React Hook Form
+* 🔔 Toast notifications
+* ⏳ Countdown components
+* 🎨 Modern UI with Tailwind CSS
+* 🛠️ Full TypeScript support
+* ⚡ Built on the latest Next.js App Router architecture
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+
+* **Next.js 16**
+* **React 19**
+* **TypeScript**
+* **Tailwind CSS 4**
+* **Lucide React**
+
+### Backend & Database
+
+* **Next.js**
+* **NextAuth**
+* **Prisma ORM**
+* **PostgreSQL**
+* **pg**
+
+### State & Forms
+
+* **Zustand**
+* **React Hook Form**
+* **React Range**
+* **React Range Slider Input**
+
+### UI & Experience
+
+* **Swiper**
+* **Yet Another React Lightbox**
+* **React Rating**
+* **React Toastify**
+* **React Countdown**
+
+---
+
+## 🔐 Authentication
+
+Shokoufa uses **NextAuth** to handle authentication and protect user-related functionality.
+
+The authentication system is designed to provide a real-world login experience while keeping the application architecture flexible for future improvements.
+
+* 🔑 User authentication
+* 🛡️ Protected application functionality
+* 👤 Session management
+* 🔒 Secure authentication flow
+
+---
+
+
+## 📱 Responsive UI
+
+The interface has been designed with responsive layouts in mind, ensuring that the shopping experience works smoothly across:
+
+* 💻 Desktop
+* 📱 Mobile
+* 📲 Tablet
+
+---
+
+## 🔮 Future Improvements
+
+* 🛒 Shopping cart
+* ❤️ Wishlist
+* 📦 Order management
+* 🎟️ Discount & coupon system
+* 📧 Email notifications
+
+---
+
+## 🌱 About Shokoufa
+
+Shokoufa is more than just an online shop.
+
+The idea behind the project is to combine a modern e-commerce experience with the visual beauty and feeling associated with flowers.
+
+From product discovery to product details, every part of the interface is designed around creating a **simple, elegant, and enjoyable shopping experience.**
+
+---
+
+<p align="center">
+
+🌸 **Made with love for Shokoufa**
+
+</p>
