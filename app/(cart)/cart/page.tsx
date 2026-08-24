@@ -108,7 +108,7 @@ export default async function Cart() {
                       <span className="text-sm text-gray-600">تومان</span>
                     </span>
                   </div>
-                  <button className="bg-rose-500 text-white w-full p-3 rounded-lg cursor-pointer">
+                  <button className="bg-rose-500 text-white w-full p-3 rounded-lg cursor-pointer hover:brightness-125">
                     ادامه
                   </button>
                 </div>

@@ -230,7 +230,8 @@ export default async function ProductPage({ params }: Props) {
             </div>
 
             {/* reviews */}
-            <div className="grid lg:grid-cols-3 grid-cols-1 py-10 gap-x-5 gap-5">
+            {product?.reviews?.length!==0 && (
+ <div className="grid lg:grid-cols-3 grid-cols-1 py-10 gap-x-5 gap-5">
               <div className="lg:col-span-3  mx-auto">
                 <span className="font-bold text-2xl">نظر خریداران</span>
               </div>
@@ -271,6 +272,8 @@ export default async function ProductPage({ params }: Props) {
                 )}
               </div>
             </div>
+            )}
+           
 
             {/* faq */}
             <div className="flex flex-col py-10 gap-y-3 lg:px-22">

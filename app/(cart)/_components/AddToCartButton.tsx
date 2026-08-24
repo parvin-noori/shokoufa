@@ -82,7 +82,7 @@ export default function AddToCartButton({
           type="button"
           onClick={handleAddToCart}
           disabled={isSubmitting}
-          className="bg-rose-500 justify-center text-white w-full p-3 rounded-xl cursor-pointer hover:contrast-90 flex items-center gap-x-3 disabled:cursor-none disabled:contrast-50"
+          className="bg-rose-500 justify-center text-white w-full p-3 rounded-xl cursor-pointer hover:brightness-125 flex items-center gap-x-3 disabled:cursor-not-allowed disabled:contrast-50"
         >
           <ShoppingCart />
           {isSubmitting ? "در حال افزودن..." : "افزودن به سبد خرید"}
