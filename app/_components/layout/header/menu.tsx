@@ -29,17 +29,17 @@ export default function Menu({ items }: MenuProps) {
     ? `${pathName}?category=${category}`
     : pathName;
   return (
-    <ul className="flex items-center justify-between">
+    <ul className="lg:flex lg:items-center lg:justify-between flex-col lg:flex-row divide-y lg:divide-transparent divide-gray-200">
       {mainMenu.map((item, index) => {
         const isActive = item.static
           ? pathName === item.slug && !category
           : item.slug === currentFullPath;
         return (
           <li key={index} className="flex items-center gap-x-2">
-            {index === 0 && <MenuIcon />}
+            {index === 0 && <MenuIcon className="lg:flex hidden"/>}
             <Link
               href={item.slug}
-              className={`hover:text-rose-500 transition-all duration-100 ${isActive ? "text-rose-500" : "text-gray-800"}`}
+              className={`hover:text-rose-500 lg:p-0 p-5 transition-all duration-100 ${isActive ? "text-rose-500" : "text-gray-800"}`}
             >
               {item.title}
             </Link>

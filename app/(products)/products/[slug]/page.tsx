@@ -289,7 +289,7 @@ export default async function ProductPage({ params }: Props) {
             <ProductCarousel products={products} title="شاید بپسندید" />
           </div>
         </div>
-        <div className="add-to-cart fixed bottom-22 py-5 bg-white shadow border-t border-gray-200 z-100 inset-x-0 lg:hidden block">
+        <div className="add-to-cart fixed bottom-22 py-5 bg-white shadow border-t border-gray-200 z-10 inset-x-0 lg:hidden block">
           <div className="container">
             <div className="flex flex-col gap-y-5">
               <div className="flex gap-5 justify-end">

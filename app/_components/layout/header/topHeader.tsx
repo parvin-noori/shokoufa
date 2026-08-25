@@ -1,205 +1,48 @@
-"use client";
-
-import { logOut } from "@/app/lib/actions";
-import {
-  ChevronDown,
-  ChevronLeft,
-  Heart,
-  LogIn,
-  LogOut,
-  Menu,
-  Search,
-  ShoppingCart,
-  UserRound,
-  X,
-} from "lucide-react";
-import Form from "next/form";
 import Image from "next/image";
+import CartButton from "./_components/cart";
+import LoginButton from "./_components/loginButton";
+import SearchForm from "./_components/searchForm";
+import Wishlist from "./_components/wishlist";
+import { CategoryType } from "./_type/category.type";
+import { UserType } from "./_type/user.type";
+import HamburgerMenu from "./hamburgerMenu";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
 
 type TopHeaderProps = {
-  user?: {
-    name?: string | null;
-    email?: string | null;
-    password?: string | null;
-  };
+  user?: UserType;
   cartQuantity: number;
+  categories: CategoryType[];
 };
 
-export default function TopHeader({ user, cartQuantity }: TopHeaderProps) {
-  const [showDropDown, setShowDropDown] = useState(false);
-  const [quantity, setQuantity] = useState(cartQuantity);
-  const dropDownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setQuantity(cartQuantity);
-  }, [cartQuantity]);
-
-
-  useEffect(() => {
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropDownRef.current &&
-      !dropDownRef.current.contains(event.target as Node)
-    ) {
-      setShowDropDown(false);
-    }
-  };
-
-  document.addEventListener("mousedown", handleClickOutside);
-
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
-
-  const handleDropDown = () => {
-    setShowDropDown(!showDropDown);
-  };
-
+export default function TopHeader({
+  user,
+  cartQuantity,
+  categories,
+}: TopHeaderProps) {
   return (
     <div className="top-header py-5 grid lg:grid-cols-2 grid-cols-1 items-center">
       {/* right  */}
       <div className="flex items-center gap-x-3">
-        <HamburgerMenu />
+        <HamburgerMenu categories={categories} />
         <Link href="/">
-          <Image
-            src="/images/BrandLogo.png"
-            alt="لوگو"
-            width={105}
-            height={32}
-          />
+        <Image src="/images/BrandLogo.png" alt="لوگو" width={105} height={32} />
         </Link>
-        <Form
-          action=""
-          className="searchbar flex items-center bg-gray-100 text-gray-400 rounded-full overflow-hidden text-sm flex-grow"
-        >
-          <button type="submit" className="lg:p-4 p-3 cursor-pointer">
-            <Search />
-          </button>
-          <input
-            type="text"
-            placeholder="جستجوی گل در شکوفا"
-            className="outline-none w-full lg:py-4 py-3"
-          />
-        </Form>
+        <SearchForm />
       </div>
 
       {/* left  */}
-      <div className="lg:flex hidden items-center gap-x-2 justify-end">
-        {/* wish list  */}
-        <Link
-          href={user ? "/whishlist" : "/login"}
-          className="border border-gray-200 p-4 rounded-full cursor-pointer hover:border-black transition-color duration-300"
-        >
-          <Heart />
-        </Link>
+      {user && (
+        <div className="lg:flex hidden items-center gap-x-2 justify-end">
+          {/* wish list  */}
+          <Wishlist user={user} />
 
-        {/* cart */}
-        <Link
-          href={user ? "/cart" : "/login"}
-          className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
-        >
-          {user && (
-            <div className="badge bg-rose-50 rounded-full text-rose-500 px-2">
-              {quantity}
-            </div>
-          )}
-          <ShoppingCart />
-        </Link>
+          {/* cart */}
+          <CartButton user={user} cartQuantity={cartQuantity} />
 
-        {/* login  */}
-        {user ? (
-          <div className="relative" >
-            <button
-              type="button"
-              className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
-              onClick={handleDropDown}
-            >
-              <UserRound />
-              {user?.name}
-              <ChevronDown />
-            </button>
-            <ul
-              className={`flex items-center flex-col  absolute gap-x-2  bg-white  border border-gray-200 rounded-xl end-0 w-64 divide-y mt-2 divide-gray-200 p-3 overflow-hidden ${showDropDown ? "flex" : "hidden"}`}
-            >
-              <li>
-                <Link
-                  href="/"
-                  className="p-3 flex items-center justify-between gap-x-2 cursor-pointer group"
-                >
-                  {user.email}
-                  <ChevronLeft className="group-hover:-translate-x-2 transition duration-200"/>
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={logOut}
-                  type="button"
-                  className="text-rose-500 p-3 flex items-center gap-x-2 cursor-pointer"
-                >
-                  <LogOut size={20} />
-                  خروج
-                </button>
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <Link
-            href="/login"
-            className="border border-gray-200 p-4 rounded-full cursor-pointer flex items-center gap-x-2 hover:border-black transition-color duration-300"
-          >
-            <LogIn />
-            ثبت نام | ورود
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function HamburgerMenu() {
-  const [isOpened, setIsOpened] = useState(false);
-  const pathName = usePathname();
-
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setIsOpened(true)}
-        // className="text-gray-800 cursor-pointer lg:hidden flex group"
-        className="text-gray-800 cursor-pointer hidden group"
-      >
-        <Menu />
-      </button>
-      <div
-        className={`hamburgerMenu transition-transform duration-300 bg-white fixed inset-0  z-10 ${isOpened ? "" : "translate-x-full"}`}
-      >
-        <button
-          type="button"
-          className="absolute end-5 top-10 cursor-pointer"
-          onClick={() => setIsOpened(false)}
-        >
-          <X />
-        </button>
-        <ul className="flex flex-col divide-y divide-gray-200 text-start py-22 px-5">
-          {/* {mainMenu.map((item, index) => {
-            const isActive = item.href === pathName;
-            return (
-              <li key={index}>
-                <Link
-                  href={item.href}
-                  className={`p-5 block transition-all duration-100 ${isActive ? "text-rose-500" : "text-gray-800 "}`}
-                >
-                  {item.text}
-                </Link>
-              </li>
-            );
-          })} */}
-        </ul>
-      </div>
+          {/* login  */}
+          <LoginButton user={user} />
+        </div>
+      )}
     </div>
   );
 }

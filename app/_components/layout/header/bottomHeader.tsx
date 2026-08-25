@@ -1,11 +1,16 @@
 import { ChevronDown } from "lucide-react";
-import MainMenu from "./mainMenu";
+import { CategoryType } from "./_type/category.type";
+import Menu from "./menu";
 
-export default function BottomHeader() {
+export default function BottomHeader({
+  categories,
+}: {
+  categories: CategoryType[];
+}) {
   return (
     <div className="bottom-header py-2 lg:grid hidden grid-cols-2 items-center">
       {/* right  */}
-      <MainMenu />
+      <Menu items={categories} />
 
       {/* left  */}
       <div className="flex items-center gap-x-2 justify-end text-sm">
