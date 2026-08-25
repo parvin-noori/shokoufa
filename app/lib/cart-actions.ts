@@ -225,11 +225,7 @@ export async function getCartItemQuantity(productId: string) {
   return result._sum.quantity ?? 0;
 }
 
-export async function DecreaseFromCart(
-  productId: string,
-  size: Size,
-  colors: Color[],
-) {
+export async function DecreaseFromCart(cartItemId: string) {
   try {
     const session = await auth();
 
@@ -239,15 +235,9 @@ export async function DecreaseFromCart(
       };
     }
 
-    const normalizedColors = [...colors].sort();
-
     const cartItem = await prisma.cartItem.findFirst({
       where: {
-        productId,
-        size,
-        colors: {
-          equals: normalizedColors,
-        },
+        id: cartItemId,
         cart: {
           userId: session.user.id,
         },
@@ -296,6 +286,7 @@ export async function DecreaseFromCart(
     };
   }
 }
+
 export async function getCartQuantity() {
   const session = await auth();
 
