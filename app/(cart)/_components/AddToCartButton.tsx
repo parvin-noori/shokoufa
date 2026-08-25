@@ -16,10 +16,7 @@ export default function AddToCartButton({
   quantity,
 }: AddToCartButtonProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-   const {
-    selectedSize,
-    selectedColors,
-  } = useProductOptions();
+  const { selectedSize, selectedColors } = useProductOptions();
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
 
   const handleAddToCart = async () => {
@@ -56,7 +53,21 @@ export default function AddToCartButton({
     try {
       setIsSubmitting(true);
 
-      const result = await DecreaseFromCart(productId);
+      if (!selectedSize) {
+        toast.warning("لطفاً سایز را انتخاب کنید");
+        return;
+      }
+
+      if (selectedColors.length === 0) {
+        toast.warning("لطفاً حداقل یک رنگ انتخاب کنید");
+        return;
+      }
+
+      const result = await DecreaseFromCart(
+        productId,
+        selectedSize,
+        selectedColors,
+      );
 
       if (result.error) {
         toast.error(result.error);
@@ -74,7 +85,7 @@ export default function AddToCartButton({
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }
   return (
     <>
       {currentQuantity === 0 ? (
