@@ -44,7 +44,7 @@ const services = [
 const ratings = [
   { rate: 5, percent: 70 },
   { rate: 4, percent: 20 },
-  { rate: 3, percent: 90 },
+  { rate: 3, percent: 95 },
   { rate: 2, percent: 5 },
   { rate: 1, percent: 0 },
 ];
