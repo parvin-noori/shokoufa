@@ -29,7 +29,7 @@ export default function Menu({ items }: MenuProps) {
     ? `${pathName}?category=${category}`
     : pathName;
   return (
-    <ul className="lg:flex lg:items-center lg:justify-between flex-col lg:flex-row divide-y lg:divide-transparent divide-gray-200">
+    <ul className="lg:flex lg:items-center xl:col-span-1 lg:col-span-2 lg:justify-between flex-col lg:flex-row divide-y lg:divide-transparent divide-gray-200">
       {mainMenu.map((item, index) => {
         const isActive = item.static
           ? pathName === item.slug && !category
