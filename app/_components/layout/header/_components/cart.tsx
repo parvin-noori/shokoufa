@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { UserType } from "../_type/user.type";
 
 type CartButtonProps = {
-  user: UserType;
+  user: UserType|undefined;
   cartQuantity: number;
 };
 

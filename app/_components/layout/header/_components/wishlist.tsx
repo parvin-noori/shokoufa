@@ -5,7 +5,7 @@ import Link from "next/link";
 import { UserType } from "../_type/user.type";
 
 type WishlistProps = {
-  user: UserType;
+  user: UserType | undefined;
 };
 
 export default function Wishlist({ user }: WishlistProps) {

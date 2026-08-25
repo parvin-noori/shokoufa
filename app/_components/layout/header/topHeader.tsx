@@ -31,7 +31,6 @@ export default function TopHeader({
       </div>
 
       {/* left  */}
-      {user && (
         <div className="lg:flex hidden items-center gap-x-2 justify-end">
           {/* wish list  */}
           <Wishlist user={user} />
@@ -42,7 +41,6 @@ export default function TopHeader({
           {/* login  */}
           <LoginButton user={user} />
         </div>
-      )}
     </div>
   );
 }

@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { UserType } from "../_type/user.type";
 
-export default function LoginButton({ user }: { user: UserType }) {
+export default function LoginButton({ user }: { user: UserType|undefined }) {
   const [showDropDown, setShowDropDown] = useState(false);
   const dropDownRef = useRef<HTMLDivElement>(null);
 
